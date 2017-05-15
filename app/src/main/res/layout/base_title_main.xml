@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/titleView"
+    android:layout_width="fill_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/green">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/base_line"></include>
+
+    <Button
+        android:id="@+id/city_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/green"
+        android:drawableLeft="@drawable/ad"
+        android:paddingBottom="@dimen/text_margin"
+        android:paddingTop="@dimen/text_margin"
+        android:text="宣城|切换"
+        android:textColor="@color/city_gray"
+        android:textSize="10sp" />
+
+    <ImageView
+        android:id="@+id/title_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:ellipsize="end"
+        android:src="@drawable/logo"
+        android:textColor="@color/white"
+        android:layout_margin="12dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/base_line"></include>
+</RelativeLayout>

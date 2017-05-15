@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/re_base"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/in"
+                layout="@layout/base_title"></include>
+
+            <LinearLayout
+                android:id="@+id/lin1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bottombar_height"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/in"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:background="@drawable/textbg"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_tie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|left"
+                    android:layout_marginLeft="@dimen/bot_jp"
+                    android:layout_marginRight="@dimen/bot_jp"
+                    android:text="类别名称" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="@dimen/fab_margin"
+                    android:layout_gravity="center_vertical" />
+
+                <TextView
+                    android:id="@+id/text_ad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/text_tie"
+                    android:layout_alignBottom="@+id/text_tie"
+                    android:layout_gravity="center|right"
+                    android:layout_marginLeft="@dimen/bot_jp"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@+id/text_tie"
+                    android:layout_toRightOf="@+id/text_tie"
+
+                    android:height="@dimen/text_margin"
+                    android:text="广而告之" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/lin2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bottombar_height"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/lin1"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:layout_marginTop="11dp"
+                android:background="@drawable/textbg"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_tie2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|left"
+                    android:layout_marginLeft="@dimen/bot_jp"
+                    android:layout_marginRight="@dimen/bot_jp"
+                    android:text="帖子标题" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="@dimen/fab_margin"
+                    android:layout_gravity="center_vertical" />
+
+                <EditText
+                    android:id="@+id/text_ad2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/text_tie2"
+                    android:layout_alignBottom="@+id/text_tie2"
+                    android:layout_gravity="center|right"
+                    android:gravity="center|left"
+                    android:layout_marginLeft="@dimen/bot_jp"
+                    android:layout_toEndOf="@+id/text_tie2"
+                    android:layout_toRightOf="@+id/text_tie2"
+                    android:hint="帖子标题" />
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/lin2"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:layout_marginTop="@dimen/bot_jp"
+                android:background="@drawable/textbg"
+                android:gravity="start"
+                android:hint="在此畅所欲言"
+                android:lines="15"
+                android:paddingBottom="@dimen/bot_jp"
+                android:paddingTop="@dimen/bot_jp"
+                android:textColorHint="@color/hint_color" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bottombar_height"
+                android:layout_below="@+id/textView"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:layout_marginTop="@dimen/fab_margin"
+                android:background="@color/green"
+                android:text="发表" />
+
+            <TextView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/bottombar_height"
+                android:layout_above="@+id/button"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="@dimen/fab_margin"
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:drawableLeft="@drawable/upload"
+                android:gravity="center"
+                android:text="图片上传" />
+        </RelativeLayout>
+
+</RelativeLayout>

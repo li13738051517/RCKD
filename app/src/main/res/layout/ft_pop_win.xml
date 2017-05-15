@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/click_to_dismiss"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">>
+
+    <RelativeLayout
+        android:id="@+id/popup_anima"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/bot_jp"
+        android:layout_marginLeft="@dimen/bot_jp"
+        android:layout_marginRight="@dimen/bot_jp"
+        android:layout_marginTop="@dimen/bot_jp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/base_line"
+            android:visibility="visible"
+            android:id="@+id/include4"></include>
+        <!--numColumns设置每行显示多少个-->
+        <GridView
+            android:id="@+id/grid_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="3"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="64dp"
+            android:layout_alignParentStart="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_above="@+id/linearLayout4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2"
+            android:id="@+id/linearLayout5">
+
+            <TextView
+                android:id="@+id/text10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textbg"
+                android:gravity="center"
+                android:text="发招聘贴"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/text9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textbg"
+                android:gravity="center"
+                android:text="发求职贴"
+                android:textColor="@color/blue" />
+        </LinearLayout>
+
+        <include
+            layout="@layout/base_line"
+            android:visibility="gone"></include>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_above="@+id/linearLayout3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/text8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textbg"
+                android:gravity="center"
+                android:text="房屋租售"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/text7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textbg"
+                android:gravity="center"
+                android:text="二手之家"
+                android:textColor="@color/blue" />
+        </LinearLayout>
+
+        <include
+            layout="@layout/base_line"
+            android:visibility="gone"></include>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_above="@+id/linearLayout2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/text6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textbg"
+                android:gravity="center"
+
+                android:text="顺丰拼车"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/text5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textbg"
+                android:gravity="center"
+                android:text="交友征婚"
+                android:textColor="@color/blue" />
+        </LinearLayout>
+
+        <include
+            layout="@layout/base_line"
+            android:visibility="gone"></include>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_above="@+id/linearLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/text4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textbg"
+                android:gravity="center"
+                android:text="临时短工"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textbg"
+                android:gravity="center"
+                android:text="匠工约定"
+                android:textColor="@color/blue" />
+        </LinearLayout>
+
+        <include
+            layout="@layout/base_line"
+            android:visibility="gone"></include>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_above="@+id/button2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textbg"
+                android:gravity="center"
+                android:text="打听求助"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/textbg"
+                android:gravity="center"
+                android:text="发求职贴"
+                android:textColor="@color/blue" />
+        </LinearLayout>
+
+        <include
+            layout="@layout/base_line"
+            android:visibility="gone"></include>
+
+
+        <ImageView
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:background="@color/bg_app"
+            android:gravity="center"
+            android:src="@drawable/tab_ft2_selector"
+            android:padding="8dp"
+            android:layout_marginTop="@dimen/bottombar_height"
+            android:textColor="@color/black"
+            android:layout_alignParentBottom="true"
+           />
+    </RelativeLayout>
+
+</RelativeLayout>
