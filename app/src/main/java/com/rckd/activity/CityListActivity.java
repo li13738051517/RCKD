@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -49,13 +51,34 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.RunnableFuture;
 import java.util.regex.Pattern;
 
+import io.reactivex.ObservableSource;
+import io.reactivex.disposables.CompositeDisposable;
 import timber.log.Timber;
 
+import android.app.Activity;
+import android.os.Bundle;
+import android.os.SystemClock;
+import android.util.Log;
+import android.view.View;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+
+import java.util.concurrent.Callable;
+
+import static com.baidu.location.h.j.s;
 
 /**
  * Created by LiZheng on 2017/5/4 0004.
+ * http://lbsyun.baidu.com/index.php?title=android-locsdk/guide/getloc ,开发文档
  */
 
 public class CityListActivity extends com.rckd.base.BaseActivity implements View.OnClickListener, OnScrollListener, com.yanzhenjie.permission.PermissionListener {
@@ -189,7 +212,6 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
         hotCityInit();
         hisCityInit();
         setAdapter(allCity_lists, city_hot, city_history);
-
         mLocationClient = new LocationClient(getApplicationContext());
         //声明LocationClient类
         mMyLocationListener = new MyLocationListener();
@@ -262,15 +284,6 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
 
         class ViewHolder {
             TextView name;
-        }
-    }
-
-
-    // 设置overlay不可见
-    private class OverlayThread implements Runnable {
-        @Override
-        public void run() {
-            overlay.setVisibility(View.GONE);
         }
     }
 
@@ -385,6 +398,9 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
     }
 
     @SuppressWarnings("unchecked")
+    /**
+     * 注意可以直接通过系统服务器接口调用所有的城市
+     */
     private ArrayList<City> getCityList() {
         Timber.e(tag + "  getCityList start  ", tag);
         //以下可以考虑使用DBUtil 工具类进行优化
@@ -407,7 +423,7 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
             e.printStackTrace();
         }
         Collections.sort(list, comparator);
-        return list;
+        return list;//list  vaule 374
     }
 
     @SuppressWarnings("unchecked")
@@ -458,12 +474,12 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
 
 
     /**
-     * 实现实位回调监听
+     * 实现实位回调监听 ,百度这个回调接口查看源码  发现是放置在子线程操作的
      */
     public class MyLocationListener implements BDLocationListener {
 
         @Override
-        public void onReceiveLocation(BDLocation location) {
+        public void onReceiveLocation(final BDLocation location) {
             Timber.e(tag + " city =  " + location.getCity(), tag);
             if (!isNeedFresh) {
                 return;
@@ -484,17 +500,73 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
 //            String street = tencentLocation.getStreet();//街道
 //            String streetNo = tencentLocation.getStreetNo();//门号
             if (location.getCity() == null) {
-                locateProcess = 3; // 定位失败
-                personList.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+                locateProcess = 3; // 如果连地级市都尚未获取到,就证明定位失败
+                CityListActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        personList.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
                 return;
+            } else {
+                if (location.getDistrict() != null) {
+                    currentCity = location.getDistrict().substring(0, location.getDistrict().length() - 1);
+                    locateProcess = 2; // 定位成功
+                    CityListActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            personList.setAdapter(adapter);  //此处为子线程??? ,耗时操作
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+                } else {
+                    currentCity = location.getCity().substring(0, location.getCity().length() - 1);
+                    locateProcess = 2; // 定位成功
+                    CityListActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            personList.setAdapter(adapter);  //此处为子线程??? ,耗时操作
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+                }
             }
-            currentCity = location.getCity().substring(0,
-                    location.getCity().length() - 1);
-            locateProcess = 2; // 定位成功
-            personList.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+
+
+//            disposables.add(doBackService()
+//                    // Run on a background thread
+//                    .subscribeOn(Schedulers.io())
+//                    // Be notified on the main thread
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribeWith(new DisposableObserver<String>() {
+//                        @Override public void onComplete() {
+//                            Log.d(tag, "onComplete()");
+//                        }
+//
+//                        @Override public void onError(Throwable e) {
+//                            Log.e(tag, "onError()", e);
+//                        }
+//
+//                        @Override public void onNext(String string) {
+//                            Log.d(tag, "onNext(" + string + ")");
+//                        }
+//                    }));
+
         }
+
+//        private final CompositeDisposable disposables = new CompositeDisposable();  //创建可观察
+
+//        //内部类
+//       Observable<String> doBackService(){
+//           return  Observable.defer(new Callable<ObservableSource<? extends String>>() {
+//               @Override
+//               public ObservableSource<? extends String> call() throws Exception {
+//                   SystemClock.sleep(5000);
+//                   return Observable.just("one", "two", "three", "four", "five");
+//               }
+//           });
+//       }
 
         //热点
         @Override
@@ -585,9 +657,8 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
                     @Override
                     public void onClick(View v) {
                         if (locateProcess == 2) {
-                            Toast.makeText(getApplicationContext(),
-                                    city.getText().toString(),
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), city.getText().toString(), Toast.LENGTH_SHORT).show();
+                            //此处可以在增加一个布局
                         } else if (locateProcess == 3) {
                             locateProcess = 1;
                             personList.setAdapter(adapter);
@@ -604,8 +675,7 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
                         }
                     }
                 });
-                ProgressBar pbLocate = (ProgressBar) convertView
-                        .findViewById(R.id.pbLocate);
+                ProgressBar pbLocate = (ProgressBar) convertView.findViewById(R.id.pbLocate);
                 if (locateProcess == 1) { // 正在定位
                     locateHint.setText("正在定位");
                     city.setVisibility(View.GONE);
@@ -613,7 +683,7 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
                 } else if (locateProcess == 2) { // 定位成功
                     locateHint.setText("当前定位城市");
                     city.setVisibility(View.VISIBLE);
-                    city.setText(currentCity);
+                    city.setText(currentCity); //城市名称就是广德
                     mLocationClient.stop();
                     pbLocate.setVisibility(View.GONE);
                 } else if (locateProcess == 3) {
@@ -872,6 +942,15 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
             handler.removeCallbacks(overlayThread);
             // 延迟一秒后执行，让overlay为不可见
             handler.postDelayed(overlayThread, 1000);
+        }
+    }
+
+
+    // 设置overlay不可见
+    private class OverlayThread implements Runnable {
+        @Override
+        public void run() {
+            overlay.setVisibility(View.GONE);
         }
     }
 

@@ -198,7 +198,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * 数据库表结构有变化时采用
+     * 数据库表结构有变化时采用//3    4
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
