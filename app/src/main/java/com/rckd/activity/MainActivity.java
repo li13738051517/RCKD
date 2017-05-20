@@ -50,6 +50,7 @@ import timber.log.Timber;
 /**
  * 类知乎 复杂嵌套Demo tip: 多使用右上角的"查看栈视图"
  * Created by LiZheng on 16/6/2.
+ * 数据刷新库https://github.com/LuckyJayce/MVCHelper
  */
 public class MainActivity extends BaseActivity implements BaseMainFragment.OnBackToFirstListener, View.OnClickListener, com.yanzhenjie.permission.PermissionListener {
     public static final int FIRST = 0;
@@ -151,9 +152,13 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(mContext, "你点击了~" + position + "~项", Toast.LENGTH_SHORT).show();
-                //此处编写position
-                switch (position) {
-
+                //此处编写position  ,根据position的//例如点击postion==0时
+                switch (position){
+                    case 0:
+                        makeText("你点击了 pos =0");
+                        //利用反射机制
+//                        ProxyActivity.startActivity(this, TestCaseFragment.class, "测试用例");
+                        break;
                 }
             }
         });

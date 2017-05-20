@@ -19,6 +19,7 @@ import com.rckd.inter.ExceptionHandler;
 import com.rckd.utils.CrashHandler;
 import com.rckd.utils.CrashReportingTree;
 import com.rckd.utils.LocationService;
+import com.squareup.leakcanary.LeakCanary;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.TbsDownloader;
 import com.tencent.smtt.sdk.TbsListener;
@@ -127,11 +128,18 @@ public class BaseApplication extends android.app.Application {
     /**
      * 初始化第三方app Incon
      */
-//    private void initAppIcon() {
-//        Timber.e(tag + " initAppIcon start", tag);
-//        LeakCanary.install(this);
-//        Timber.e(tag + " initAppIcon over", tag);
-//    }
+    private void initAppIcon() {
+        Timber.e(tag + " initAppIcon start", tag);
+
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
+        Timber.e(tag + " initAppIcon over", tag);
+    }
+
     @Override
     public void onTerminate() {
         super.onTerminate();
