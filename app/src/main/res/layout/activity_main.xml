@@ -20,6 +20,8 @@
         android:layout_height="@dimen/bottombar_height"
         android:layout_gravity="bottom" />
 
+    <include layout="@layout/base_title_main"></include>
+
     <FrameLayout
         android:id="@+id/fl_container"
         android:layout_width="match_parent"
@@ -27,6 +29,4 @@
         android:layout_marginBottom="@dimen/bottombar_height"
         android:layout_marginTop="@dimen/bottombar_height"
         android:paddingTop="@dimen/bot_jp" />
-
-    <include layout="@layout/base_title_main"></include>
 </FrameLayout>

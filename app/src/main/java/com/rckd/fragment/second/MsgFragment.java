@@ -16,9 +16,7 @@ import com.rckd.fragment.second.child.ViewPagerFragment;
 public class MsgFragment extends BaseMainFragment {
 
     public static MsgFragment newInstance() {
-
         Bundle args = new Bundle();
-
         MsgFragment fragment = new MsgFragment();
         fragment.setArguments(args);
         return fragment;

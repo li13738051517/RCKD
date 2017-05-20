@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -59,6 +60,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
     public static final int FOURTH = 3;
 
     private BaseFragment[] mFragments = new BaseFragment[4];
+    FrameLayout frameLayout;// frameLayout  R.id.fl_container
 
     private BottomBar mBottomBar;
 //    private Toolbar mToolbar;
@@ -153,7 +155,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(mContext, "你点击了~" + position + "~项", Toast.LENGTH_SHORT).show();
                 //此处编写position  ,根据position的//例如点击postion==0时
-                switch (position){
+                switch (position) {
                     case 0:
                         makeText("你点击了 pos =0");
                         //利用反射机制

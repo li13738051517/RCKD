@@ -50,9 +50,7 @@ public class FirstPagerFragment extends BaseFragment implements SwipeRefreshLayo
     };
 
     public static FirstPagerFragment newInstance() {
-
         Bundle args = new Bundle();
-
         FirstPagerFragment fragment = new FirstPagerFragment();
         fragment.setArguments(args);
         return fragment;

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 主页HomeFragment  Adapter
+ * HomeFragment  Adapter
  * Created by LiZheng on 16/2/1.
  */
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
