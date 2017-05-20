@@ -17,11 +17,9 @@ import static com.yanzhenjie.nohttp.tools.ResCompat.getDrawable;
 
 /**
  * Created by LiZheng on 2017/5/13 0013.
+ * 带删除按钮特效的输入框
  */
-
 public class EditTextWithDel extends android.support.v7.widget.AppCompatEditText {
-
-
     static String tag = EditTextWithDel.class.getName();
     private Drawable imgInable;
     private Drawable imgAble;
