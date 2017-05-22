@@ -58,6 +58,9 @@ public class BottomBar extends LinearLayout {
         mTabParams.weight = 1;
     }
 
+
+
+
     public BottomBar addItem(final BottomBarTab tab) {
         tab.setOnClickListener(new OnClickListener() {
             @Override
@@ -81,6 +84,7 @@ public class BottomBar extends LinearLayout {
         mTabLayout.addView(tab);
         return this;
     }
+
 
     public void setOnTabSelectedListener(OnTabSelectedListener onTabSelectedListener) {
         mListener = onTabSelectedListener;
@@ -208,4 +212,6 @@ public class BottomBar extends LinearLayout {
             }
         }
     }
+
+
 }

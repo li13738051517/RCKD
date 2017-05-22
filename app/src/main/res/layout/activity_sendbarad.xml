@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -7,7 +7,10 @@
         <RelativeLayout
             android:id="@+id/re_base"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
             <include
                 android:id="@+id/in"
@@ -17,13 +20,14 @@
                 android:id="@+id/lin1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/bottombar_height"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/in"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginRight="@dimen/bot_jp"
                 android:background="@drawable/textbg"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_below="@+id/in"
+                android:layout_alignLeft="@+id/lin2"
+                android:layout_alignStart="@+id/lin2"
+                android:layout_marginTop="3dp"
+                android:layout_alignRight="@+id/lin2"
+                android:layout_alignEnd="@+id/lin2">
 
                 <TextView
                     android:id="@+id/text_tie"
@@ -36,6 +40,7 @@
 
                 <View
                     android:layout_width="1dp"
+                    android:background="@color/black"
                     android:layout_height="@dimen/fab_margin"
                     android:layout_gravity="center_vertical" />
 
@@ -51,7 +56,6 @@
                     android:layout_toEndOf="@+id/text_tie"
                     android:layout_toRightOf="@+id/text_tie"
 
-                    android:height="@dimen/text_margin"
                     android:text="广而告之" />
 
             </LinearLayout>
@@ -66,7 +70,7 @@
                 android:layout_below="@+id/lin1"
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
-                android:layout_marginTop="11dp"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/textbg"
                 android:orientation="horizontal">
 
@@ -82,6 +86,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="@dimen/fab_margin"
+                    android:background="@color/black"
                     android:layout_gravity="center_vertical" />
 
                 <EditText
@@ -92,6 +97,7 @@
                     android:layout_alignBottom="@+id/text_tie2"
                     android:layout_gravity="center|right"
                     android:gravity="center|left"
+                    android:maxLines="1"
                     android:layout_marginLeft="@dimen/bot_jp"
                     android:layout_toEndOf="@+id/text_tie2"
                     android:layout_toRightOf="@+id/text_tie2"
@@ -109,7 +115,7 @@
                 android:layout_below="@+id/lin2"
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
-                android:layout_marginTop="@dimen/bot_jp"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/textbg"
                 android:gravity="start"
                 android:hint="在此畅所欲言"
@@ -122,26 +128,37 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/bottombar_height"
-                android:layout_below="@+id/textView"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginRight="@dimen/bot_jp"
-                android:layout_marginTop="@dimen/fab_margin"
                 android:background="@color/green"
-                android:text="发表" />
+                android:text="发表"
+                android:layout_below="@+id/list_view"
+                android:layout_marginTop="5dp"
+                android:layout_alignLeft="@+id/imageView2"
+                android:layout_alignStart="@+id/imageView2"
+                android:layout_alignRight="@+id/textView"
+                android:layout_alignEnd="@+id/textView" />
 
             <TextView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/bottombar_height"
-                android:layout_above="@+id/button"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="@dimen/fab_margin"
-                android:layout_marginLeft="@dimen/fab_margin"
-                android:layout_marginStart="@dimen/fab_margin"
                 android:drawableLeft="@drawable/upload"
                 android:gravity="center"
-                android:text="图片上传" />
+                android:text="图片上传"
+                android:layout_below="@+id/textView"
+                android:layout_alignLeft="@+id/textView"
+                android:layout_alignStart="@+id/textView"
+                android:layout_marginTop="3dp" />
+
+            <GridView
+                android:id="@+id/list_view"
+                android:numColumns="5"
+                android:layout_below="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/button"
+                android:layout_alignStart="@+id/button"
+                android:layout_alignRight="@+id/button"
+                android:layout_alignEnd="@+id/button" />
         </RelativeLayout>
 
-</RelativeLayout>
+</ScrollView>

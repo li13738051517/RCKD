@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -47,6 +49,11 @@ import java.util.List;
 
 import timber.log.Timber;
 
+import static com.baidu.location.h.j.M;
+import static com.baidu.location.h.j.m;
+import static com.baidu.location.h.j.s;
+import static com.baidu.location.h.j.v;
+
 
 /**
  * 类知乎 复杂嵌套Demo tip: 多使用右上角的"查看栈视图"
@@ -58,9 +65,8 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
     public static final int SECOND = 1;
     public static final int THIRD = 2;
     public static final int FOURTH = 3;
-
     private BaseFragment[] mFragments = new BaseFragment[4];
-    FrameLayout frameLayout;// frameLayout  R.id.fl_container
+
 
     private BottomBar mBottomBar;
 //    private Toolbar mToolbar;
@@ -77,11 +83,17 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //    private DisplayMetrics dm;
 
     SlideFromBottonPoup popup;
+    List<BottomBarTab> list = new ArrayList<>();
+
+
+    ViewGroup mViewParent; //利用这个来加载子布局 ,自定义view等,即中间的大白块用来加载第三方的东西
+    FrameLayout frameLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mViewParent = (ViewGroup) findViewById(R.id.fl_container);
         Timber.e(tag);
         Timber.e(tag + " onCreate ", tag);
         if (savedInstanceState == null) {
@@ -96,6 +108,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                     mFragments[SECOND],
                     mFragments[THIRD],
                     mFragments[FOURTH]);
+
         } else {
             // 这里库已经做了Fragment恢复,所有不需要额外的处理了, 不会出现重叠问题
 
@@ -106,11 +119,8 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
             mFragments[THIRD] = findFragment(SendBarFragment.class);
             mFragments[FOURTH] = findFragment(UserCenterFragment.class);
         }
-        //先初始化poup
-        popup = new SlideFromBottonPoup(this);
-        //先初始化poup
-        initPoupListener();
 
+        initPoupListener();
         initTab();
         // 可以监听该Activity下的所有Fragment的18个 生命周期方法
         startLocation(cityBtn);
@@ -127,9 +137,16 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
     private GridView grid_photo;
     private BaseAdapter mAdapter = null;
     private ArrayList<BaseIcon> mData = null;
+//    ImageView button2;
+//    View v;
 
     public void initPoupListener() {
+        //先初始化poup
+        popup = new SlideFromBottonPoup(this);
+
+        //先初始化poup
         grid_photo = (GridView) popup.getView().findViewById(R.id.grid_photo);
+//        button2 = (ImageView) popup.getView().findViewById(R.id.button2);
         mData = new ArrayList<BaseIcon>();
         //此处添加数据 ,仅仅只是添加几张图片的视图,可以这样写
         mData.add(new BaseIcon(R.mipmap.zhaopin, "发招聘贴"));
@@ -153,11 +170,21 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
         grid_photo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(mContext, "你点击了~" + position + "~项", Toast.LENGTH_SHORT).show();
+                makeText("你点击了~" + position + "~项");
                 //此处编写position  ,根据position的//例如点击postion==0时
                 switch (position) {
+                    //便民广告
                     case 0:
-                        makeText("你点击了 pos =0");
+                    case 1:
+                    case 2:
+                    case 9:
+                        makeText("你点击了 pos = 9  ");
+                        startActivity(SendBarAdActivity.class);
+//                        LayoutInflater inflater = getLayoutInflater();
+                        // 通过inflate方法将layout转化为view
+//                        v = inflater.inflate(R.layout.activity_sendbarad, null);
+//                        mViewParent.addView(v, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+//                        mViewParent.setVisibility(View.VISIBLE);
                         //利用反射机制
 //                        ProxyActivity.startActivity(this, TestCaseFragment.class, "测试用例");
                         break;
@@ -165,6 +192,13 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
             }
         });
 
+//        button2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                popup.dismiss();
+//                mViewParent.removeView(v);
+//            }
+//        });
 
 //        popup.getView().findViewById(R.id.text1).setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -234,6 +268,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
     protected FragmentAnimator onCreateFragmentAnimator() {
         return super.onCreateFragmentAnimator();
     }
+
 
     private void initTab() {
         Timber.e(tag + " initTab ", tag);
@@ -507,7 +542,6 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                 case 0:
                     Timber.e(tag + " 注册位置监听器成功 ", tag);
                     break;
-
                 case 1:
                     Timber.e(tag + " 设备缺少使用腾讯定位SDK需要的基本条件 ", tag);
                     break;
@@ -561,20 +595,20 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                 String province = tencentLocation.getProvince(); //省
                 String city = tencentLocation.getCity();//市
                 String district = tencentLocation.getDistrict();//district	区
-                String town = tencentLocation.getTown();//  镇
-                String village = tencentLocation.getVillage();//村
-                String street = tencentLocation.getStreet();//街道
-                String streetNo = tencentLocation.getStreetNo();//门号
+//                String town = tencentLocation.getTown();//  镇
+//                String village = tencentLocation.getVillage();//村
+//                String street = tencentLocation.getStreet();//街道
+//                String streetNo = tencentLocation.getStreetNo();//门号
 
 
                 if (!district.isEmpty()) {
                     cityBtn.setText(district + " | 切换");
                     Timber.e(tag + " " + district, tag);
                 } else if (!city.isEmpty()) {
-                    cityBtn.setText(city + "| 切换");//默认地址
+                    cityBtn.setText(city + " | 切换");//默认地址
                     Timber.e(tag + " " + city, tag);
                 } else {
-                    cityBtn.setText("宣城" + "| 切换");//默认地址
+                    cityBtn.setText("未知");//默认地址
                     Timber.e(tag + " 默认城市 ", tag);
                 }
 
@@ -599,9 +633,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
              * 必要时可对这种情况进行特殊处理, 比如弹出提示或引导
 			 */
                 makeText(tag + " 提示:定位权限被禁用! " + name + status + desc);
-
                 Timber.e(tag + " " + name + " " + status + " " + desc);
-
                 //引导用户打开权限设置表
             }
 

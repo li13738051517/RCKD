@@ -17,7 +17,7 @@ import com.rckd.R;
  * Created by LiZheng on 16/6/3.
  */
 public class BottomBarTab extends FrameLayout {
-    private ImageView mIcon;
+    public ImageView mIcon;
     private Context mContext;
     private int mTabPosition = -1;
 
@@ -57,7 +57,7 @@ public class BottomBarTab extends FrameLayout {
         if (selected) {
             mIcon.setColorFilter(ContextCompat.getColor(mContext, R.color.colorPrimary));
         } else {
-            mIcon.setColorFilter(ContextCompat.getColor(mContext,  R.color.black));
+            mIcon.setColorFilter(ContextCompat.getColor(mContext, R.color.black));
         }
     }
 

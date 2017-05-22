@@ -16,7 +16,7 @@ import com.rckd.R;
 
 public class SlideFromBottonPoup extends razerdp.basepopup.BasePopupWindow implements View.OnClickListener {
     protected View popupView;
-    protected Context mcontext;
+    protected Context mContext;
     Button button2;
 
     public SlideFromBottonPoup(Activity activity) {
@@ -33,7 +33,7 @@ public class SlideFromBottonPoup extends razerdp.basepopup.BasePopupWindow imple
 
     public SlideFromBottonPoup(Activity activity, Context context) {
         super(activity);
-        mcontext = context;
+        mContext = context;
     }
 
     //2

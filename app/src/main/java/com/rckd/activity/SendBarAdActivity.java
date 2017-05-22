@@ -54,7 +54,7 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sendbarad);
         ButterKnife.bind(this);
-        button.setText("便民广告");
+        title.setText("便民广告");
         test = text_ad2.getText().toString();
         testArear = textView.getText().toString();
 
