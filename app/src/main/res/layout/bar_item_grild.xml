@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!-- 此处需注意-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dip"
+        android:layout_marginTop="4dip"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="60dip"
+            android:layout_height="55dip" />
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/delete_markView"
+        android:layout_width="20dip"
+        android:layout_height="20dip"
+        android:layout_gravity="right|top"
+        android:adjustViewBounds="true"
+        android:src="@drawable/cl"
+        android:visibility="gone" />
+
+</FrameLayout>

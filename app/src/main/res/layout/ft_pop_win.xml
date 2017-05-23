@@ -227,7 +227,7 @@
             android:background="@color/bg_app"
             android:gravity="center"
             android:src="@drawable/tab_ft2_selector"
-            android:padding="8dp"
+            android:padding="10dp"
             android:layout_marginTop="@dimen/bottombar_height"
             android:textColor="@color/black"
             android:layout_alignParentBottom="true"

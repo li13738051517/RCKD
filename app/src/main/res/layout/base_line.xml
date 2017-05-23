@@ -3,5 +3,6 @@
     android:id="@+id/line"
     android:layout_width="fill_parent"
     android:layout_height="1dp"
+
     android:alpha="10"
-    android:orientation="vertical"></LinearLayout>
+    android:orientation="vertical"/>

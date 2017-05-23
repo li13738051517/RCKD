@@ -173,10 +173,50 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                 makeText("你点击了~" + position + "~项");
                 //此处编写position  ,根据position的//例如点击postion==0时
                 switch (position) {
-                    //便民广告
+
                     case 0:
+
+                        makeText("你点击了 pos = 0 ");
+                        startActivity(SendBarJobWantActivity.class);
+                        break;
                     case 1:
+                        makeText("你点击了 pos = 1  ");
+                        startActivity(SendBarPasteJobActivity.class);
+                        break;
                     case 2:
+                        makeText("你点击了 pos = 2  ");
+                        startActivity(SendBarHouseSaleActivity.class);
+                        break;
+                    case 3:
+                        makeText("你点击了 pos = 3  ");
+                        startActivity(SendBarOldHomeActivity.class);
+                        break;
+
+
+                    case 4:
+                        makeText("你点击了 pos = 4  ");
+                        startActivity(SendBarCarActivity.class);
+                        break;
+                    case 5:
+
+                        makeText("你点击了 pos = 5  ");
+                        startActivity(SendBarFriendActivity.class);
+                        break;
+
+                    case 6:
+                        makeText("你点击了 pos = 6  ");
+                        startActivity(SendBarTempJobActivity.class);
+                        break;
+                    case 7:
+                        makeText("你点击了 pos = 7  ");
+                        startActivity(SendBarArtCratfsActivity.class);
+                        break;
+
+                    case 8:
+                        makeText("你点击了 pos = 8  ");
+                        startActivity(SendBarHelpActivity.class);
+                        break;
+
                     case 9:
                         makeText("你点击了 pos = 9  ");
                         startActivity(SendBarAdActivity.class);
