@@ -31,7 +31,6 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
     Button left_btn;
     TextView title_text;
     Button right_btn;
-
     FrameLayout frameLayout;
 
 
@@ -71,7 +70,9 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
 //全职招聘
             case R.id.text1:
                 inflater = LayoutInflater.from(this);
-                view = inflater.inflate(R.layout.activity_sendbarad, null);
+
+                //在此可以判断是否为公司
+                view = inflater.inflate(R.layout.fulljob, null);
                 frameLayout.addView(view);
                 frameLayout.setVisibility(View.VISIBLE);
                 title_text.setText("全职工作");
@@ -83,7 +84,7 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
 //兼职招聘
             case R.id.text2:
                 inflater = LayoutInflater.from(this);
-                view = inflater.inflate(R.layout.activity_sendbarad, null);
+                view = inflater.inflate(R.layout.partjob, null);
                 //view的相关事件可以写在此处
 
 
