@@ -11,6 +11,11 @@
         android:layout_height="1dp"
         android:background="@color/city_gray"/>
 
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
     <TextView
         android:id="@+id/text1"
         android:layout_width="match_parent"
@@ -42,5 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/city_gray"/>
+
+
 
 </LinearLayout>

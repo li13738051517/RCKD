@@ -8,6 +8,7 @@ import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,8 +16,10 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
+import com.litesuits.common.utils.AppUtil;
 import com.rckd.R;
 import com.rckd.application.AppConfig;
+import com.rckd.base.BaseActivity;
 import com.rckd.utils.X5WebView;
 import com.rckd.view.DownloadingDialog;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient.CustomViewCallback;
@@ -40,8 +43,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-import cn.bingoogolapple.update.BGADownloadProgressEvent;
-import cn.bingoogolapple.update.BGAUpgradeUtil;
+//import cn.bingoogolapple.update.BGADownloadProgressEvent;
+//import cn.bingoogolapple.update.BGAUpgradeUtil;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import rx.Subscriber;
@@ -158,14 +161,14 @@ public class BrowserActivity extends com.rckd.base.BaseActivity implements com.y
         }
         // 监听下载进度
         // 监听下载进度
-        BGAUpgradeUtil.getDownloadProgressEventObservable().compose(this.<BGADownloadProgressEvent>bindToLifecycle()).subscribe(new Action1<BGADownloadProgressEvent>() {
-            @Override
-            public void call(BGADownloadProgressEvent downloadProgressEvent) {
-                if (mDownloadingDialog != null && mDownloadingDialog.isShowing() && downloadProgressEvent.isNotDownloadFinished()) {
-                    mDownloadingDialog.setProgress(downloadProgressEvent.getProgress(), downloadProgressEvent.getTotal());
-                }
-            }
-        });
+//        BGAUpgradeUtil.getDownloadProgressEventObservable().compose(this.<BGADownloadProgressEvent>bindToLifecycle()).subscribe(new Action1<BGADownloadProgressEvent>() {
+//            @Override
+//            public void call(BGADownloadProgressEvent downloadProgressEvent) {
+//                if (mDownloadingDialog != null && mDownloadingDialog.isShowing() && downloadProgressEvent.isNotDownloadFinished()) {
+//                    mDownloadingDialog.setProgress(downloadProgressEvent.getProgress(), downloadProgressEvent.getTotal());
+//                }
+//            }
+//        });
     }
 
 
@@ -179,10 +182,10 @@ public class BrowserActivity extends com.rckd.base.BaseActivity implements com.y
     }
 
     private void initProgressBar() {
-        mPageLoadingProgressBar = (ProgressBar) findViewById(R.id.progressBar1);// new
+        mPageLoadingProgressBar = (ProgressBar) findViewById(com.rckd.R.id.progressBar1);// new
         mPageLoadingProgressBar.setMax(100);
         mPageLoadingProgressBar.setProgressDrawable(this.getResources()
-                .getDrawable(R.drawable.color_progress_bar));
+                .getDrawable(com.rckd.R.drawable.color_progress_bar));
     }
 
 
@@ -595,38 +598,64 @@ public class BrowserActivity extends com.rckd.base.BaseActivity implements com.y
         if (EasyPermissions.hasPermissions(this, perms)) {
             // 如果新版 apk 文件已经下载过了，直接 return，此时不需要开发者调用安装 apk 文件的方法，在 isApkFileDownloaded 里已经调用了安装」
             //需要从远程上获取版本信息
-            if (BGAUpgradeUtil.isApkFileDownloaded(mNewVersion)) {
-                return;
-            }
-            // 下载新版 apk 文件
-            BGAUpgradeUtil.downloadApkFile(apkUrl, mNewVersion)
-                    .subscribe(new Subscriber<File>() {
-                        @Override
-                        public void onStart() {
-                            showDownloadingDialog();
-                        }
-
-                        @Override
-                        public void onCompleted() {
-                            dismissDownloadingDialog();
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            dismissDownloadingDialog();
-                        }
-
-                        @Override
-                        public void onNext(File apkFile) {
-                            if (apkFile != null) {
-                                BGAUpgradeUtil.installApk(apkFile);
-                            }
-                        }
-                    });
+//            if (BGAUpgradeUtil.isApkFileDownloaded(mNewVersion)) {
+//                return;
+//            }
+//            // 下载新版 apk 文件
+//            BGAUpgradeUtil.downloadApkFile(apkUrl, mNewVersion)
+//                    .subscribe(new Subscriber<File>() {
+//                        @Override
+//                        public void onStart() {
+//                            showDownloadingDialog();
+//                        }
+//
+//                        @Override
+//                        public void onCompleted() {
+//                            dismissDownloadingDialog();
+//                        }
+//
+//                        @Override
+//                        public void onError(Throwable e) {
+//                            dismissDownloadingDialog();
+//                        }
+//
+//                        @Override
+//                        public void onNext(File apkFile) {
+//                            if (apkFile != null) {
+////                                BGAUpgradeUtil.installApk(apkFile);
+//                                installApk(apkFile);
+//                            }
+//                        }
+//                    });
         } else {
-            EasyPermissions.requestPermissions(this, "使用 BGAUpdateDemo 需要授权读写外部存储权限!", RC_PERMISSION_DOWNLOAD, perms);
+            EasyPermissions.requestPermissions(this, " 使用 BGAUpdateDemo 需要授权读写外部存储权限!", RC_PERMISSION_DOWNLOAD, perms);
         }
     }
+
+//    /**
+//     * 安装 apk 文件
+//     *
+//     * @param apkFile
+//     */
+//    public static void installApk(File apkFile) {
+//
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//            Uri contentUri = FileProvider.getUriForFile(BaseActivity.mContext, "com.rckd.fileprovider", apkFile);
+//            intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+//        } else {
+//            intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        }
+//        if (BaseActivity.mContext.getPackageManager().queryIntentActivities(intent, 0).size() > 0) {
+//            BaseActivity.mContext.startActivity(intent);
+//        }
+//
+//
+//    }
+
+
 
     /**
      * 删除之前升级时下载的老的 apk 文件
@@ -636,9 +665,9 @@ public class BrowserActivity extends com.rckd.base.BaseActivity implements com.y
         String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
         if (EasyPermissions.hasPermissions(this, perms)) {
             // 删除之前升级时下载的老的 apk 文件
-            BGAUpgradeUtil.deleteOldApk();
+//            BGAUpgradeUtil.deleteOldApk();
         } else {
-            EasyPermissions.requestPermissions(this, "使用 BGAUpdateDemo 需要授权读写外部存储权限!", RC_PERMISSION_DELETE, perms);
+            EasyPermissions.requestPermissions(this, " 使用 BGAUpdateDemo 需要授权读写外部存储权限!", RC_PERMISSION_DELETE, perms);
         }
     }
 

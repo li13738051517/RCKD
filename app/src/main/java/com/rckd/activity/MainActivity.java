@@ -65,29 +65,102 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
     public static final int SECOND = 1;
     public static final int THIRD = 2;
     public static final int FOURTH = 3;
-    private BaseFragment[] mFragments = new BaseFragment[4];
-
-
-    private BottomBar mBottomBar;
-//    private Toolbar mToolbar;
-
-    ImageView title_logo;
-    Button cityBtn;
     private static String tag = MainActivity.class.getName();
-    private String msg = null;//接受返回来的信息,并对其解析
+    ImageView title_logo;
+    //    private Toolbar mToolbar;
+    Button cityBtn;
     TencentLocationManager mLocationManager;
+    SlideFromBottonPoup popup;
+    List<BottomBarTab> list = new ArrayList<>();
+    ViewGroup mViewParent; //利用这个来加载子布局 ,自定义view等,即中间的大白块用来加载第三方的东西
 
     // 定义PopupWindow
 //    private PopupWindow popWindow;
     // 获取手机屏幕分辨率的类
 //    private DisplayMetrics dm;
-
-    SlideFromBottonPoup popup;
-    List<BottomBarTab> list = new ArrayList<>();
-
-
-    ViewGroup mViewParent; //利用这个来加载子布局 ,自定义view等,即中间的大白块用来加载第三方的东西
     FrameLayout frameLayout;
+    private BaseFragment[] mFragments = new BaseFragment[4];
+    private BottomBar mBottomBar;
+    private String msg = null;//接受返回来的信息,并对其解析
+    private GridView grid_photo;
+    private BaseAdapter mAdapter = null;
+    private ArrayList<BaseIcon> mData = null;
+    private TencentLocationListener listener = new TencentLocationListener() {
+        @Override
+        public void onLocationChanged(TencentLocation tencentLocation, int error, String reason) {
+
+            if (TencentLocation.ERROR_OK == error) {
+                // 定位成功
+                //解析定位成功返回的数据,执行方法
+                Timber.e(tag + " TencentLocation.ERROR_OK ", tag);
+                //base REQ_LEVEL_GEO
+                String latitude = String.valueOf(tencentLocation.getLatitude());//纬度 double
+                String longitude = String.valueOf(tencentLocation.getLongitude());//	经度 double
+                String altitude = String.valueOf(tencentLocation.getAltitude());//	海拔
+                String accuracy = String.valueOf(tencentLocation.getAccuracy());//	精度
+
+                //REQ_LEVEL_ADMIN_AREA
+                String nation = tencentLocation.getNation();//国家
+                String province = tencentLocation.getProvince(); //省
+                String city = tencentLocation.getCity();//市
+                String district = tencentLocation.getDistrict();//district	区
+//                String town = tencentLocation.getTown();//  镇
+//                String village = tencentLocation.getVillage();//村
+//                String street = tencentLocation.getStreet();//街道
+//                String streetNo = tencentLocation.getStreetNo();//门号
+
+
+                if (!district.isEmpty()) {
+                    cityBtn.setText(district + " | 切换");
+                    Timber.e(tag + " " + district, tag);
+                } else if (!city.isEmpty()) {
+                    cityBtn.setText(city + " | 切换");//默认地址
+                    Timber.e(tag + " " + city, tag);
+                } else {
+                    cityBtn.setText("未知");//默认地址
+                    Timber.e(tag + " 默认城市 ", tag);
+                }
+
+            } else {
+                // 定位失败
+                Timber.e(tag + " TencentLocation.ERROR ,原因正在分析", tag);
+                makeText("定位失败: 原因是" + reason);
+                switch (error) {
+                    case TencentLocation.ERROR_NETWORK:
+                    case TencentLocation.ERROR_BAD_JSON:
+                    case TencentLocation.ERROR_WGS84:
+                    case TencentLocation.ERROR_UNKNOWN:
+                        break;
+                }
+            }
+        }
+
+        @Override
+        public void onStatusUpdate(String name, int status, String desc) {
+            if (status == STATUS_DENIED) {
+            /* 检测到定位权限被内置或第三方的权限管理或安全软件禁用, 导致当前应用**很可能无法定位**
+             * 必要时可对这种情况进行特殊处理, 比如弹出提示或引导
+			 */
+                makeText(tag + " 提示:定位权限被禁用! " + name + status + desc);
+                Timber.e(tag + " " + name + " " + status + " " + desc);
+                //引导用户打开权限设置表
+            }
+
+            if (name.equals("cell") && status == STATUS_DISABLED) {
+                makeText(tag + name + status + desc + "  模块未打开! ");
+            }
+
+            if (name.equals("wifi") && status == STATUS_DISABLED) {
+                makeText(tag + name + status + desc + "  模块未打开! ");
+            }
+
+            if (name.equals("GPS") && status == STATUS_DISABLED) {
+                makeText(tag + name + status + desc + "  模块未打开! ");
+            }
+        }
+    };
+//    ImageView button2;
+//    View v;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -133,13 +206,6 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 
     }
 
-
-    private GridView grid_photo;
-    private BaseAdapter mAdapter = null;
-    private ArrayList<BaseIcon> mData = null;
-//    ImageView button2;
-//    View v;
-
     public void initPoupListener() {
         //先初始化poup
         popup = new SlideFromBottonPoup(this);
@@ -173,50 +239,55 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                 makeText("你点击了~" + position + "~项");
                 //此处编写position  ,根据position的//例如点击postion==0时
                 switch (position) {
-
+//发招聘贴
                     case 0:
-
                         makeText("你点击了 pos = 0 ");
                         startActivity(SendBarJobWantActivity.class);
                         break;
+                    //发求职贴
                     case 1:
                         makeText("你点击了 pos = 1  ");
                         startActivity(SendBarPasteJobActivity.class);
                         break;
+                    //房屋出售
                     case 2:
                         makeText("你点击了 pos = 2  ");
                         startActivity(SendBarHouseSaleActivity.class);
                         break;
+                    //二手之家
                     case 3:
                         makeText("你点击了 pos = 3  ");
                         startActivity(SendBarOldHomeActivity.class);
                         break;
 
-
+//顺风拼车
                     case 4:
                         makeText("你点击了 pos = 4  ");
                         startActivity(SendBarCarActivity.class);
                         break;
+                    //交友征婚
                     case 5:
 
                         makeText("你点击了 pos = 5  ");
                         startActivity(SendBarFriendActivity.class);
                         break;
-
+//临时短工
                     case 6:
                         makeText("你点击了 pos = 6  ");
                         startActivity(SendBarTempJobActivity.class);
                         break;
+                    //匠工约定
                     case 7:
                         makeText("你点击了 pos = 7  ");
                         startActivity(SendBarArtCratfsActivity.class);
                         break;
+//打听求助
 
                     case 8:
                         makeText("你点击了 pos = 8  ");
                         startActivity(SendBarHelpActivity.class);
                         break;
-
+//广而告之
                     case 9:
                         makeText("你点击了 pos = 9  ");
                         startActivity(SendBarAdActivity.class);
@@ -309,7 +380,6 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
         return super.onCreateFragmentAnimator();
     }
 
-
     private void initTab() {
         Timber.e(tag + " initTab ", tag);
         title_logo = (ImageView) findViewById(R.id.title_logo);
@@ -383,7 +453,6 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
             }
         });
     }
-
 
     /**
      * 显示PopupWindow弹出菜单
@@ -470,6 +539,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
         return 0;
     }
 
+    //创建位置监听器
 
     @Override
     public void onClick(View v) {
@@ -479,9 +549,6 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                 break;
         }
     }
-
-    //创建位置监听器
-
 
     @Override
     public void onFailed(int requestCode, List<String> deniedPermissions) {
@@ -513,7 +580,6 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
         }
     }
 
-
     @Override
     public void onSucceed(int requestCode, List<String> grantPermissions) {
         switch (requestCode) {
@@ -522,7 +588,6 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                 Timber.e(tag + " onSucceed " + " AppPressionCode.TenCentMap", tag);
         }
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -555,7 +620,6 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 
 
     }
-
 
     /**
      * 开始定位,其他类中只需调用startLocation
@@ -602,7 +666,6 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
         Timber.e(tag + " startLocation over ", tag);
     }
 
-
     /**
      * 移除监听器
      *
@@ -614,82 +677,6 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
             mLocationManager.removeUpdates(listener);
         }
     }
-
-
-    private TencentLocationListener listener = new TencentLocationListener() {
-        @Override
-        public void onLocationChanged(TencentLocation tencentLocation, int error, String reason) {
-
-            if (TencentLocation.ERROR_OK == error) {
-                // 定位成功
-                //解析定位成功返回的数据,执行方法
-                Timber.e(tag + " TencentLocation.ERROR_OK ", tag);
-                //base REQ_LEVEL_GEO
-                String latitude = String.valueOf(tencentLocation.getLatitude());//纬度 double
-                String longitude = String.valueOf(tencentLocation.getLongitude());//	经度 double
-                String altitude = String.valueOf(tencentLocation.getAltitude());//	海拔
-                String accuracy = String.valueOf(tencentLocation.getAccuracy());//	精度
-
-                //REQ_LEVEL_ADMIN_AREA
-                String nation = tencentLocation.getNation();//国家
-                String province = tencentLocation.getProvince(); //省
-                String city = tencentLocation.getCity();//市
-                String district = tencentLocation.getDistrict();//district	区
-//                String town = tencentLocation.getTown();//  镇
-//                String village = tencentLocation.getVillage();//村
-//                String street = tencentLocation.getStreet();//街道
-//                String streetNo = tencentLocation.getStreetNo();//门号
-
-
-                if (!district.isEmpty()) {
-                    cityBtn.setText(district + " | 切换");
-                    Timber.e(tag + " " + district, tag);
-                } else if (!city.isEmpty()) {
-                    cityBtn.setText(city + " | 切换");//默认地址
-                    Timber.e(tag + " " + city, tag);
-                } else {
-                    cityBtn.setText("未知");//默认地址
-                    Timber.e(tag + " 默认城市 ", tag);
-                }
-
-            } else {
-                // 定位失败
-                Timber.e(tag + " TencentLocation.ERROR ,原因正在分析", tag);
-                makeText("定位失败: 原因是" + reason);
-                switch (error) {
-                    case TencentLocation.ERROR_NETWORK:
-                    case TencentLocation.ERROR_BAD_JSON:
-                    case TencentLocation.ERROR_WGS84:
-                    case TencentLocation.ERROR_UNKNOWN:
-                        break;
-                }
-            }
-        }
-
-        @Override
-        public void onStatusUpdate(String name, int status, String desc) {
-            if (status == STATUS_DENIED) {
-            /* 检测到定位权限被内置或第三方的权限管理或安全软件禁用, 导致当前应用**很可能无法定位**
-             * 必要时可对这种情况进行特殊处理, 比如弹出提示或引导
-			 */
-                makeText(tag + " 提示:定位权限被禁用! " + name + status + desc);
-                Timber.e(tag + " " + name + " " + status + " " + desc);
-                //引导用户打开权限设置表
-            }
-
-            if (name.equals("cell") && status == STATUS_DISABLED) {
-                makeText(tag + name + status + desc + "  模块未打开! ");
-            }
-
-            if (name.equals("wifi") && status == STATUS_DISABLED) {
-                makeText(tag + name + status + desc + "  模块未打开! ");
-            }
-
-            if (name.equals("GPS") && status == STATUS_DISABLED) {
-                makeText(tag + name + status + desc + "  模块未打开! ");
-            }
-        }
-    };
 
 
 }

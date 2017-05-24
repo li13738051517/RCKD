@@ -1,6 +1,7 @@
 package com.rckd.activity;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -24,13 +25,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
+//import static com.baidu.location.h.j.R;
 import static com.rckd.R.id.left_btn;
 import static com.rckd.R.id.textView;
-
+import com.rckd.R;
 /**
  * Created by LiZheng on 2017/5/8 0008.
  */
-
+/*
+广而告之
+ */
 public class SendBarAdActivity extends BaseActivity implements View.OnClickListener {
     private static String tag = SendBarAdActivity.class.getName();
     //    View view;
@@ -75,6 +79,9 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
     TextView text_ad;//
     TextView text_tie2;
     EditText text_ad2;
+
+
+    Uri imageUri;//获取image的uri
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -174,6 +181,9 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
 //                defaultFinish();
                 break;
             case R.id.imageView3:
+
+
+                break;
 
             case R.id.button:
                 if (test.isEmpty() || test == null) {
