@@ -21,6 +21,7 @@ import java.util.List;
 
 /**
  * Created by LiZheng on 2017/5/8 0008.
+ * //打听求助
  */
 
 public class SendBarHelpActivity extends BaseActivity implements  View.OnClickListener {
@@ -50,7 +51,7 @@ public class SendBarHelpActivity extends BaseActivity implements  View.OnClickLi
         super.onCreate(savedInstanceState);
 
         LayoutInflater inflater = LayoutInflater.from(this);
-        view = inflater.inflate(R.layout.activity_sendbarad, null);
+        view = inflater.inflate(R.layout.activity_help_me, null);
         left_btn = (Button) view.findViewById(R.id.in).findViewById(R.id.left_btn);
         left_btn.setVisibility(View.VISIBLE);
         left_btn.setOnClickListener(this);

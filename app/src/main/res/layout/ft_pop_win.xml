@@ -20,7 +20,7 @@
         <include
             layout="@layout/base_line"
             android:visibility="visible"
-            android:id="@+id/include4"></include>
+            android:id="@+id/include4"/>
         <!--numColumns设置每行显示多少个-->
         <GridView
             android:id="@+id/grid_photo"
@@ -67,7 +67,7 @@
 
         <include
             layout="@layout/base_line"
-            android:visibility="gone"></include>
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/linearLayout4"
@@ -104,7 +104,7 @@
 
         <include
             layout="@layout/base_line"
-            android:visibility="gone"></include>
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/linearLayout3"

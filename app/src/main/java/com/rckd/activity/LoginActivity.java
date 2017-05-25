@@ -19,8 +19,8 @@ import timber.log.Timber;
 
 /**
  * Created by LiZheng on 2017/5/6 0006.
+ * 登陆界面
  */
-
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private static String tag = LoginActivity.class.getName();

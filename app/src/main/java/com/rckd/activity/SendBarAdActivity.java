@@ -181,8 +181,7 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
 //                defaultFinish();
                 break;
             case R.id.imageView3:
-
-
+                makeText("即将拍照....");
                 break;
 
             case R.id.button:

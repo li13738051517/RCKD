@@ -42,6 +42,6 @@
         android:textSize="16sp"
         android:visibility="invisible" />
 
-    <include layout="@layout/base_line"></include>
+    <include layout="@layout/base_line"/>
 
 </RelativeLayout>

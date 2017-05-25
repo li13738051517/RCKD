@@ -22,7 +22,7 @@
         android:layout_height="@dimen/bottombar_height"
         android:layout_gravity="bottom" />
 
-    <include layout="@layout/base_title_main"></include>
+    <include layout="@layout/base_title_main"/>
 
     <FrameLayout
         android:id="@+id/fl_container"
