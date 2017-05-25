@@ -9,11 +9,7 @@ import java.io.OutputStream;
 
 import static cn.bingoogolapple.update.AppUtil.sApp;
 
-/**
- * 作者:王浩 邮件:bingoogolapple@gmail.com
- * 创建时间:16/12/16 上午11:59
- * 描述:
- */
+
 class StorageUtil {
     private static final String DIR_NAME_APK = "upgrade_apk";
 

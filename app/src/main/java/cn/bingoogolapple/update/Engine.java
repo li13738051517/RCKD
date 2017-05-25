@@ -20,11 +20,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
-/**
- * 作者:王浩 邮件:bingoogolapple@gmail.com
- * 创建时间:16/12/16 上午10:53
- * 描述:
- */
+
 class Engine {
     private static Engine sInstance;
 

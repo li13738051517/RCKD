@@ -16,11 +16,6 @@ import rx.schedulers.Schedulers;
 
 import static cn.bingoogolapple.update.AppUtil.sApp;
 
-/**
- * 作者:王浩 邮件:bingoogolapple@gmail.com
- * 创建时间:16/12/16 上午10:48
- * 描述:应用升级工具类
- */
 public class BGAUpgradeUtil {
     private static final String MIME_TYPE_APK = "application/vnd.android.package-archive";
 
@@ -84,6 +79,7 @@ public class BGAUpgradeUtil {
      * @param apkFile
      */
     public static void installApk(File apkFile) {
+        /*
         Intent installApkIntent = new Intent();
         installApkIntent.setAction(Intent.ACTION_VIEW);
         installApkIntent.addCategory(Intent.CATEGORY_DEFAULT);
@@ -98,7 +94,20 @@ public class BGAUpgradeUtil {
 
         if (sApp.getPackageManager().queryIntentActivities(installApkIntent, 0).size() > 0) {
             sApp.startActivity(installApkIntent);
+        }*/
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            Uri contentUri = FileProvider.getUriForFile(sApp, "com.rckd.fileprovider", apkFile);
+            intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
+        } else {
+            intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
+        if (sApp.getPackageManager().queryIntentActivities(intent, 0).size() > 0) {
+            sApp.startActivity(intent);
+        }
+
     }
 
     /**
@@ -109,7 +118,6 @@ public class BGAUpgradeUtil {
         if (apkDir == null || apkDir.listFiles() == null || apkDir.listFiles().length == 0) {
             return;
         }
-
         // 删除文件
         StorageUtil.deleteFile(apkDir);
     }

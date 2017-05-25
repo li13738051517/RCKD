@@ -55,7 +55,10 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
 //    Button button2;
 //    private Unbinder unbinder;
 
-
+    @Override
+    protected int fragmentLayoutId() {
+        return 0;
+    }
     String test = null;
     String testArear = null;
 
@@ -64,10 +67,7 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
     private boolean isShowDelete;
     private List<BaseIcon> datas = new ArrayList<BaseIcon>();
 
-    @Override
-    protected int fragmentLayoutId() {
-        return 0;
-    }
+
 
     Button left_btn;
     TextView title_text;

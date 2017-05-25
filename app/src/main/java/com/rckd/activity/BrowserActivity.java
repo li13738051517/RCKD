@@ -43,13 +43,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-//import cn.bingoogolapple.update.BGADownloadProgressEvent;
-//import cn.bingoogolapple.update.BGAUpgradeUtil;
+import cn.bingoogolapple.update.BGADownloadProgressEvent;
+import cn.bingoogolapple.update.BGAUpgradeUtil;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import rx.Subscriber;
 import rx.functions.Action1;
 import timber.log.Timber;
+
+import static cn.bingoogolapple.update.BGAUpgradeUtil.installApk;
 
 
 /**
@@ -161,14 +163,16 @@ public class BrowserActivity extends com.rckd.base.BaseActivity implements com.y
         }
         // 监听下载进度
         // 监听下载进度
-//        BGAUpgradeUtil.getDownloadProgressEventObservable().compose(this.<BGADownloadProgressEvent>bindToLifecycle()).subscribe(new Action1<BGADownloadProgressEvent>() {
-//            @Override
-//            public void call(BGADownloadProgressEvent downloadProgressEvent) {
-//                if (mDownloadingDialog != null && mDownloadingDialog.isShowing() && downloadProgressEvent.isNotDownloadFinished()) {
-//                    mDownloadingDialog.setProgress(downloadProgressEvent.getProgress(), downloadProgressEvent.getTotal());
-//                }
-//            }
-//        });
+        BGAUpgradeUtil.getDownloadProgressEventObservable().compose(this.<BGADownloadProgressEvent>bindToLifecycle()).subscribe(new Action1<BGADownloadProgressEvent>() {
+            @Override
+            public void call(BGADownloadProgressEvent downloadProgressEvent) {
+                if (mDownloadingDialog != null && mDownloadingDialog.isShowing() && downloadProgressEvent.isNotDownloadFinished()) {
+                    mDownloadingDialog.setProgress(downloadProgressEvent.getProgress(), downloadProgressEvent.getTotal());
+                }
+            }
+
+
+        });
     }
 
 
@@ -598,35 +602,35 @@ public class BrowserActivity extends com.rckd.base.BaseActivity implements com.y
         if (EasyPermissions.hasPermissions(this, perms)) {
             // 如果新版 apk 文件已经下载过了，直接 return，此时不需要开发者调用安装 apk 文件的方法，在 isApkFileDownloaded 里已经调用了安装」
             //需要从远程上获取版本信息
-//            if (BGAUpgradeUtil.isApkFileDownloaded(mNewVersion)) {
-//                return;
-//            }
-//            // 下载新版 apk 文件
-//            BGAUpgradeUtil.downloadApkFile(apkUrl, mNewVersion)
-//                    .subscribe(new Subscriber<File>() {
-//                        @Override
-//                        public void onStart() {
-//                            showDownloadingDialog();
-//                        }
-//
-//                        @Override
-//                        public void onCompleted() {
-//                            dismissDownloadingDialog();
-//                        }
-//
-//                        @Override
-//                        public void onError(Throwable e) {
-//                            dismissDownloadingDialog();
-//                        }
-//
-//                        @Override
-//                        public void onNext(File apkFile) {
-//                            if (apkFile != null) {
-////                                BGAUpgradeUtil.installApk(apkFile);
+            if (BGAUpgradeUtil.isApkFileDownloaded(mNewVersion)) {
+                return;
+            }
+            // 下载新版 apk 文件
+            BGAUpgradeUtil.downloadApkFile(apkUrl, mNewVersion)
+                    .subscribe(new Subscriber<File>() {
+                        @Override
+                        public void onStart() {
+                            showDownloadingDialog();
+                        }
+
+                        @Override
+                        public void onCompleted() {
+                            dismissDownloadingDialog();
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            dismissDownloadingDialog();
+                        }
+
+                        @Override
+                        public void onNext(File apkFile) {
+                            if (apkFile != null) {
+                                BGAUpgradeUtil.installApk(apkFile);
 //                                installApk(apkFile);
-//                            }
-//                        }
-//                    });
+                            }
+                        }
+                    });
         } else {
             EasyPermissions.requestPermissions(this, " 使用 BGAUpdateDemo 需要授权读写外部存储权限!", RC_PERMISSION_DOWNLOAD, perms);
         }
@@ -665,7 +669,7 @@ public class BrowserActivity extends com.rckd.base.BaseActivity implements com.y
         String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
         if (EasyPermissions.hasPermissions(this, perms)) {
             // 删除之前升级时下载的老的 apk 文件
-//            BGAUpgradeUtil.deleteOldApk();
+            BGAUpgradeUtil.deleteOldApk();
         } else {
             EasyPermissions.requestPermissions(this, " 使用 BGAUpdateDemo 需要授权读写外部存储权限!", RC_PERMISSION_DELETE, perms);
         }

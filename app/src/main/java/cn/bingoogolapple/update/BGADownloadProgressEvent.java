@@ -1,10 +1,5 @@
 package cn.bingoogolapple.update;
 
-/**
- * 作者:王浩 邮件:bingoogolapple@gmail.com
- * 创建时间:16/12/16 上午11:41
- * 描述:下载进度事件对象
- */
 public class BGADownloadProgressEvent {
     /**
      * 文件总大小

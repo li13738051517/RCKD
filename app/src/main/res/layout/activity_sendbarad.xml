@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.SendBarAdActivity"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -39,9 +41,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="拍张照片"
+                android:textSize="14sp"
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp"
-                android:textSize="20sp" />
+             />
 
 
         </LinearLayout>
@@ -51,14 +54,14 @@
             android:id="@+id/lin1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
-            android:layout_alignEnd="@+id/lin2"
-            android:layout_alignLeft="@+id/lin2"
-            android:layout_alignRight="@+id/lin2"
-            android:layout_alignStart="@+id/lin2"
             android:layout_below="@+id/ll_item"
             android:layout_marginTop="3dp"
             android:background="@drawable/textbg"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
 
             <TextView
                 android:id="@+id/text_tie"
@@ -67,6 +70,7 @@
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
+                android:textSize="14sp"
                 android:text="类别名称" />
 
             <View
@@ -83,6 +87,7 @@
                 android:layout_alignBottom="@+id/text_tie"
                 android:layout_gravity="center|right"
                 android:layout_marginLeft="@dimen/bot_jp"
+                android:textSize="14sp"
                 android:layout_marginStart="15dp"
                 android:layout_toEndOf="@+id/text_tie"
                 android:layout_toRightOf="@+id/text_tie"
@@ -96,14 +101,13 @@
             android:id="@+id/lin2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/lin1"
-            android:layout_marginLeft="@dimen/bot_jp"
-            android:layout_marginRight="@dimen/bot_jp"
             android:layout_marginTop="3dp"
             android:background="@drawable/textbg"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
 
             <TextView
                 android:id="@+id/text_tie2"
@@ -112,6 +116,7 @@
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
+                android:textSize="14sp"
                 android:text="帖子标题" />
 
             <View
@@ -123,6 +128,7 @@
             <EditText
                 android:id="@+id/text_ad2"
                 android:layout_width="wrap_content"
+                android:textSize="14sp"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/text_tie2"
                 android:layout_alignBottom="@+id/text_tie2"
@@ -141,19 +147,20 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/lin2"
-            android:layout_marginLeft="@dimen/bot_jp"
-            android:layout_marginRight="@dimen/bot_jp"
             android:layout_marginTop="3dp"
             android:background="@drawable/textbg"
             android:gravity="start"
-            android:hint="在此畅所欲言"
-            android:lines="8"
+            android:hint="在此畅所欲言吧"
+            android:textSize="14sp"
+            android:lines="5"
             android:paddingBottom="@dimen/bot_jp"
             android:paddingTop="@dimen/bot_jp"
-            android:textColorHint="@color/hint_color" />
+            android:textColorHint="@color/hint_color"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <Button
             android:id="@+id/button"

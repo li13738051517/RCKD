@@ -6,11 +6,7 @@ import rx.subjects.PublishSubject;
 import rx.subjects.SerializedSubject;
 import rx.subjects.Subject;
 
-/**
- * 作者:王浩 邮件:bingoogolapple@gmail.com
- * 创建时间:16/12/16 上午10:59
- * 描述:
- */
+
 class RxUtil {
     private Subject<Object, Object> mBus;
     private static RxUtil sInstance;
