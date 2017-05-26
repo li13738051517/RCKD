@@ -15,6 +15,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
 import com.rckd.R;
 import com.rckd.adpter.MyBaseAdapter;
 import com.rckd.anim.FragmentAnimator;
@@ -61,6 +64,7 @@ import static com.baidu.location.h.j.v;
  * 数据刷新库https://github.com/LuckyJayce/MVCHelper
  */
 public class MainActivity extends BaseActivity implements BaseMainFragment.OnBackToFirstListener, View.OnClickListener, com.yanzhenjie.permission.PermissionListener {
+   public   MainActivity mainActivity;
     public static final int FIRST = 0;
     public static final int SECOND = 1;
     public static final int THIRD = 2;
@@ -98,7 +102,6 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                 String longitude = String.valueOf(tencentLocation.getLongitude());//	经度 double
                 String altitude = String.valueOf(tencentLocation.getAltitude());//	海拔
                 String accuracy = String.valueOf(tencentLocation.getAccuracy());//	精度
-
                 //REQ_LEVEL_ADMIN_AREA
                 String nation = tencentLocation.getNation();//国家
                 String province = tencentLocation.getProvince(); //省
@@ -108,8 +111,6 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //                String village = tencentLocation.getVillage();//村
 //                String street = tencentLocation.getStreet();//街道
 //                String streetNo = tencentLocation.getStreetNo();//门号
-
-
                 if (!district.isEmpty()) {
                     cityBtn.setText(district + " | 切换");
                     Timber.e(tag + " " + district, tag);
@@ -166,6 +167,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainActivity=this;
         mViewParent = (ViewGroup) findViewById(R.id.fl_container);
         Timber.e(tag);
         Timber.e(tag + " onCreate ", tag);
@@ -592,6 +594,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //int requestCode, int resultCode, Intent data 注意三个参数
+
         TbsLog.e(tag, "onActivityResult, requestCode:" + requestCode
                 + ",resultCode:" + resultCode);
         //根据请求吗判断事务
@@ -617,7 +620,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                 break;
 
         }
-
+        super.onActivityResult(requestCode, resultCode, data);
 
     }
 
@@ -677,6 +680,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
             mLocationManager.removeUpdates(listener);
         }
     }
+
 
 
 }

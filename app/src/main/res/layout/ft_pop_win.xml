@@ -179,7 +179,7 @@
 
         <include
             layout="@layout/base_line"
-            android:visibility="gone"></include>
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -216,7 +216,7 @@
 
         <include
             layout="@layout/base_line"
-            android:visibility="gone"></include>
+            android:visibility="gone"/>
 
 
         <ImageView

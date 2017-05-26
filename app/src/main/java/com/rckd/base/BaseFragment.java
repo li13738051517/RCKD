@@ -16,11 +16,21 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.view.SupportMenuInflater;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
 
+import com.jph.takephoto.app.TakePhoto;
+import com.jph.takephoto.app.TakePhotoImpl;
+import com.jph.takephoto.model.InvokeParam;
+import com.jph.takephoto.model.TContextWrap;
+import com.jph.takephoto.model.TResult;
+import com.jph.takephoto.permission.InvokeListener;
+import com.jph.takephoto.permission.PermissionManager;
+import com.jph.takephoto.permission.TakePhotoInvocationHandler;
+import com.rckd.R;
 import com.rckd.anim.FragmentAnimator;
 import com.rckd.helper.AnimatorHelper;
 import com.rckd.helper.FragmentationDelegate;
@@ -40,7 +50,7 @@ import java.util.List;
  * Created by LiZheng on 2017/3/18 0018.
  */
 
-public class BaseFragment extends Fragment implements ISupportFragment  {
+public class BaseFragment extends Fragment implements  com.rckd.inter.ISupportFragment , TakePhoto.TakeResultListener,InvokeListener {
     // LaunchMode ，可以选择启动模式
     public static final int STANDARD = 0;
     public static final int SINGLETOP = 1;
@@ -388,6 +398,7 @@ public class BaseFragment extends Fragment implements ISupportFragment  {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        getTakePhoto().onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -490,6 +501,7 @@ public class BaseFragment extends Fragment implements ISupportFragment  {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
+        getTakePhoto().onSaveInstanceState(outState);
         super.onSaveInstanceState(outState);
         if (mIsRoot) {
             outState.putBoolean(FragmentationDelegate.FRAGMENTATION_ARG_IS_ROOT, true);
@@ -1141,4 +1153,63 @@ public class BaseFragment extends Fragment implements ISupportFragment  {
         }
         baseActivity.dispatchFragmentLifecycle(lifecycle, BaseFragment.this, bundle, visible);
     }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        getTakePhoto().onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+
+
+//    ----------------------------------------
+    protected InvokeParam invokeParam;
+    protected TakePhoto takePhoto;
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionManager.TPermissionType type=PermissionManager.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        PermissionManager.handlePermissionsResult(getActivity(),type,invokeParam,this);
+    }
+
+    @Override
+    public void takeSuccess(TResult result) {
+        Log.i(tag,"takeSuccess：" + result.getImage().getCompressPath());
+    }
+    @Override
+    public void takeFail(TResult result,String msg) {
+        Log.i(tag, "takeFail:" + msg);
+    }
+    @Override
+    public void takeCancel() {
+        Log.i(tag, getResources().getString(R.string.msg_operation_canceled));
+    }
+    @Override
+    public PermissionManager.TPermissionType invoke(InvokeParam invokeParam) {
+        PermissionManager.TPermissionType type=PermissionManager.checkPermission(TContextWrap.of(this),invokeParam.getMethod());
+        if(PermissionManager.TPermissionType.WAIT.equals(type)){
+            this.invokeParam=invokeParam;
+        }
+        return type;
+    }
+
+    /**
+     *  获取TakePhoto实例
+     * @return
+     */
+    public TakePhoto getTakePhoto(){
+        if (takePhoto==null){
+            takePhoto= (TakePhoto) TakePhotoInvocationHandler.of(this).bind(new TakePhotoImpl(this,this));
+        }
+        return takePhoto;
+    }
+
+//    -------------------------------------
+
+
+
+
+
 }

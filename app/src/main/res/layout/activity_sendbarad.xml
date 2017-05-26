@@ -27,13 +27,14 @@
             android:background="@color/city_gray"
             android:orientation="vertical">
 
-            <ImageView
+            <Button
                 android:id="@+id/imageView3"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_below="@+id/in"
                 android:layout_gravity="top|center"
                 android:layout_margin="25dp"
+                android:background="@drawable/photo"
                 android:src="@drawable/photo" />
 
             <TextView
@@ -44,8 +45,6 @@
                 android:textSize="14sp"
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp" />
-
-
         </LinearLayout>
 
 
@@ -160,6 +159,13 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
+        <LinearLayout
+            android:layout_below="@+id/textView"
+            android:id="@+id/llImages"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
@@ -194,7 +200,7 @@
             android:layout_alignLeft="@+id/button"
             android:layout_alignRight="@+id/button"
             android:layout_alignStart="@+id/button"
-            android:layout_below="@+id/imageView2"
+            android:layout_below="@+id/llImages"
             android:numColumns="5"
             android:visibility="gone" />
 

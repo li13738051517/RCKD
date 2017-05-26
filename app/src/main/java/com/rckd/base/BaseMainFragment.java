@@ -8,7 +8,7 @@ import com.rckd.fragment.first.HomeFragment;
  * 懒加载
  * Created by LiZheng  on 16/6/5.
  */
-public abstract class BaseMainFragment extends BaseFragment {
+public abstract class BaseMainFragment extends com.rckd.base.BaseFragment {
     protected OnBackToFirstListener _mBackToFirstListener;
 
     @Override

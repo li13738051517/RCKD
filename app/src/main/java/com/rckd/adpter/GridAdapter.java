@@ -26,6 +26,8 @@ public class GridAdapter extends BaseAdapter {
         this.context=context;
         this.datas=datas;
     }
+
+
     //返回子项的个数
     @Override
     public int getCount() {

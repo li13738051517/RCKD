@@ -12,6 +12,7 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PersistableBundle;
 import android.support.annotation.CheckResult;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
@@ -37,6 +38,13 @@ import android.widget.Toast;
 import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.daimajia.numberprogressbar.OnProgressBarListener;
 import com.jaeger.library.StatusBarUtil;
+import com.jph.takephoto.app.TakePhoto;
+import com.jph.takephoto.app.TakePhotoImpl;
+import com.jph.takephoto.model.InvokeParam;
+import com.jph.takephoto.model.TContextWrap;
+import com.jph.takephoto.model.TResult;
+import com.jph.takephoto.permission.PermissionManager;
+import com.jph.takephoto.permission.TakePhotoInvocationHandler;
 import com.rckd.R;
 import com.rckd.anim.DefaultVerticalAnimator;
 import com.rckd.anim.FragmentAnimator;
@@ -77,11 +85,11 @@ import timber.log.Timber;
 
 /**
  * Created by LiZheng on 2017/3/30 0055.
+ *
  */
-
-public abstract class BaseActivity extends AppCompatActivity implements ISupport, SensorEventListener  {
+public abstract class BaseActivity extends AppCompatActivity implements com.rckd.inter.ISupport, SensorEventListener ,com.jph.takephoto.app.TakePhoto.TakeResultListener,com.jph.takephoto.permission.InvokeListener  {
     private Timer timer;
-    private NumberProgressBar bnp;
+    private com.daimajia.numberprogressbar.NumberProgressBar bnp;
     protected FragmentationDelegate mFragmentationDelegate;
     protected LifecycleHelper mLifecycleHelper;
     protected ArrayList<FragmentLifecycleCallbacks> mFragmentLifecycleCallbacks;
@@ -111,6 +119,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ISupport
     private Object object = new Object(); //相当于Handler的msg.what
     protected CallServer callServer;
 
+
     /**
      * 请求队列。
      */
@@ -125,21 +134,20 @@ public abstract class BaseActivity extends AppCompatActivity implements ISupport
         int resultCode = RESULT_CANCELED;
         Bundle result = null;
     }
-
-
-    protected TencentLocationManager mLocationManager; //腾讯地图管理器
-    protected String[] strPression = {
+    public TencentLocationManager mLocationManager; //腾讯地图管理器
+    public String[] strPression = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.READ_PHONE_STATE
     };
-    protected static final int REQUEST_CODE_PERMISSION_LOCATION = 100;//地图定位
-    protected static final int REQUEST_CODE_SETTING = 300;//系统设置权限码
+    public static final int REQUEST_CODE_PERMISSION_LOCATION = 100;//地图定位
+    public static final int REQUEST_CODE_SETTING = 300;//系统设置权限码
 
     //    protected abstract int getLayoutId();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        getTakePhoto().onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);//默认没有标题  Activity
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);//默认没有标题  AppCompatActivity
@@ -223,6 +231,18 @@ public abstract class BaseActivity extends AppCompatActivity implements ISupport
     }
 
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        getTakePhoto().onSaveInstanceState(outState);
+        super.onSaveInstanceState(outState);
+    }
+
+    //懒人管理模式
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        getTakePhoto().onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     /**
      * https://github.com/laobie/StatusBarUtil
@@ -446,7 +466,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ISupport
      *
      * @param text
      */
-    protected void makeText(String text) {
+    public void makeText(String text) {
         Timber.e(tag + " makeText " + text, tag);
         Toast.makeText(mContext, text, Toast.LENGTH_SHORT).show();
     }
@@ -1125,7 +1145,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ISupport
      * @param permissions
      * @return
      */
-    protected boolean isHaveAndPermission(String... permissions) {
+   public boolean isHaveAndPermission(String... permissions) {
         Timber.e(tag + "  isFlag , String... permissions = " + permissions, tag);
         if (AndPermission.hasPermission(mContext, permissions)) {
             Timber.e(tag + " isFlag return  true ", tag);
@@ -1152,7 +1172,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ISupport
      * @param requestCode
      * @param permissions
      */
-    protected void getPression(Activity activity, int requestCode, String... permissions) {
+   public void getPression(Activity activity, int requestCode, String... permissions) {
         Timber.e(tag + " getPression , String... permissions = " + permissions, tag);
         AndPermission.with(activity)
                 .requestCode(requestCode)
@@ -1173,7 +1193,51 @@ public abstract class BaseActivity extends AppCompatActivity implements ISupport
 
 
 
+    //------------------------------------------------------------
+    //以下是拍照相关内容 https://github.com/crazycodeboy/TakePhoto 根据这个提示进一步封装 ,改写,源代码可参考 lib
+    public InvokeParam invokeParam;
+    public TakePhoto takePhoto;
+    @Override
+    public void takeSuccess(TResult result) {
+        Log.i(tag,"takeSuccess：" + result.getImage().getCompressPath());
+    }
+    @Override
+    public void takeFail(TResult result,String msg) {
+        Log.i(tag, "takeFail:" + msg);
+    }
+    @Override
+    public void takeCancel() {
+        Log.i(tag, getResources().getString(R.string.msg_operation_canceled));
+    }
+    @Override
+    public PermissionManager.TPermissionType invoke(InvokeParam invokeParam) {
+        PermissionManager.TPermissionType type=PermissionManager.checkPermission(TContextWrap.of(this),invokeParam.getMethod());
+        if(PermissionManager.TPermissionType.WAIT.equals(type)){
+            this.invokeParam=invokeParam;
+        }
+        return type;
+    }
 
+    /**
+     *  获取TakePhoto实例
+     * @return
+     */
+    public TakePhoto getTakePhoto(){
+        if (takePhoto==null){
+            takePhoto= (TakePhoto) TakePhotoInvocationHandler.of(this).bind(new TakePhotoImpl(this,this));
+        }
+        return takePhoto;
+    }
+    //权限问题,takephoto自行解决,无需关心内部实现问题
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        com.jph.takephoto.permission.PermissionManager.TPermissionType type= PermissionManager.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        PermissionManager.handlePermissionsResult(this,type,invokeParam,this);
+    }
+
+
+    //-----------------------------------------------------------
 
 
 }

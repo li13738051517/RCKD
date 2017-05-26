@@ -2,6 +2,10 @@ package com.rckd.bean;
 
 /**
  * Created by LiZheng on 2015/9/24 0024.
+ * 请注意google官方推荐是不要写 set  和get而是 直接暴露在外露
+ *原因
+ * 1,占用资源小
+ * 2,方便使用
  */
 public class BaseIcon {
     private int iId;

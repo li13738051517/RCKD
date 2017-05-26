@@ -19,6 +19,7 @@ public class AppConfig {
     public static final String HOME_URL = "http://www.rckd.net/";//本app的主页
 
 
+    public  static final String HOME_MAIN="http://www.rckd.net/main.shtml"; //首页的链接地址
     private static AppConfig appConfig;
     private SharedPreferences preferences;
     /**

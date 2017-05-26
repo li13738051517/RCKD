@@ -20,18 +20,40 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.Toast;
 
+import com.jph.takephoto.app.TakePhoto;
+import com.jph.takephoto.compress.CompressConfig;
+import com.jph.takephoto.model.CropOptions;
+import com.jph.takephoto.model.LubanOptions;
+import com.jph.takephoto.model.TakePhotoOptions;
+import com.rckd.R;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static android.R.attr.width;
+import static com.baidu.location.h.a.i;
+import static com.baidu.location.h.j.b;
+import static com.baidu.location.h.j.c;
+import static com.darsh.multipleimageselect.helpers.Constants.limit;
+
 /**
  * Created by LiZheng on 2017/5/23 0023.
  */
 
 public class TakePhotoUtils {
+    Context context;
+    TakePhoto takePhoto;
+    //默认Construct
+    public TakePhotoUtils(){
+    }
 
+    public TakePhotoUtils(Context context){
+        this.context=context;
+    }
 
     /**
      * 拍照
@@ -118,6 +140,97 @@ public class TakePhotoUtils {
         int perm = context.checkCallingOrSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE");
         return perm == 0;
     }
+
+    /**
+     *
+     * @param takePhoto
+     * @return
+     */
+    public static TakePhoto configTakePhotoOption(TakePhoto takePhoto ){
+        TakePhotoOptions.Builder builder=new TakePhotoOptions.Builder();
+        builder.setWithOwnGallery(false);
+        builder.setCorrectImage(false);
+        takePhoto.setTakePhotoOptions(builder.create());
+        return takePhoto;
+    }
+//
+
+
+    /**
+     * 压缩配置 ,先行将图片压缩
+     * @param takePhoto
+     * @param maxSize
+     * @param width
+     * @param height
+     */
+    public static   TakePhoto configCompress( TakePhoto takePhoto ,int maxSize,  int width, int height){
+        CompressConfig config;
+        config=new CompressConfig.Builder()
+                .setMaxSize(maxSize)//最大体积
+                .setMaxPixel(width>=height? width:height)//最大长度
+                .enableReserveRaw(true) //保留原件
+                .enablePixelCompress(true)
+                .enableQualityCompress(true)
+                .create();
+        takePhoto.onEnableCompress(config,true);
+        return takePhoto;
+    }
+
+
+
+
+    /**
+     * 裁剪的相关配置
+     * @param width  宽
+     * @param height 高
+     * @param aspect  按 宽/高
+     */
+    public static CropOptions getCropOptions(  int width, int height ,boolean aspect){
+        CropOptions.Builder builder=new CropOptions.Builder();
+        //是否按宽/高 裁剪 ,对使用   taketool自带 工具无效
+        if(aspect){
+            builder.setAspectX(width).setAspectY(height);
+        }else {
+            builder.setOutputX(width).setOutputY(height);
+        }
+        builder.setWithOwnCrop(true); //使用自带工具
+        return builder.create();
+    }
+
+    public static CropOptions getCropOptions(){
+        CropOptions.Builder builder=new CropOptions.Builder();
+        //是否按宽/高 裁剪 ,对使用   taketool自带 工具无效
+        builder.setOutputX(800).setOutputY(800);
+        builder.setWithOwnCrop(true); //使用自带工具
+        return builder.create();
+    }
+
+
+    /**
+     * 拍照
+     * @param takePhoto  从相机获取图片并裁剪
+     */
+    public static void takePhotosPickFromCaptureWithCrop(TakePhoto takePhoto ){
+        File file=new File(Environment.getExternalStorageDirectory(), "/temp/"+System.currentTimeMillis() + ".jpg");
+        if (!file.getParentFile().exists())file.getParentFile().mkdirs();
+        Uri imageUri = Uri.fromFile(file);
+        takePhoto.onPickFromCaptureWithCrop(imageUri,getCropOptions());
+    }
+
+
+
+    /**
+     * 拍照
+     * @param takePhoto 从相机获取图片(不裁剪)
+     */
+    public static void takePhotosPickFromCapture(TakePhoto takePhoto ){
+        File file=new File(Environment.getExternalStorageDirectory(), "/temp/"+System.currentTimeMillis() + ".jpg");
+        if (!file.getParentFile().exists())file.getParentFile().mkdirs();
+        Uri imageUri = Uri.fromFile(file);
+        takePhoto.onPickFromCapture(imageUri);
+    }
+
+
 
 
 
