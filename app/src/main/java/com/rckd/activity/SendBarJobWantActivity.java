@@ -23,6 +23,8 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 
+import butterknife.OnClick;
+
 /**
  * Created by LiZheng on 2017/5/8 0008.
  */
@@ -82,6 +84,8 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
 
     }
 
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -108,8 +112,6 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
                 inflater = LayoutInflater.from(this);
                 view = inflater.inflate(R.layout.partjob, null);
                 //view的相关事件可以写在此处
-
-
                 frameLayout.addView(view);
                 title_text.setText("兼职工作");
                 frameLayout.setVisibility(View.VISIBLE);

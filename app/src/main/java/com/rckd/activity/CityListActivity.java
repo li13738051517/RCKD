@@ -215,12 +215,13 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
         mLocationClient = new LocationClient(getApplicationContext());
         //声明LocationClient类
         mMyLocationListener = new MyLocationListener();
-        //初始化监听函数
-        mLocationClient.registerLocationListener(mMyLocationListener);
-        //注册监听函数
-        InitLocation();
-        //开启定位，开启定位前每次都应当判断是否已经权限
         if (isHaveAndPermission(strPression)) {
+            //初始化监听函数
+            mLocationClient.registerLocationListener(mMyLocationListener);
+            //注册监听函数
+             InitLocation();
+            //开启定位，开启定位前每次都应当判断是否已经权限
+
             mLocationClient.start();
         } else {
             getPression(this, REQUEST_CODE_PERMISSION_LOCATION, strPression);

@@ -67,7 +67,6 @@ public class BrowserActivity extends com.rckd.base.BaseActivity implements com.y
      * 下载文件权限请求码
      */
     private static final int RC_PERMISSION_DOWNLOAD = 1;
-
     /**
      * 删除文件权限请求码
      */

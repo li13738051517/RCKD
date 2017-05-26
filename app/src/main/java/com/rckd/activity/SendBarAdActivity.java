@@ -218,10 +218,16 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
             case R.id.imageView3:
                 makeText("即将拍照....");
 
-              TakePhotoUtils.configCompress(takePhoto ,10*1024  ,800 ,800);
-              TakePhotoUtils.configTakePhotoOption(takePhoto);
-//                TakePhotoUtils.takePhotos(takePhoto);
-                TakePhotoUtils. takePhotosPickFromCaptureWithCrop(takePhoto);
+                //实际中,屏幕照相机尺寸可有屏幕而来
+                TakePhotoUtils.configCompress(takePhoto ,true ,true ,10*1024 ,800 ,800 ,true ,true);
+                TakePhotoUtils.configTakePhotoOption(takePhoto ,true ,false);
+                TakePhotoUtils.takePhotosAll(takePhoto ,true ,true ,0 ,true,false ,800 ,800 ,true);
+
+                //              TakePhotoUtils.configCompress(takePhoto ,10*1024  ,800 ,800);
+//              TakePhotoUtils.configTakePhotoOption(takePhoto);
+////                TakePhotoUtils.takePhotos(takePhoto);
+//                TakePhotoUtils. takePhotosPickFromCaptureWithCrop(takePhoto);
+//                TakePhotoUtils.configCompress(takePhoto );
 
 //                /**
 //                 * 使用takephoto
@@ -313,6 +319,7 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
     //-----------------------------------------------------------
 
 
+    //取消照相
     @Override
     public void takeCancel() {
         super.takeCancel();
@@ -324,6 +331,7 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
     }
 
     ArrayList<TImage> images;
+    //照相成功
     @Override
     public void takeSuccess(TResult result) {
         //拍照操作成功成功后在此操作

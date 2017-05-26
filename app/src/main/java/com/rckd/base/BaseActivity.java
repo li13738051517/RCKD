@@ -35,6 +35,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.daimajia.numberprogressbar.OnProgressBarListener;
 import com.jaeger.library.StatusBarUtil;
@@ -87,7 +91,7 @@ import timber.log.Timber;
  * Created by LiZheng on 2017/3/30 0055.
  *
  */
-public abstract class BaseActivity extends AppCompatActivity implements com.rckd.inter.ISupport, SensorEventListener ,com.jph.takephoto.app.TakePhoto.TakeResultListener,com.jph.takephoto.permission.InvokeListener  {
+public abstract class BaseActivity extends AppCompatActivity implements com.rckd.inter.ISupport, SensorEventListener ,com.jph.takephoto.app.TakePhoto.TakeResultListener,com.jph.takephoto.permission.InvokeListener ,BDLocationListener {
     private Timer timer;
     private com.daimajia.numberprogressbar.NumberProgressBar bnp;
     protected FragmentationDelegate mFragmentationDelegate;
@@ -143,6 +147,9 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
     };
     public static final int REQUEST_CODE_PERMISSION_LOCATION = 100;//地图定位
     public static final int REQUEST_CODE_SETTING = 300;//系统设置权限码
+
+    public LocationClient mLocationClient; //百度地图
+
 
     //    protected abstract int getLayoutId();
     @Override
@@ -228,6 +235,7 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
         Timber.e(tag + " onCreate over", tag);
         //创建地图定位管理者,全局交由此管理
         mLocationManager = TencentLocationManager.getInstance(mContext);
+        mLocationClient = new LocationClient(mContext);
     }
 
 
@@ -304,6 +312,7 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
             mSensorManager.unregisterListener(this);
         }
         timer.cancel();
+        mLocationClient.stop();
 
     }
 
@@ -1176,8 +1185,7 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
         Timber.e(tag + " getPression , String... permissions = " + permissions, tag);
         AndPermission.with(activity)
                 .requestCode(requestCode)
-                .permission(permissions
-                )
+                .permission(permissions)
                 // rationale作用是：用户拒绝一次权限，再次申请时先征求用户同意，再打开授权对话框，避免用户勾选不再提示。
 //                .rationale(rationaleListener)
                 .rationale(new RationaleListener() {
@@ -1240,4 +1248,59 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
     //-----------------------------------------------------------
 
 
+    public  static boolean flag=false;
+
+//地理位置---------------------  百度
+    @Override
+    public void onReceiveLocation(BDLocation bdLocation) {
+
+    }
+
+    @Override
+    public void onConnectHotSpotMessage(String s, int i) {
+        Timber.e(tag + i + "  " + s, tag);
+        String resText = "";
+
+        if (i == 0) {
+            resText = "不是wifi热点, wifi:" + s;
+        } else if (i == 1) {
+            resText = "是wifi热点, wifi:" + s;
+        } else if (i == -1) {
+            resText = "未连接wifi";
+        }
+        Timber.e(tag + " resText = ", tag);
+    }
+    //地理位置---------------------
+
+    /**
+     * 配置定位的参数
+     */
+    public void initLocation() {
+        LocationClientOption option = new LocationClientOption();
+        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
+        //可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
+        option.setCoorType("bd09ll");
+        //可选，默认gcj02，设置返回的定位结果坐标系
+        int span = 5000;
+        option.setScanSpan(span);
+        //可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
+        option.setIsNeedAddress(true);
+        //可选，设置是否需要地址信息，默认不需要
+        option.setOpenGps(true);
+        //可选，默认false,设置是否使用gps
+        option.setLocationNotify(true);
+        //可选，默认false，设置是否当GPS有效时按照1S/1次频率输出GPS结果
+        option.setIsNeedLocationDescribe(true);
+        //可选，默认false，设置是否需要位置语义化结果，可以在BDLocation.getLocationDescribe里得到，结果类似于“在北京天安门附近”
+        option.setIsNeedLocationPoiList(true);
+        //可选，默认false，设置是否需要POI结果，可以在BDLocation.getPoiList里得到
+        option.setIgnoreKillProcess(true);
+        //可选，默认true，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认不杀死
+        option.SetIgnoreCacheException(true);
+        //可选，默认false，设置是否收集CRASH信息，默认收集
+        option.setEnableSimulateGps(true);
+        //可选，默认false，设置是否需要过滤GPS仿真结果，默认需要
+        mLocationClient.setLocOption(option);
+
+    }
 }

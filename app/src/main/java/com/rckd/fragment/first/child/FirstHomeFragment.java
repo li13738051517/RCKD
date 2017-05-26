@@ -96,7 +96,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
         return fragment;
     }
 
-    private static boolean flag = false; //flag标记
+//    private static boolean flag = false; //flag标记
     /**
      * 作为一个浏览器的示例展示出来，采用android+web的模式
      */
@@ -214,17 +214,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
 //            }
 //        });
 
-
-        if (baseActivity.isHaveAndPermission(baseActivity.strPression)) {
-            Timber.e(tag + " finish", tag);
-            initWeb();
-//            flag = true;
-        } else {
-            Timber.e(tag + " 没有权限！！！  ");
-            baseActivity.getPression(baseActivity, REQUEST_CODE_PERMISSION_LOCATION, baseActivity.strPression);
-        }
-
-//        initWeb();
+        initWeb();
     }
 
     @Override
@@ -267,7 +257,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
             mWebView.destroy();
             mWebView = null;
 //            flag = false;
-            Timber.e(tag + " flag= " + flag, tag);
+            Timber.e(tag + " flag= " + baseActivity.flag, tag);
         }
     }
 
@@ -423,27 +413,40 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
         });
 
 
-        WebSettings webSetting = mWebView.getSettings();
-        webSetting.setAllowFileAccess(true);
-        webSetting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
-        webSetting.setSupportZoom(true);
-        webSetting.setBuiltInZoomControls(true);
-        webSetting.setUseWideViewPort(true);
-        webSetting.setSupportMultipleWindows(false);
-        //webSetting.setLoadWithOverviewMode(true);
-        webSetting.setAppCacheEnabled(true);
-        //webSetting.setDatabaseEnabled(true);
+//        if (baseActivity.isHaveAndPermission(baseActivity.strPression)) {
+//            Timber.e(tag + " finish", tag);
+//            initWeb();
+//            flag = true;
 
-        //地理位置权限，此处需要申请地理位置权限
-        webSetting.setDomStorageEnabled(true);
-        webSetting.setJavaScriptEnabled(true);
-        webSetting.setGeolocationEnabled(true);
-        webSetting.setAppCacheMaxSize(Long.MAX_VALUE);
-        webSetting.setAppCachePath(baseActivity.getDir("appcache", 0).getPath());
-        webSetting.setDatabasePath(baseActivity.getDir("databases", 0).getPath());
-        webSetting.setGeolocationDatabasePath(this.getBaseActivity().getDir("geolocation", 0).getPath());
-        // webSetting.setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY);
-        webSetting.setPluginState(WebSettings.PluginState.ON_DEMAND);
+            WebSettings webSetting = mWebView.getSettings();
+            webSetting.setAllowFileAccess(true);
+            webSetting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+            webSetting.setSupportZoom(true);
+            webSetting.setBuiltInZoomControls(true);
+            webSetting.setUseWideViewPort(true);
+            webSetting.setSupportMultipleWindows(false);
+            //webSetting.setLoadWithOverviewMode(true);
+            webSetting.setAppCacheEnabled(true);
+            //webSetting.setDatabaseEnabled(true);
+
+            //地理位置权限，此处需要申请地理位置权限
+            webSetting.setDomStorageEnabled(true);
+            webSetting.setJavaScriptEnabled(true);
+            webSetting.setGeolocationEnabled(true);
+            webSetting.setAppCacheMaxSize(Long.MAX_VALUE);
+            webSetting.setAppCachePath(baseActivity.getDir("appcache", 0).getPath());
+            webSetting.setDatabasePath(baseActivity.getDir("databases", 0).getPath());
+            webSetting.setGeolocationDatabasePath(this.getBaseActivity().getDir("geolocation", 0).getPath());
+            // webSetting.setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY);
+            webSetting.setPluginState(WebSettings.PluginState.ON_DEMAND);
+
+
+//        } else {
+//            Timber.e(tag + " 没有权限！！！  ");
+//            baseActivity.getPression(baseActivity, REQUEST_CODE_PERMISSION_LOCATION, baseActivity.strPression);
+//        }
+
+
         //webSetting.setRenderPriority(WebSettings.RenderPriority.HIGH);
         // webSetting.setPreFectch(true);
         long time = System.currentTimeMillis();
@@ -486,7 +489,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
         if (requestCode == 1 || requestCode == 2) {
             EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
         }
-        if (!flag) {
+        if (!baseActivity.flag) {
             AndPermission.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
         }
 
@@ -513,7 +516,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
                 baseActivity.makeText(tag + " 开始申请权限");
                 Timber.e(tag + " onSucceed " + " AppPressionCode.TenCentMap", tag);
                 initWeb();
-                flag = true;
+                baseActivity.flag = true;
 
         }
     }
@@ -524,7 +527,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
             case REQUEST_CODE_PERMISSION_LOCATION:
                 Timber.e(tag + " onFailed " + " AppPressionCode.TenCentMap ", tag);
                 baseActivity.makeText(tag + " 您没有给相应的权限！！！我们可能无法提供更好的服务给你");
-                flag = false;
+                baseActivity.flag = false;
                 break;
         }
         // 用户否勾选了不再提示并且拒绝了权限，那么提示用户到设置中授权。
@@ -535,5 +538,28 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //int requestCode, int resultCode, Intent data 注意三个参数
+        TbsLog.e(tag, "onActivityResult, requestCode:" + requestCode
+                + ",resultCode:" + resultCode);
 
+        switch (requestCode) {
+            case REQUEST_CODE_SETTING: {
+//                Toast.makeText(this, "欢迎回来", Toast.LENGTH_LONG).show();
+                baseActivity.makeText("欢迎回来");
+                Timber.e(tag + " REQUEST_CODE_SETTING =" + REQUEST_CODE_SETTING, tag);
+                initWeb();
+                baseActivity.flag = true;
+                break;
+            }
+            default:
+                Timber.e(tag + " 即将退出  =" + REQUEST_CODE_SETTING, tag);
+                baseActivity.defaultFinish();
+                break;
+        }
+
+
+    }
 }

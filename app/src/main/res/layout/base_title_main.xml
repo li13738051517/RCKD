@@ -22,7 +22,7 @@
         android:drawableLeft="@drawable/ad"
         android:paddingBottom="@dimen/text_margin"
         android:paddingTop="@dimen/text_margin"
-        android:text="宣城|切换"
+        android:text="未知城市|切换"
         android:textColor="@color/city_gray"
         android:textSize="10sp" />
 

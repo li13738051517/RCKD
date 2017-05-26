@@ -151,6 +151,7 @@
             android:id="@+id/lin4"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
+            android:onClick="onClick"
             android:orientation="horizontal">
 
             <TextView

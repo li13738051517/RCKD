@@ -1208,6 +1208,7 @@ public class BaseFragment extends Fragment implements  com.rckd.inter.ISupportFr
 
 //    -------------------------------------
 
+    public  boolean falag=false;
 
 
 

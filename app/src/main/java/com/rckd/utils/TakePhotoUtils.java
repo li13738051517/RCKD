@@ -34,10 +34,12 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static android.R.attr.externalService;
 import static android.R.attr.width;
 import static com.baidu.location.h.a.i;
 import static com.baidu.location.h.j.b;
 import static com.baidu.location.h.j.c;
+import static com.baidu.location.h.j.t;
 import static com.darsh.multipleimageselect.helpers.Constants.limit;
 
 /**
@@ -155,6 +157,21 @@ public class TakePhotoUtils {
     }
 //
 
+    /**
+     *
+     * @param takePhoto
+     * @param cropTyeWithOwn 自带相册
+     * @param correctYes 是否矫正
+     * @return
+     */
+    public static TakePhoto configTakePhotoOption(TakePhoto takePhoto  , boolean cropTyeWithOwn ,boolean   correctYes){
+        TakePhotoOptions.Builder builder=new TakePhotoOptions.Builder();
+        builder.setWithOwnGallery(cropTyeWithOwn);
+        builder.setCorrectImage(correctYes);
+        takePhoto.setTakePhotoOptions(builder.create());
+        return takePhoto;
+    }
+
 
     /**
      * 压缩配置 ,先行将图片压缩
@@ -177,7 +194,45 @@ public class TakePhotoUtils {
     }
 
 
-
+    /**
+     *
+     * @param takePhoto
+     * @param cropYes
+     * @param cropTyeWithOwn
+     * @param maxSize
+     * @param width
+     * @param height
+     * @param reserveRaw
+     * @param showProgressBar
+     * @return
+     */
+    public static   TakePhoto configCompress(    TakePhoto takePhoto , boolean cropYes,
+                                                 boolean cropTyeWithOwn, int maxSize,  int width, int height ,
+                                                 boolean reserveRaw   , boolean showProgressBar){
+        if (!cropYes){
+            takePhoto.onEnableCompress(null,false);
+        }
+        CompressConfig config =null;
+        //选择压缩工具模式  ,可以使用taketools
+        if (cropTyeWithOwn){
+            config=new CompressConfig.Builder()
+                    .setMaxSize(maxSize)//最大体积
+                    .setMaxPixel(width>=height? width:height)//最大长度
+                    .enableReserveRaw(reserveRaw) //保留原件
+                    .create();
+        }else {
+            //you can use Lu办Optition
+            LubanOptions option=new LubanOptions.Builder()
+                    .setMaxHeight(height)
+                    .setMaxWidth(width)
+                    .setMaxSize(maxSize)
+                    .create();
+            config=CompressConfig.ofLuban(option);
+            config.enableReserveRaw(reserveRaw);
+        }
+        takePhoto.onEnableCompress(config,showProgressBar);
+        return takePhoto;
+    }
 
     /**
      * 裁剪的相关配置
@@ -206,6 +261,22 @@ public class TakePhotoUtils {
     }
 
 
+
+    public static CropOptions getCropOptions( boolean cropYes, boolean picIsAspect,   int width, int height ,   boolean cropTyeWithToolsOwn ){
+        if (!cropYes){
+            return null;
+        }
+        CropOptions.Builder builder=new CropOptions.Builder();
+        if (picIsAspect){
+            //是否按宽/高 裁剪 ,对使用   taketool自带 工具无效
+            builder.setAspectX(width).setAspectY(height);
+        }else {
+            builder.setOutputX(width).setOutputY(height);
+        }
+        builder.setWithOwnCrop(cropTyeWithToolsOwn); //使用自带工具
+        return builder.create();
+    }
+
     /**
      * 拍照
      * @param takePhoto  从相机获取图片并裁剪
@@ -228,6 +299,63 @@ public class TakePhotoUtils {
         if (!file.getParentFile().exists())file.getParentFile().mkdirs();
         Uri imageUri = Uri.fromFile(file);
         takePhoto.onPickFromCapture(imageUri);
+    }
+
+
+    /**
+     *
+     * @param takePhoto
+     * @param fileFromCamera
+     * @param cropYes
+     * @param limitNum
+     * @param IsGallery
+     * @param picIsAspect
+     * @param width
+     * @param height
+     * @param cropTyeWithToolsOwn
+     */
+
+    //照相之前应该先进行照相机相关设置 ,以及配置 压缩图片 ,裁剪等 ,万能写法,以后直接调用
+    public static void takePhotosAll(TakePhoto takePhoto,boolean fileFromCamera, boolean cropYes, int limitNum ,boolean IsGallery , boolean picIsAspect,   int width, int height ,   boolean cropTyeWithToolsOwn   ){
+        File file=new File(Environment.getExternalStorageDirectory(), "/temp/"+System.currentTimeMillis() + ".jpg");
+        if (!file.getParentFile().exists())file.getParentFile().mkdirs();
+        Uri imageUri = Uri.fromFile(file);
+        //判断图片来源 ,是否来源于相机
+          if (fileFromCamera){
+              if(cropYes){
+                  takePhoto.onPickFromCaptureWithCrop(imageUri,getCropOptions(cropYes ,picIsAspect,width,  height ,  cropTyeWithToolsOwn));
+              }else {
+                  takePhoto.onPickFromCapture(imageUri);
+              }
+          }
+          //当图片来源不是相机时
+          else{
+                  if(limitNum>1){
+                      if(cropYes){
+                          takePhoto.onPickMultipleWithCrop(limitNum,getCropOptions(cropYes ,picIsAspect,width,  height ,  cropTyeWithToolsOwn));
+                      }else {
+                          takePhoto.onPickMultiple(limitNum);
+                      }
+                      return;
+                  }
+
+                  if (IsGallery){
+                      if (cropYes){
+                          takePhoto.onPickFromGalleryWithCrop(imageUri,getCropOptions(cropYes ,picIsAspect,width,  height ,  cropTyeWithToolsOwn));
+                      }
+                      else{
+                          takePhoto.onPickFromGallery();
+                      }
+                  }else {
+                      if(cropYes){
+                          takePhoto.onPickFromDocumentsWithCrop(imageUri,getCropOptions(cropYes ,picIsAspect,width,  height ,  cropTyeWithToolsOwn));
+                      }else {
+                          takePhoto.onPickFromDocuments();
+                      }
+                  }
+          }
+
+
     }
 
 
