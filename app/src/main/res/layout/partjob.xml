@@ -457,11 +457,13 @@
             android:layout_height="1dp"/>
         
         <Button
+            android:id="@+id/comfire"
             android:layout_marginTop="18dp"
             android:layout_width="match_parent"
             android:text="发布"
             android:textColor="@color/white"
             android:background="@color/bottom_bg"
+            android:onClick="onClick"
             android:layout_height="48dp" />
 
 

@@ -1250,7 +1250,7 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
 
     public  static boolean flag=false;
 
-//地理位置---------------------  百度
+//地理位置-------------------
     @Override
     public void onReceiveLocation(BDLocation bdLocation) {
 
@@ -1303,4 +1303,7 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
         mLocationClient.setLocOption(option);
 
     }
+
+
+
 }

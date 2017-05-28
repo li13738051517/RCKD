@@ -1,6 +1,8 @@
 package com.rckd.activity;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,10 +10,13 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.location.h.j;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.google.gson.Gson;
 import com.rckd.R;
@@ -24,6 +29,12 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 
 import butterknife.OnClick;
+import timber.log.Timber;
+
+import static com.baidu.location.h.j.S;
+import static com.rckd.R.id.ed3;
+import static com.rckd.R.id.et3;
+import static com.rckd.R.id.lin3;
 
 /**
  * Created by LiZheng on 2017/5/8 0008.
@@ -32,6 +43,8 @@ import butterknife.OnClick;
 //发招聘贴
  */
 public class SendBarJobWantActivity extends BaseActivity implements View.OnClickListener {
+
+    private  static String tag=SendBarJobWantActivity.class.getName();
     @Override
     protected int fragmentLayoutId() {
         return 0;
@@ -56,7 +69,9 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
     private static final int MSG_LOAD_DATA = 0x0001;
     private static final int MSG_LOAD_SUCCESS = 0x0002;
     private static final int MSG_LOAD_FAILED = 0x0003;
-    private boolean isLoaded = false;
+    private  boolean isLoaded = false;
+
+    FullJobView fullJobView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,7 +96,7 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
         title_text.setText("选择发布类型");
         frameLayout =(FrameLayout) findViewById(R.id.frame);
 
-
+        mHandler.sendEmptyMessage(MSG_LOAD_DATA);//解析城市三联列表
     }
 
 
@@ -95,10 +110,14 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
                 break;
 //全职招聘
             case R.id.text1:
+                Timber.e(tag+" 全职招聘 ",tag);
                 inflater = LayoutInflater.from(this);
-
                 //在此可以判断是否为公司
                 view = inflater.inflate(R.layout.fulljob, null);
+                fullJobView= new FullJobView(view ,mContext);
+
+                //view的相关事件可以写在此处
+                fullJobView.onClick(view);
                 frameLayout.addView(view);
                 frameLayout.setVisibility(View.VISIBLE);
                 title_text.setText("全职工作");
@@ -111,7 +130,7 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
             case R.id.text2:
                 inflater = LayoutInflater.from(this);
                 view = inflater.inflate(R.layout.partjob, null);
-                //view的相关事件可以写在此处
+
                 frameLayout.addView(view);
                 title_text.setText("兼职工作");
                 frameLayout.setVisibility(View.VISIBLE);
@@ -127,18 +146,19 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
     protected void onDestroy() {
         super.onDestroy();
     }
+
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_LOAD_DATA:
                     if (thread==null){//如果已创建就不再重新创建子线程了
 
-//                        Toast.makeText(Send,"开始解析数据",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SendBarJobWantActivity.this,"开始解析数据",Toast.LENGTH_SHORT).show();
                         thread = new Thread(new Runnable() {
                             @Override
                             public void run() {
                                 // 写子线程中的操作,解析省市区数据
-//                                initJsonData();
+                                initJsonData();
                             }
                         });
                         thread.start();
@@ -146,12 +166,12 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
                     break;
 
                 case MSG_LOAD_SUCCESS:
-//                    Toast.makeText(JsonDataActivity.this,"解析数据成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SendBarJobWantActivity.this,"解析数据成功",Toast.LENGTH_SHORT).show();
                     isLoaded = true;
                     break;
 
                 case MSG_LOAD_FAILED:
-//                    Toast.makeText(JsonDataActivity.this,"解析数据失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SendBarJobWantActivity.this,"解析数据失败",Toast.LENGTH_SHORT).show();
                     break;
 
             }
@@ -161,7 +181,7 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
 
 
 
-    private void ShowPickerView() {// 弹出选择器
+    public   void ShowPickerView() {// 弹出选择器
 
         OptionsPickerView pvOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
             @Override
@@ -171,7 +191,10 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
                         options2Items.get(options1).get(options2)+
                         options3Items.get(options1).get(options2).get(options3);
 
-//                Toast.makeText(JsonDataActivity.this,tx,Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,tx,Toast.LENGTH_SHORT).show();
+                    Timber.e(tag+" fullJobView  ShowPickerView ");
+                fullJobView.et3.setText(tx);
+
             }
         }).setTitleText("城市选择").setDividerColor(Color.BLACK).setTextColorCenter(Color.BLACK) //设置选中项文字颜色
                 .setContentTextSize(20)
@@ -184,7 +207,7 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
         pvOptions.show();
     }
 
-    private void initJsonData() {//解析数据
+    public void initJsonData() {//解析数据
 
         /**
          * 注意：assets 目录下的Json文件仅供参考，实际使用可自行替换文件
@@ -203,6 +226,7 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
          */
         options1Items = jsonBean;
 
+        //此处循环算法特别重要
         for (int i=0;i<jsonBean.size();i++){//遍历省份
             ArrayList<String> CityList = new ArrayList<>();//该省的城市列表（第二级）
             ArrayList<ArrayList<String>> Province_AreaList = new ArrayList<>();//该省的所有地区列表（第三极）
@@ -259,4 +283,95 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
         }
         return detail;
     }
+
+
+
+
+
+
+
+
+ public class FullJobView  implements  View.OnClickListener{
+     FullJobView  fullJobView;
+     Context context;
+     TextView et3; //城市列表
+      private View rootView;
+//        EditText ed1;
+//      LinearLayout lin2  ,lin3;
+
+//     private   FullJobView(){
+//         init();
+//     }
+//     private   FullJobView(View rootView){
+//         this.rootView = rootView;
+//         init();
+//     }
+
+        public   FullJobView (View rootView ,Context context){
+//            if ( fullJobView ==null) {
+//                synchronized (FullJobView.class) {
+//                    if (fullJobView == null) {
+//                        fullJobView = new FullJobView(rootView);
+//                    }
+//                }
+//            }
+            this.rootView = rootView;
+            this.context=context;
+            init();
+        }
+        //
+        private  void init(){
+
+            et3=(TextView)   rootView.findViewById(R.id.et3);
+            et3.setOnClickListener(this);
+            rootView.findViewById(R.id.tv3).setOnClickListener(this);
+            rootView.findViewById(R.id.lin3).setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.tv3:
+                case R.id.et3:
+                case  R.id.lin3:
+                    Timber.e(tag+" fullJobView onClick");
+                    if (isLoaded){
+                        ShowPickerView();
+                    }else {
+                        Toast.makeText(mContext,"数据暂未解析成功，请等待",Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+
+            }
+
+        }
+    }
+
+
+    public  class  PartJobView implements  View.OnClickListener{
+        FullJobView  fullJobView;
+        Context context;
+        TextView et3; //城市列表
+        private View rootView;
+
+
+        public   PartJobView (View rootView ,Context context){
+            this.rootView = rootView;
+            this.context=context;
+            init();
+        }
+
+        private  void init(){
+        }
+
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
 }
+
+
+

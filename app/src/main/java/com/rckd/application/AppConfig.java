@@ -89,4 +89,6 @@ public class AppConfig {
         return preferences.getFloat(key, defValue);
     }
 
+    public static final String DEBUG_TAG = "RCKD";// LogCat的标记
+    public static final boolean DEBUG_ENABLE = false;// 是否调试模式 ,正式版本这样使用
 }

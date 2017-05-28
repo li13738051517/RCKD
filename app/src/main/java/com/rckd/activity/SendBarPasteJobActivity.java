@@ -60,8 +60,8 @@ public class SendBarPasteJobActivity extends BaseActivity implements View.OnClic
         title_text = (TextView) findViewById(R.id.in).findViewById(R.id.title_text);
         title_text.setVisibility(View.VISIBLE);
         title_text.setText("发求职贴");
-        text_tie = (TextView) findViewById(R.id.text_tie);
-        text_tie.setText("类别名称");
+//        text_tie = (TextView) findViewById(R.id.text_tie);
+//        text_tie.setText("类别名称");
 //        text_ad = (TextView) view.findViewById(R.id.text_ad);
 //        text_ad.setText("广而告之");
 //

@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
+import cn.addapp.pickers.util.LogUtils;
 import timber.log.Timber;
 
 import static timber.log.Timber.DebugTree;
@@ -63,6 +64,10 @@ public class BaseApplication extends android.app.Application {
         super.onCreate();
         Log.e(tag, tag + " onCreate start");
         context = this.getApplicationContext();
+        LogUtils.setIsDebug(BuildConfig.DEBUG);
+        if (!LogUtils.isDebug()) {
+            android.util.Log.d(AppConfig.DEBUG_TAG, " logcat is disabled");
+        }
         initLogDebug();
         initThread();
         initNoHttp();

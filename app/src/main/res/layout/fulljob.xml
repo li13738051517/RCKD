@@ -116,8 +116,8 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:maxLines="1"
-                android:textSize="14sp"
-                android:text="工作区域" />
+                android:text="工作区域"
+                android:textSize="14sp" />
 
             <View
                 android:layout_width="1dp"
@@ -125,7 +125,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="@color/black" />
 
-            <EditText
+            <TextView
                 android:id="@+id/et3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,11 +136,12 @@
                 android:layout_marginStart="15dp"
                 android:layout_toEndOf="@+id/text_tie"
                 android:layout_toRightOf="@+id/text_tie"
-                android:hint="广德县"
+                android:text=" 广德县"
                 android:maxLines="1"
                 android:textSize="14sp" />
 
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:background="@color/black"
@@ -151,7 +152,6 @@
             android:id="@+id/lin4"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
-            android:onClick="onClick"
             android:orientation="horizontal">
 
             <TextView
@@ -268,11 +268,11 @@
                 android:layout_gravity="center|right"
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginStart="15dp"
-                android:textSize="14sp"
                 android:layout_toEndOf="@+id/text_tie"
                 android:layout_toRightOf="@+id/text_tie"
                 android:hint="1-3年"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textSize="14sp" />
 
         </LinearLayout>
         <View

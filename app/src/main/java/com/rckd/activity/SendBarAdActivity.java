@@ -100,6 +100,8 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
     Uri imageUri;//获取image的uri
     LinearLayout linearLayout;
     TakePhoto takePhoto;
+
+    Button button;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 //        getTakePhoto().onCreate(savedInstanceState);  //先让takephoto
@@ -126,6 +128,8 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
 
         imageView3 = (Button) view.findViewById(R.id.imageView3);
         imageView3.setOnClickListener(this);
+        button=(Button) view.findViewById(R.id.button);
+        button.setOnClickListener(this);
 //        test = text_ad2.getText().toString();
 //        testArear = textView.getText().toString();
         gridView = (GridView) view.findViewById(R.id.list_view);
