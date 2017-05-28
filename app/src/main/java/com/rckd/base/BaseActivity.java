@@ -91,7 +91,9 @@ import timber.log.Timber;
  * Created by LiZheng on 2017/3/30 0055.
  *
  */
-public abstract class BaseActivity extends AppCompatActivity implements com.rckd.inter.ISupport, SensorEventListener ,com.jph.takephoto.app.TakePhoto.TakeResultListener,com.jph.takephoto.permission.InvokeListener ,BDLocationListener {
+public abstract class BaseActivity extends AppCompatActivity implements com.rckd.inter.ISupport, SensorEventListener ,
+        com.jph.takephoto.app.TakePhoto.TakeResultListener,
+        com.jph.takephoto.permission.InvokeListener ,BDLocationListener {
     private Timer timer;
     private com.daimajia.numberprogressbar.NumberProgressBar bnp;
     protected FragmentationDelegate mFragmentationDelegate;
@@ -1305,5 +1307,8 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
     }
 
 
-
+//    @Override
+//    public void onClick(View v) {
+//
+//    }
 }

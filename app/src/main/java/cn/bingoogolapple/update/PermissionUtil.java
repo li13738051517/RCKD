@@ -71,8 +71,8 @@ class PermissionUtil {
 
     /**
      * 撤销对某个 uri 的读写权限
-     *
-     * @param uri
+     * 注意:在页面中应当有相应对呗撤销 uri  读写权限的  处理  ,如 用户撤销 允许定位的权限后  ,应当有防止app 奔溃  的处理
+     *  * @param uri
      */
     static void revokeUriPermission(Uri uri) {
         if (uri == null) {

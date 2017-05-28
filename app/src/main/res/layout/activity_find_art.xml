@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.SendBarAdActivity"
+    tools:context=".activity.SendBarArtCratfsActivity"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -63,7 +63,7 @@
 
             <TextView
                 android:id="@+id/text_tie"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
@@ -89,7 +89,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_toEndOf="@+id/text_tie"
                 android:layout_toRightOf="@+id/text_tie"
-                android:text="广而告之" />
+                android:text="匠工约定" />
 
         </LinearLayout>
 
@@ -108,7 +108,7 @@
 
             <TextView
                 android:id="@+id/text_tie2"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"

@@ -1,12 +1,10 @@
 package com.rckd.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,14 +17,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jph.takephoto.app.TakePhoto;
-import com.jph.takephoto.app.TakePhotoImpl;
-import com.jph.takephoto.model.InvokeParam;
-import com.jph.takephoto.model.TContextWrap;
 import com.jph.takephoto.model.TImage;
 import com.jph.takephoto.model.TResult;
-import com.jph.takephoto.permission.InvokeListener;
-import com.jph.takephoto.permission.PermissionManager;
-import com.jph.takephoto.permission.TakePhotoInvocationHandler;
 import com.rckd.R;
 import com.rckd.adpter.GridAdapter;
 import com.rckd.base.BaseActivity;
@@ -36,18 +28,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import timber.log.Timber;
 
 //import static com.baidu.location.h.j.R;
-import static com.rckd.R.id.image;
-import static com.rckd.R.id.left_btn;
-import static com.rckd.R.id.textView;
 import static com.rckd.utils.TakePhotoUtils.configCompress;
 import static com.rckd.utils.TakePhotoUtils.configTakePhotoOption;
 
-import com.rckd.R;
 import com.rckd.utils.TakePhotoUtils;
 
 /**
@@ -59,29 +45,12 @@ import com.rckd.utils.TakePhotoUtils;
  */
 public class SendBarAdActivity extends BaseActivity implements View.OnClickListener {
     private static String tag = SendBarAdActivity.class.getName();
-    //    View view;
-    //头部title
-//    @BindView(left_btn)
-//    Button button;
-//    @BindView(R.id.title_text)
-//    TextView title;
-//    @BindView(R.id.text_ad)
-//    TextView text_ad;
-//    @BindView(R.id.text_ad2)
-//    EditText text_ad2;
-//    @BindView(R.id.textView)
-//    EditText textView;
-//    @BindView(R.id.imageView2)
-//    TextView imageView2;
-//    @BindView(R.id.button)
-//    Button button2;
-//    private Unbinder unbinder;
 
     @Override
     protected int fragmentLayoutId() {
         return 0;
     }
-    String test = null;
+    String test = null;//帖子标题
     String testArear = null;
 
     private GridView gridView;
@@ -101,15 +70,18 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
     LinearLayout linearLayout;
     TakePhoto takePhoto;
 
+
+    TextView textView;
+
     Button button;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 //        getTakePhoto().onCreate(savedInstanceState);  //先让takephoto
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_sendbarad);
+//        setContentView(R.layout.activity_send_ad);
         Timber.e(tag + " onCreate  start ");
         LayoutInflater inflater = LayoutInflater.from(this);
-        view = inflater.inflate(R.layout.activity_sendbarad, null);
+        view = inflater.inflate(R.layout.activity_send_ad, null);
         left_btn = (Button) view.findViewById(R.id.in).findViewById(R.id.left_btn);
         left_btn.setVisibility(View.VISIBLE);
         left_btn.setOnClickListener(this);
@@ -125,13 +97,18 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
         text_tie2.setText("帖子标题");
 
         text_ad2 = (EditText) view.findViewById(R.id.text_ad2);
-
+        test=text_ad2.getText().toString().trim();
         imageView3 = (Button) view.findViewById(R.id.imageView3);
         imageView3.setOnClickListener(this);
         button=(Button) view.findViewById(R.id.button);
         button.setOnClickListener(this);
-//        test = text_ad2.getText().toString();
-//        testArear = textView.getText().toString();
+
+
+        textView =(AppCompatEditText)findViewById(R.id.textView);
+
+        testArear=textView.getText().toString().trim();
+
+
         gridView = (GridView) view.findViewById(R.id.list_view);
 //        initDatas(); //
         gridAdapter = new GridAdapter(this, datas);

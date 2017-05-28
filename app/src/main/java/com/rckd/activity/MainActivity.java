@@ -234,7 +234,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                         startActivity(SendBarAdActivity.class);
 //                        LayoutInflater inflater = getLayoutInflater();
                         // 通过inflate方法将layout转化为view
-//                        v = inflater.inflate(R.layout.activity_sendbarad, null);
+//                        v = inflater.inflate(R.layout.activity_send_ad, null);
 //                        mViewParent.addView(v, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
 //                        mViewParent.setVisibility(View.VISIBLE);
                         //利用反射机制

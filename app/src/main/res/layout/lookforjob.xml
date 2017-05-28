@@ -65,7 +65,7 @@
             <TextView
 
                 android:id="@+id/text1"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
@@ -112,12 +112,12 @@
 
             <TextView
                 android:id="@+id/text2"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
-                android:text="性别        "
+                android:text="性别"
 
                 android:textSize="14sp" />
 
@@ -169,7 +169,7 @@
             <TextView
                 android:textSize="14sp"
                 android:id="@+id/text3"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
@@ -214,7 +214,7 @@
             <TextView
                 android:textSize="14sp"
                 android:id="@+id/text4"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
@@ -255,7 +255,7 @@
             <TextView
                 android:textSize="14sp"
                 android:id="@+id/text5"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
@@ -297,7 +297,7 @@
             <TextView
                 android:textSize="14sp"
                 android:id="@+id/text6"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
@@ -339,7 +339,7 @@
             <TextView
                 android:textSize="14sp"
                 android:id="@+id/text7"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"

@@ -22,7 +22,7 @@
 
             <TextView
                 android:id="@+id/tv1"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
@@ -66,7 +66,7 @@
 
             <TextView
                 android:id="@+id/tv2"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
@@ -110,7 +110,7 @@
 
             <TextView
                 android:id="@+id/tv3"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
@@ -156,7 +156,7 @@
 
             <TextView
                 android:id="@+id/tv4"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
@@ -199,7 +199,7 @@
 
             <TextView
                 android:id="@+id/tv5"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
@@ -244,7 +244,7 @@
 
             <TextView
                 android:id="@+id/tv6"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
@@ -288,7 +288,7 @@
 
             <TextView
                 android:id="@+id/tv7"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
@@ -333,14 +333,14 @@
 
             <TextView
                 android:id="@+id/tv8"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:maxLines="1"
                 android:textSize="14sp"
-                android:text="联系人    " />
+                android:text="联系人" />
 
             <View
                 android:layout_width="1dp"
@@ -377,7 +377,7 @@
 
             <TextView
                 android:id="@+id/tv9"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"

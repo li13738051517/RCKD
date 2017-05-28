@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.SendBarAdActivity"
+    tools:context=".activity.SendBarHelpActivity"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -91,8 +91,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_toEndOf="@+id/text_tie"
                 android:layout_toRightOf="@+id/text_tie"
-
-                android:text="广而告之" />
+                android:text="打听求助" />
 
         </LinearLayout>
 

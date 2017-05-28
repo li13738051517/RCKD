@@ -32,9 +32,6 @@ public class SendBarHelpActivity extends BaseActivity implements  View.OnClickLi
     private GridAdapter gridAdapter;
     private boolean isShowDelete;
     private List<BaseIcon> datas = new ArrayList<BaseIcon>();
-
-
-
     Button left_btn;
     TextView title_text;
     Button right_btn;

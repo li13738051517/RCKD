@@ -147,7 +147,7 @@ public class SendBarPasteJobActivity extends BaseActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        switch (view.getId()) {
+        switch (v.getId()) {
             case R.id.left_btn:
                 finish();
 //                defaultFinish();

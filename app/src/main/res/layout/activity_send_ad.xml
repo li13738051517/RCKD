@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.SendBarHouseSaleActivity"
+    tools:context=".activity.SendBarAdActivity"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -41,9 +41,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="拍张照片吧"
+                android:text="拍张照片"
                 android:textSize="14sp"
-
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp" />
         </LinearLayout>
@@ -151,7 +150,7 @@
             android:gravity="start"
             android:hint="在此畅所欲言吧"
             android:textSize="14sp"
-            android:lines="8"
+            android:lines="5"
             android:paddingBottom="@dimen/bot_jp"
             android:paddingTop="@dimen/bot_jp"
             android:textColorHint="@color/hint_color"
