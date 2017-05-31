@@ -2,10 +2,12 @@ package com.rckd.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.rckd.R;
@@ -19,6 +21,7 @@ import cn.addapp.pickers.common.LineConfig;
 import cn.addapp.pickers.listeners.OnItemPickListener;
 import cn.addapp.pickers.picker.SinglePicker;
 
+import static com.rckd.R.id.button;
 import static com.rckd.R.id.left_btn;
 import static com.rckd.R.id.title_text;
 
@@ -34,9 +37,16 @@ public class SendBarHouseSaleActivity extends BaseActivity implements  View.OnCl
 
     Button left ,right;
     View view;
-    TextView textView;
+    TextView title;
 
     TextView text_ad;
+    Button button;
+
+
+    EditText text_ad2;
+    String bar_title="";
+    AppCompatEditText textView;
+    String con="";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,15 +54,24 @@ public class SendBarHouseSaleActivity extends BaseActivity implements  View.OnCl
         left =(Button) view.findViewById(R.id.in).findViewById(R.id.left_btn);
         left.setVisibility(View.VISIBLE);
         left.setOnClickListener(this);
-         textView=(TextView)   view.findViewById(R.id.in).findViewById(R.id.title_text);
-         textView.setVisibility(View.VISIBLE);
-        textView.setOnClickListener(this);
+        title=(TextView)   view.findViewById(R.id.in).findViewById(R.id.title_text);
+        title.setVisibility(View.VISIBLE);
+
         right =(Button) view.findViewById(R.id.in).findViewById(R.id.right_btn);
         right.setVisibility(View.GONE);
         text_ad =(TextView) view.findViewById(R.id.text_ad);
         text_ad.setOnClickListener(this);
         view.findViewById(R.id.text_tie).setOnClickListener(this);
         view.findViewById(R.id.lin1).setOnClickListener(this);
+        button=(Button) view.findViewById(R.id.button);
+        text_ad2=(EditText) view.findViewById(R.id.text_ad2);
+        bar_title=text_ad2.getText().toString().trim();
+
+
+
+        textView=(AppCompatEditText) view.findViewById(R.id.textView);
+        con=textView.getText().toString().trim();
+
         setContentView(view);
 
     }
@@ -67,6 +86,18 @@ public class SendBarHouseSaleActivity extends BaseActivity implements  View.OnCl
             case  R.id.text_ad:
             case R.id.lin1:
                 onAnimator();
+                break;
+            case  R.id.button:
+                if (bar_title.isEmpty() || bar_title==null){
+                    makeText("帖子没有标题");
+                    return;
+                }
+                if (con.isEmpty() || con ==null){
+                    makeText("帖子没有内容");
+                    return;
+                }
+
+
                 break;
         }
 

@@ -11,7 +11,7 @@ import com.rckd.fragment.second.child.childpager.OtherPagerFragment;
  * Created by LIZheng on 16/6/5.
  */
 public class ZhihuPagerFragmentAdapter extends FragmentPagerAdapter {
-    private String[] mTab = new String[]{"推荐", "热门", "收藏"};
+    private String[] mTab = new String[]{"我是人才", "我是企业"};
 
     public ZhihuPagerFragmentAdapter(FragmentManager fm) {
         super(fm);
@@ -35,4 +35,5 @@ public class ZhihuPagerFragmentAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return mTab[position];
     }
+
 }

@@ -68,10 +68,8 @@ public class FirstPagerFragment extends BaseFragment implements SwipeRefreshLayo
     private void initView(View view) {
         mRecy = (RecyclerView) view.findViewById(R.id.recy);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
-
-        mRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        mRefreshLayout.setColorSchemeResources(R.color.bottom_bg);
         mRefreshLayout.setOnRefreshListener(this);
-
         mAdapter = new HomeAdapter(baseActivity);
         LinearLayoutManager manager = new LinearLayoutManager(baseActivity);
         mRecy.setLayoutManager(manager);

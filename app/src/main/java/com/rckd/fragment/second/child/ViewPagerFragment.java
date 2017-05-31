@@ -41,7 +41,7 @@ public class ViewPagerFragment extends com.rckd.base.BaseFragment {
 
         mTab.addTab(mTab.newTab());
         mTab.addTab(mTab.newTab());
-        mTab.addTab(mTab.newTab());
+//        mTab.addTab(mTab.newTab());
 
         mViewPager.setAdapter(new ZhihuPagerFragmentAdapter(getChildFragmentManager()));
         mTab.setupWithViewPager(mViewPager);

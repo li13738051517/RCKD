@@ -152,6 +152,7 @@ dependencies {
     compile 'com.contrarywind:Android-PickerView:3.2.5'
 
     compile 'com.github.addappcn:android-pickers:1.0.1'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 
 
 

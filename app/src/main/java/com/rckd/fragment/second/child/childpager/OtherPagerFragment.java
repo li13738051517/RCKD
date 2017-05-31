@@ -49,8 +49,9 @@ public class OtherPagerFragment extends com.rckd.base.BaseFragment {
 
         if (mType == TYPE_HOT) {
             mTvTitle.setText("热门");
-        } else {
-            mTvTitle.setText("收藏");
         }
+//        else {
+//            mTvTitle.setText("收藏");
+//        }
     }
 }

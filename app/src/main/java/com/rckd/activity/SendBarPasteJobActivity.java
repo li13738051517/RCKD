@@ -21,8 +21,6 @@ import com.rckd.bean.BaseIcon;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.rckd.R.id.tv;
-
 /**
  * Created by LiZheng on 2017/5/8 0008.
  */
@@ -157,12 +155,13 @@ public class SendBarPasteJobActivity extends BaseActivity implements View.OnClic
             case R.id.button:
                 if (test.isEmpty() || test == null) {
                     makeText("温馨提示:帖子不能没有标题哦!");
-                } else if (testArear.isEmpty() || testArear == null) {
-                    makeText("温馨提示:帖子不能没有内容哦!");
-                } else {
-                    makeText("发帖成功!");
-                    finish();
+                    return;
                 }
+                if (testArear.isEmpty() || testArear == null) {
+                    makeText("温馨提示:帖子不能没有内容哦!");
+                    return;
+                }
+                //请求
                 break;
         }
     }

@@ -52,7 +52,7 @@ public class GridAdapter extends BaseAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.bar_item_grild,null);
             viewHolder=new ViewHolder();
             viewHolder.animalImage=(ImageView)view.findViewById(R.id.iv);
-            viewHolder.animalName=(TextView)view.findViewById(R.id.tv);
+            viewHolder.animalName=(TextView)view.findViewById(R.id.tv_phne);
             viewHolder.deleteImage=(ImageView)view.findViewById(R.id.delete_markView);
             view.setTag(viewHolder);//设置tag
         }else{

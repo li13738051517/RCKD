@@ -1,16 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
-
-    <FrameLayout
-        android:id="@+id/webView1"
+    
+    <RelativeLayout
+        android:id="@+id/re_base"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible" />
+        android:layout_height="match_parent">
 
-    <android.support.v4.widget.SwipeRefreshLayout
+         <ImageView
+        android:id="@+id/banner"
+        android:background="@drawable/bg_fifth"
+        android:layout_width="match_parent"
+        android:layout_height="120dp" />
+        <GridView
+        android:layout_marginTop="5dp"
+        android:id="@+id/gv"
+        android:layout_below="@+id/banner"
+        android:numColumns="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+       <RelativeLayout
+           android:layout_marginTop="3dp"
+           android:id="@+id/bar_job"
+           android:layout_below="@+id/gv"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <LinearLayout
+               android:weightSum="2"
+               android:id="@+id/left_lin"
+               android:layout_width="wrap_content"
+               android:layout_marginTop="5dp"
+               android:layout_marginRight="5dp"
+               android:layout_marginBottom="5dp"
+               android:orientation="vertical"
+               android:layout_height="wrap_content">
+
+               <TextView
+                   android:id="@+id/textView3"
+                   android:layout_width="match_parent"
+                   android:layout_height="24dp"
+                   android:layout_gravity="center|center_horizontal"
+                   android:gravity="top|center"
+                   android:text="高级人才"
+                   android:textSize="20sp" />
+
+               <ImageView
+                   android:id="@+id/imageView6"
+                   android:layout_width="144dp"
+                   android:layout_height="144dp"
+                   android:layout_gravity="center|center_horizontal"
+                   android:layout_marginTop="1dp"
+                   android:padding="5dp"
+                   android:gravity="top|center"
+                   android:src="@color/black"
+                   android:textSize="20sp" />
+
+           </LinearLayout>
+
+
+           <LinearLayout
+               android:layout_margin="1dp"
+               android:weightSum="4"
+               android:id="@+id/lin_right"
+               android:layout_toRightOf="@+id/left_lin"
+               android:layout_width="match_parent"
+               android:orientation="vertical"
+               android:layout_height="match_parent">
+
+
+               <TextView
+                   android:layout_margin="3dp"
+                   android:text="家政专区"
+                   android:background="@color/holo_gray_light"
+                   android:textSize="24sp"
+                   android:textColor="@color/holo_blue_bright"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   android:layout_width="match_parent"
+                   android:layout_height="84dp" />
+
+               <LinearLayout
+                   android:orientation="horizontal"
+                   android:layout_marginTop="1dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+                   <include layout="@layout/part_time_in" />
+
+
+               </LinearLayout>
+
+           </LinearLayout>
+
+       </RelativeLayout>
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:id="@+id/tv_char"
+            android:layout_below="@+id/bar_job"
+            android:textSize="14sp"
+            android:text="便民服务"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <GridView
+            android:layout_below="@+id/tv_char"
+            android:id="@+id/gv2"
+            android:numColumns="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,9 +127,9 @@
             android:clipChildren="false"
             android:paddingLeft="-12dp"
             android:paddingRight="-12dp" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
 
-    <android.support.design.widget.FloatingActionButton
+        <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,4 +138,5 @@
         android:visibility="gone"
         android:layout_marginRight="24dp"
         android:src="@drawable/ic_home_white_24dp" />
-</FrameLayout>
+    </RelativeLayout>
+</ScrollView>

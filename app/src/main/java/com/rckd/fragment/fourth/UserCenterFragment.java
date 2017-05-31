@@ -53,7 +53,7 @@ public class UserCenterFragment extends BaseMainFragment {
 
     private void loadFragment() {
         loadRootFragment(R.id.fl_fourth_container_upper, AvatarFragment.newInstance());
-        loadRootFragment(R.id.fl_fourth_container_lower, MeFragment.newInstance());
+//        loadRootFragment(R.id.fl_fourth_container_lower, MeFragment.newInstance());
     }
 
     public void onBackToFirstFragment() {

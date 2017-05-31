@@ -73,6 +73,8 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
 
     FullJobView fullJobView;
 
+    PartJobView partJobView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,6 +132,8 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
             case R.id.text2:
                 inflater = LayoutInflater.from(this);
                 view = inflater.inflate(R.layout.partjob, null);
+                partJobView =new PartJobView(view ,mContext);
+                partJobView.onClick(view);
 
                 frameLayout.addView(view);
                 title_text.setText("兼职工作");

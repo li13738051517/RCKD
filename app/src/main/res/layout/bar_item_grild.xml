@@ -19,7 +19,7 @@
             android:layout_height="55dip" />
 
         <TextView
-            android:id="@+id/tv"
+            android:id="@+id/tv_phne"
             android:layout_width="70dip"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"

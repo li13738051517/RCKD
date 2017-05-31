@@ -104,7 +104,7 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
         button.setOnClickListener(this);
 
 
-        textView =(AppCompatEditText)findViewById(R.id.textView);
+        textView =(AppCompatEditText)view.findViewById(R.id.textView);
 
         testArear=textView.getText().toString().trim();
 
