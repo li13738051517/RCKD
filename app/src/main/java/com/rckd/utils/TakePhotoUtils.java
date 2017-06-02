@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
@@ -35,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static android.R.attr.externalService;
+import static android.R.attr.tag;
 import static android.R.attr.width;
 import static com.baidu.location.h.a.i;
 import static com.baidu.location.h.j.b;
@@ -47,6 +49,7 @@ import static com.darsh.multipleimageselect.helpers.Constants.limit;
  */
 
 public class TakePhotoUtils {
+    private static String  tag=TakePhotoUtils.class.getName();
     Context context;
     TakePhoto takePhoto;
     //默认Construct
@@ -196,6 +199,7 @@ public class TakePhotoUtils {
 
     /**
      *
+     * 压缩工具类
      * @param takePhoto
      * @param cropYes
      * @param cropTyeWithOwn
@@ -318,47 +322,72 @@ public class TakePhotoUtils {
     //照相之前应该先进行照相机相关设置 ,以及配置 压缩图片 ,裁剪等 ,万能写法,以后直接调用
     public static void takePhotosAll(TakePhoto takePhoto,boolean fileFromCamera, boolean cropYes, int limitNum ,boolean IsGallery , boolean picIsAspect,   int width, int height ,   boolean cropTyeWithToolsOwn   ){
         File file=new File(Environment.getExternalStorageDirectory(), "/temp/"+System.currentTimeMillis() + ".jpg");
-        if (!file.getParentFile().exists())file.getParentFile().mkdirs();
-        Uri imageUri = Uri.fromFile(file);
+        if (!file.getParentFile().exists())file.getParentFile().mkdirs(); ///storage/emulated/0/temp
+        Uri imageUri = Uri.fromFile(file);///storage/emulated/0/temp/1496301638934.jpg
         //判断图片来源 ,是否来源于相机
           if (fileFromCamera){
+              Log.e(tag," fileFromCamera ==true ");
               if(cropYes){
+                  Log.e(tag," fileFromCamera ==true , cropYes==true  ");
                   takePhoto.onPickFromCaptureWithCrop(imageUri,getCropOptions(cropYes ,picIsAspect,width,  height ,  cropTyeWithToolsOwn));
               }else {
+                  Log.e(tag," fileFromCamera ==true , cropYes==fasle  ");
                   takePhoto.onPickFromCapture(imageUri);
               }
           }
           //当图片来源不是相机时
           else{
+              Log.e(tag," fileFromCamera ==false ");
                   if(limitNum>1){
+                      Log.e(tag," fileFromCamera ==false,limitNum>1  ");
                       if(cropYes){
+                          Log.e(tag," fileFromCamera ==false,limitNum>1 ,cropYes==true  ");
                           takePhoto.onPickMultipleWithCrop(limitNum,getCropOptions(cropYes ,picIsAspect,width,  height ,  cropTyeWithToolsOwn));
                       }else {
+                          Log.e(tag," fileFromCamera ==false,limitNum>1 ,cropYes==fasle  ");
                           takePhoto.onPickMultiple(limitNum);
                       }
-                      return;
+                      return; //跳出
                   }
-
-                  if (IsGallery){
-                      if (cropYes){
-                          takePhoto.onPickFromGalleryWithCrop(imageUri,getCropOptions(cropYes ,picIsAspect,width,  height ,  cropTyeWithToolsOwn));
-                      }
-                      else{
-                          takePhoto.onPickFromGallery();
-                      }
+              Log.e(tag," fileFromCamera ==false,limitNum<=1 ");
+              //相册 fileFromCamera ==false,limitNum<1  ,IsGallery ==true ,cropYes == true
+              if (IsGallery){
+                  Log.e(tag," fileFromCamera ==false,limitNum<=1  ,IsGallery ==true ");
+                  if (cropYes){
+                      Log.e(tag," fileFromCamera ==false,limitNum<=1  ,IsGallery ==true ,cropYes == true");
+                      takePhoto.onPickFromGalleryWithCrop(imageUri,getCropOptions(cropYes ,picIsAspect,width,  height ,  cropTyeWithToolsOwn));
+                  }
+                  else{
+                      Log.e(tag," fileFromCamera ==false,limitNum<=1  ,IsGallery ==true ,cropYes == false");
+                      takePhoto.onPickFromGallery();
+                  }
+                  return;
+              }
+              //文件
+              else {
+                  Log.e(tag," fileFromCamera ==false,limitNum<1  ,IsGallery ==fasle ");
+                  if(cropYes){
+                      Log.e(tag," fileFromCamera ==false,limitNum<1  ,IsGallery ==fasle ,IsGallery ==fasle , cropYes ==true");
+                      takePhoto.onPickFromDocumentsWithCrop(imageUri,getCropOptions(cropYes ,picIsAspect,width,  height ,  cropTyeWithToolsOwn));
                   }else {
-                      if(cropYes){
-                          takePhoto.onPickFromDocumentsWithCrop(imageUri,getCropOptions(cropYes ,picIsAspect,width,  height ,  cropTyeWithToolsOwn));
-                      }else {
-                          takePhoto.onPickFromDocuments();
-                      }
+                      Log.e(tag," fileFromCamera ==false,limitNum<1  ,IsGallery ==fasle ,IsGallery ==fasle , cropYes ==false");
+                      takePhoto.onPickFromDocuments();
                   }
+              }
+
+
           }
 
 
     }
 
-
+    //相册
+   public static void takePhotosPickFromGalleryWithCrop(TakePhoto takePhoto ) {
+       File file=new File(Environment.getExternalStorageDirectory(), "/temp/"+System.currentTimeMillis() + ".jpg");
+       if (!file.getParentFile().exists())file.getParentFile().mkdirs();
+       Uri imageUri = Uri.fromFile(file);
+       takePhoto.onPickFromGalleryWithCrop(imageUri, getCropOptions());
+   }
 
 
 

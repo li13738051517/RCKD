@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/bot_jp"
-            android:text="看过我的企业"
+            android:text="我收到的简历"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:layout_gravity="center"
@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/bot_jp"
-            android:text="多少企业对我感兴趣"
+            android:text="我的公司吸引多少人才"
             android:textSize="16sp"
             android:layout_gravity="center"
             android:gravity="center"

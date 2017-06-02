@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/click_to_dismiss"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/popup_bg"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:id="@+id/popup_anima"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_above="@+id/lin_bottem"
+            android:background="@android:color/white"
+            >
+            <TextView
+                android:id="@+id/tv_camera"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:gravity="center"
+                android:text="相机"
+                android:textSize="16sp"
+                android:drawableTop="@drawable/camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textSize="16sp"
+                android:id="@+id/tv_camera_ku"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:gravity="center"
+                android:drawableTop="@drawable/camera_ku"
+                android:text="相册"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tx_1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="test1"/>
+            <View
+                android:visibility="gone"
+                style="@style/line_style"/>
+            <TextView
+                android:id="@+id/tx_2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="test2"/>
+            <View
+                android:visibility="gone"
+                style="@style/line_style"/>
+            <TextView
+                android:id="@+id/tx_3"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="test3"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/lin_bottem"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:layout_height="wrap_content"
+          >
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|left|center"
+                android:layout_gravity="left|center"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:visibility="invisible"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="15dp"
+                android:text="记住我"
+               />
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

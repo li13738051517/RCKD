@@ -22,6 +22,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -238,6 +239,7 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
         //创建地图定位管理者,全局交由此管理
         mLocationManager = TencentLocationManager.getInstance(mContext);
         mLocationClient = new LocationClient(mContext);
+
     }
 
 
@@ -277,16 +279,20 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
 
     @Override
     protected void onPause() {
-        lifecycleSubject.onNext(ActivityEvent.PAUSE);
         super.onPause();
         Timber.e(tag + " onPause", tag);
+        lifecycleSubject.onNext(ActivityEvent.PAUSE);
+
+
     }
 
     @Override
     protected void onStop() {
-        lifecycleSubject.onNext(ActivityEvent.DESTROY);
         super.onStop();
         Timber.e(tag + " onStop", tag);
+        lifecycleSubject.onNext(ActivityEvent.DESTROY);
+
+
     }
 
     @Override

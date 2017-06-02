@@ -14,12 +14,12 @@ import com.rckd.R;
  * Created by LiZheng on 2017/5/3 0003.
  */
 
-public class SlideFromBottonPoup extends razerdp.basepopup.BasePopupWindow implements View.OnClickListener {
+public class PoupBar extends razerdp.basepopup.BasePopupWindow implements View.OnClickListener {
     protected View popupView;
     protected Context mContext;
     Button button2;
 
-    public SlideFromBottonPoup(Activity activity) {
+    public PoupBar(Activity activity) {
         super(activity);
         bindEvent();
     }
@@ -31,7 +31,7 @@ public class SlideFromBottonPoup extends razerdp.basepopup.BasePopupWindow imple
         }
     }
 
-    public SlideFromBottonPoup(Activity activity, Context context) {
+    public PoupBar(Activity activity, Context context) {
         super(activity);
         mContext = context;
     }

@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.jph.takephoto.app.TakePhoto;
 import com.jph.takephoto.app.TakePhotoImpl;
@@ -44,6 +45,8 @@ import com.rckd.inter.OnFragmentDestoryViewListener;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
+
+import timber.log.Timber;
 
 
 /**
@@ -1209,6 +1212,16 @@ public class BaseFragment extends Fragment implements  com.rckd.inter.ISupportFr
 //    -------------------------------------
 
     public  boolean falag=false;
+
+
+    /**
+     * 由于讲fragment 的寿命周期与 baseactivity 绑定之后,可直接使用相关功能
+     * @param text
+     */
+    public void   makeText(String text){
+        Timber.e(tag + " makeText " + text, tag);
+        Toast.makeText(baseActivity, text, Toast.LENGTH_SHORT).show();
+    }
 
 
 

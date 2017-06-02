@@ -10,8 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:visibility="gone"
         app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
-        app:titleTextAppearance="@style/Toolbar_TextAppearance_White"/>
+        app:titleTextAppearance="@style/Toolbar_TextAppearance_White" />
 
     <FrameLayout
         android:visibility="gone"

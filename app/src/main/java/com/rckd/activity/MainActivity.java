@@ -5,23 +5,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
 import com.rckd.R;
 import com.rckd.adpter.MyBaseAdapter;
 import com.rckd.anim.FragmentAnimator;
@@ -41,7 +34,7 @@ import com.rckd.fragment.third.child.ShopFragment;
 import com.rckd.helper.FragmentLifecycleCallbacks;
 import com.rckd.view.BottomBar;
 import com.rckd.view.BottomBarTab;
-import com.rckd.view.SlideFromBottonPoup;
+import com.rckd.view.PoupBar;
 import com.tencent.map.geolocation.TencentLocation;
 import com.tencent.map.geolocation.TencentLocationListener;
 import com.tencent.map.geolocation.TencentLocationManager;
@@ -53,6 +46,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.RunnableFuture;
 
 import timber.log.Timber;
 
@@ -78,7 +72,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
     //    private Toolbar mToolbar;
     Button cityBtn;
     TencentLocationManager mLocationManager;
-    SlideFromBottonPoup popup;
+    PoupBar popup;
     List<BottomBarTab> list = new ArrayList<>();
     ViewGroup mViewParent; //利用这个来加载子布局 ,自定义view等,即中间的大白块用来加载第三方的东西
 
@@ -149,8 +143,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 
     public void initPoupListener() {
         //先初始化poup
-        popup = new SlideFromBottonPoup(this);
-
+        popup = new PoupBar(this);
         //先初始化poup
         grid_photo = (GridView) popup.getView().findViewById(R.id.grid_photo);
 //        button2 = (ImageView) popup.getView().findViewById(R.id.button2);
@@ -636,22 +629,39 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //            //REQ_LEVEL_ADMIN_AREA
         String nation = location.getCountry();//国家
         String province = location.getProvince(); //省
-        String city = location.getCity();//市
-        String district = location.getDistrict();//district	区
+        final String city = location.getCity();//市
+        final   String   district = location.getDistrict();//district	区
 //            String town = tencentLocation.getTown();//  镇
 //            String village = tencentLocation.getVillage();//村
 //            String street = tencentLocation.getStreet();//街道
 //            String streetNo = tencentLocation.getStreetNo();//门号
 
         if (!district.isEmpty()) {
-            cityBtn.setText(district + " | 切换");
-            Timber.e(tag + " " + district, tag);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    cityBtn.setText(district + " | 切换");
+                    Timber.e(tag + " " + district, tag);
+                }
+            });
+
         } else if (!city.isEmpty()) {
-            cityBtn.setText(city + " | 切换");//默认地址
-            Timber.e(tag + " " + city, tag);
+          runOnUiThread(new Runnable() {
+              @Override
+              public void run() {
+                  cityBtn.setText(city + " | 切换");//默认地址
+                  Timber.e(tag + " " + city, tag);
+              }
+          });
         } else {
-            cityBtn.setText("未知 | 切换");//默认地址
-            Timber.e(tag + " 默认城市 ", tag);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    cityBtn.setText("未知 | 切换");//默认地址
+                    Timber.e(tag + " 默认城市 ", tag);
+                }
+            });
+
         }
     }
 
