@@ -84,7 +84,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         android:visibility="gone" />
-    <com.rckd.view.MyLetterListView
+    <com.rckd.view.LetterListView
         android:id="@+id/MyLetterListView01"
         android:layout_width="25dip"
         android:layout_height="fill_parent"

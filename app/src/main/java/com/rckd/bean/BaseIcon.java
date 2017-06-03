@@ -19,10 +19,10 @@ public class BaseIcon {
         this.iName = iName;
     }
 
-    public BaseIcon(String iName, int iId) {
-        this.iId = iId;
-        this.iName = iName;
-    }
+//    public BaseIcon(String iName, int iId) {
+//        this.iId = iId;
+//        this.iName = iName;
+//    }
 
     public int getiId() {
         return iId;

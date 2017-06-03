@@ -13,7 +13,6 @@ import android.view.View;
  * 自定义圆形进度条
  *
  */
-
 public class CirclePgBar extends View {
 
     private Paint mBackPaint;

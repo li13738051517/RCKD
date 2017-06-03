@@ -10,12 +10,12 @@ import com.tencent.map.geolocation.TencentLocationRequest;
 
 /**
  * Created by LiZheng on 2017/5/4 0004.
+ * 腾讯地图地理位置监听工具
  */
-
 public class TenCentLocTools implements TencentLocationListener {
     private static  String tag=TenCentLocTools.class.getName();
     String LocInfo;
-    String task;
+    public static String task;
     Context mContext;
     TencentLocationManager mLocationManager;
 
@@ -52,6 +52,7 @@ public class TenCentLocTools implements TencentLocationListener {
      * @param location 新的位置
      * @param error    错误码
      * @param reason   错误描述
+     *
      */
     @Override
     public void onLocationChanged(TencentLocation location, int error,

@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
  * Created by LiZheng on 2017/5/8 0008.
  */
 //顺风拼车
-public class SendBarCarActivity extends BaseActivity implements View.OnClickListener {
+public class BarCarActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.left_btn) Button left_btn;
 
     @BindView(R.id.title_text)TextView title;

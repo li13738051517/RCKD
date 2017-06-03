@@ -7,6 +7,7 @@ class AppUtil {
 
     static final Application sApp;
 
+    //
     static {
         Application app = null;
         try {

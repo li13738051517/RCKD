@@ -6,7 +6,7 @@ import android.os.Bundle;
 //import android.renderscript.ScriptIntrinsicConvolve3x3;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatEditText;
-import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioGroup;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,13 +27,15 @@ import com.jph.takephoto.model.TImage;
 import com.jph.takephoto.model.TResult;
 import com.rckd.R;
 import com.rckd.adpter.GridAdapter;
-import com.rckd.anim.FragmentAnimator;
+import com.rckd.adpter.ImageAdapterPicasso;
+import com.rckd.adpter.ImageAdapterTImage;
 import com.rckd.base.BaseActivity;
-import com.rckd.bean.BaseIcon;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import timber.log.Timber;
 
@@ -41,8 +43,12 @@ import timber.log.Timber;
 //import static com.rckd.utils.TakePhotoUtils.configCompress;
 //import static com.rckd.utils.TakePhotoUtils.configTakePhotoOption;
 
+import com.rckd.utils.ScreenUtils;
 import com.rckd.utils.TakePhotoUtils;
 import com.rckd.view.PoupCamera;
+
+import static com.rckd.R.id.gridview;
+import static com.rckd.R.id.img;
 
 /**
  * Created by LiZheng on 2017/5/8 0008.
@@ -51,16 +57,15 @@ import com.rckd.view.PoupCamera;
 /*
 广而告之
  */
-public class SendBarAdActivity extends BaseActivity implements View.OnClickListener ,CompoundButton.OnCheckedChangeListener{
-    private static String tag = SendBarAdActivity.class.getName();
+public class BarAdActivity extends BaseActivity implements View.OnClickListener ,CompoundButton.OnCheckedChangeListener{
+    private static String tag = BarAdActivity.class.getName();
     @Override
     protected int fragmentLayoutId() {
         return 0;
     }
-    private GridView gridView;
-    private GridAdapter gridAdapter;
+
     private boolean isShowDelete;
-    private List<BaseIcon> datas = new ArrayList<BaseIcon>();
+//    private List<BaseIcon> datas = new ArrayList<BaseIcon>();
     Button left_btn;
     TextView title_text;
     Button right_btn;
@@ -82,14 +87,22 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
 
     int screenWidth;
     int screenHeight;
+    ArrayList<TImage> images;
+//    private GridView gridView;
+//    private GridAdapter gridAdapter;
+//    private List<TImage> datas = new ArrayList<TImage>();
+
+    GridView list_view;
+    ImageAdapterTImage adapterTImage;
+    ImageAdapterPicasso adapterPicasso;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 //        getTakePhoto().onCreate(savedInstanceState);  //先让takephoto
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_send_ad);
+//        setContentView(R.layout.activity_bar_ad);
         Timber.e(tag + " onCreate  start ");
         LayoutInflater inflater = LayoutInflater.from(this);
-        view = inflater.inflate(R.layout.activity_send_ad, null);
+        view = inflater.inflate(R.layout.activity_bar_ad, null);
         // in  的 left title ,right
         left_btn = (Button) view.findViewById(R.id.in).findViewById(R.id.left_btn);
         left_btn.setVisibility(View.VISIBLE);
@@ -119,51 +132,26 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
 
         textView =(AppCompatEditText)view.findViewById(R.id.textView);
         //---------------------------
-        gridView = (GridView) view.findViewById(R.id.list_view);
-//        initDatas(); //
-        gridAdapter = new GridAdapter(this, datas);
-        gridView.setAdapter(gridAdapter);
-        gridView.setVisibility(View.GONE);//初始化时,让其不可见,只有当添加图片上传成功后,可见
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //判断点击的是否是最后一个   ,如果是最后一个的话  ,需要 添加数据
-                if (position == parent.getChildCount() - 1) {
-                    addDatas();
-                }
-            }
-        });
-        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-                if (position < datas.size()) {
-                    if (isShowDelete) {//删除图片显示时长按隐藏
-                        isShowDelete = false;
-                        gridAdapter.setIsShowDelete(isShowDelete);
-                    } else {//删除图片隐藏式长按显示
-                        isShowDelete = true;
-                        gridAdapter.setIsShowDelete(isShowDelete);
-                    }
-                }
-                return false;
-            }
-        });
-
+//        gridView = (GridView) view.findViewById(R.id.list_view); //初始化
+//        gridView.setVisibility(View.GONE);//初始化默认不会显示
 
         //------------------
-
         linearLayout = (LinearLayout) view.findViewById(R.id.llImages);
+//        linearLayout.setVisibility(View.GONE);
+        list_view=(GridView) view.findViewById(R.id.list_view);
+
         // 显示 ,将布局中的内容显示
         setContentView(view);
         takePhoto=getTakePhoto();
-        DisplayMetrics dm = new DisplayMetrics();
-        //取得窗口属性
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        //窗口的宽度
-        screenWidth = dm.widthPixels;
-        //窗口高度
-         screenHeight = dm.heightPixels;
+//        DisplayMetrics dm = new DisplayMetrics();
+//        //取得窗口属性
+//        getWindowManager().getDefaultDisplay().getMetrics(dm);
+//        //窗口的宽度
+//        screenWidth = dm.widthPixels;
+//        //窗口高度
+//         screenHeight = dm.heightPixels;
+        screenWidth= ScreenUtils.getScreenWidth(this);
+        screenHeight=ScreenUtils.getScreenHeight(this);
     }
 
 
@@ -179,26 +167,6 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void addDatas() {
-        BaseIcon animalAdd = new BaseIcon("", R.drawable.ad);
-        datas.add(animalAdd);
-        gridAdapter.notifyDataSetChanged();
-    }
-
-//    private void initDatas() {
-//        BaseIcon animal0 = new BaseIcon("兔八哥", R.drawable.ad);
-//        BaseIcon animal1 = new BaseIcon("眼镜蛇", R.drawable.ad);
-//        BaseIcon animal2 = new BaseIcon("小金鱼", R.drawable.ad);
-//        BaseIcon animal3 = new BaseIcon("千里马", R.drawable.ad);
-//        BaseIcon animal4 = new BaseIcon("米老鼠", R.drawable.ad);
-//        BaseIcon animal5 = new BaseIcon("大国宝", R.drawable.ad);
-//        datas.add(animal0);
-//        datas.add(animal1);
-//        datas.add(animal2);
-//        datas.add(animal3);
-//        datas.add(animal4);
-//        datas.add(animal5);
-//    }
 
 
     //解绑
@@ -210,7 +178,7 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
     }
 
 
-    CheckBox cb;
+//    CheckBox cb;
     TextView tv_camera;
     TextView tv_pic;
 
@@ -247,7 +215,6 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
                     }
                 });
                 tv_pic.setOnClickListener(new View.OnClickListener() {
-
                     @Override
                     public void onClick(View v) {
                         runOnUiThread(new Runnable() {
@@ -255,51 +222,14 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
                             public void run() {
                                 Timber.e(tag+"   tv_pic  " ,tag);
                                 //相册,-------------Bug
-                                TakePhotoUtils.configCompress(takePhoto ,true ,true ,10*1024 ,800 ,800 ,true ,true);
+                                TakePhotoUtils.configCompress(takePhoto ,true ,true ,10*1024 ,screenWidth ,screenHeight ,true ,true);
                                 TakePhotoUtils.configTakePhotoOption(takePhoto ,true ,false);
-                                TakePhotoUtils.takePhotosAll(takePhoto ,false ,true ,0 ,true,false ,800 ,800 ,true);
-
-
+                                TakePhotoUtils.takePhotosAll(takePhoto ,false ,true ,5 ,true,false ,screenWidth ,screenHeight ,true);
                             }
                         });
-
-
                     }
                 });
                poupCamera.showPopupWindow();
-//                TakePhotoUtils.configCompress(takePhoto ,true ,true ,10*1024 ,800 ,800 ,true ,true);
-//                TakePhotoUtils.configTakePhotoOption(takePhoto ,true ,false);
-//                TakePhotoUtils.takePhotosAll(takePhoto ,true ,true ,0 ,true,false ,800 ,800 ,true);
-                //              TakePhotoUtils.configCompress(takePhoto ,10*1024  ,800 ,800);
-//              TakePhotoUtils.configTakePhotoOption(takePhoto);
-////                TakePhotoUtils.takePhotos(takePhoto);
-//                TakePhotoUtils. takePhotosPickFromCaptureWithCrop(takePhoto);
-//                TakePhotoUtils.configCompress(takePhoto );
-
-//                /**
-//                 * 使用takephoto
-//                 * @param takePhoto
-//                 * @param pickByTakeCamear 是否使用照相机
-//                 * @param crop 是否裁剪
-//                 * @param limit 数量限制
-//                 * @param maxSize   大小
-//                 * @param width 宽
-//                 * @param height 高
-//                 * @param cropOwn  使用系统自带工具
-//                 * @param aspect  是否按 宽/高
-//                 * @param pickWithOwn 是否使用takephoto自带相册
-//                 * @param correctYes 是否使用纠正 拍照图片旋转角度
-//                 * @param       compressWithOwn  压缩工具
-//                 */
-                //带哦用拍照功能
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Timber.e(tag +" run  on ----------" );
-//                        TakePhotoUtils.takePhotos(getTakePhoto() ,true ,true ,5,true ,100*1024,800,800,true,false,true,false,false ,true ,true);
-//                    }
-//                });
-
                 break;
 
             case R.id.button:
@@ -314,58 +244,12 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
                     return;
                 }
                 //---------------------post 请求  //url =?   &  &  &
+                //此处图片集合images ,post请求全部带上
                 break;
         }
     }
 
 
-
-
-    //------------------------------------------------------------
-//    //以下是拍照相关内容
-//    private InvokeParam invokeParam;
-//    private TakePhoto takePhoto;
-//    @Override
-//    public void takeSuccess(TResult result) {
-//        Log.i(tag,"takeSuccess：" + result.getImage().getCompressPath());
-//    }
-//    @Override
-//    public void takeFail(TResult result,String msg) {
-//        Log.i(tag, "takeFail:" + msg);
-//    }
-//    @Override
-//    public void takeCancel() {
-//        Log.i(tag, getResources().getString(R.string.msg_operation_canceled));
-//    }
-//    @Override
-//    public PermissionManager.TPermissionType invoke(InvokeParam invokeParam) {
-//        PermissionManager.TPermissionType type=PermissionManager.checkPermission(TContextWrap.of(this),invokeParam.getMethod());
-//        if(PermissionManager.TPermissionType.WAIT.equals(type)){
-//            this.invokeParam=invokeParam;
-//        }
-//        return type;
-//    }
-//
-//    /**
-//     *  获取TakePhoto实例
-//     * @return
-//     */
-//    public TakePhoto getTakePhoto(){
-//        if (takePhoto==null){
-//            takePhoto= (TakePhoto) TakePhotoInvocationHandler.of(this).bind(new TakePhotoImpl(this,this));
-//        }
-//        return takePhoto;
-//    }
-////权限问题,takephoto自行解决,无需关心内部实现问题
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        com.jph.takephoto.permission.PermissionManager.TPermissionType type=PermissionManager.onRequestPermissionsResult(requestCode,permissions,grantResults);
-//        PermissionManager.handlePermissionsResult(this,type,invokeParam,this);
-//    }
-
-
-    //-----------------------------------------------------------
 
 
     //取消照相
@@ -381,19 +265,41 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
         poupCamera.dismiss();
     }
 
-
-    ArrayList<TImage> images;
+    private ArrayList<String> urls=new ArrayList<>();
+//    int imgId[];
+//    List<Map<String, Object>> listItems = new ArrayList<>();
+//    HashMap<Integer,TImage> imgsObj=new HashMap<>();
     //照相成功
     @Override
     public void takeSuccess(TResult result) {
         //拍照操作成功成功后在此操作
         super.takeSuccess(result);
 //        showImg(result.getImages());
-        images= result.getImages();
-        SendBarAdActivity.this.runOnUiThread(new Runnable() {
+        images= result.getImages(); //获取图片的数组集合
+
+        if(images.size()==0){
+            return;
+        }
+        for (int i=0;i<images.size();i++){
+            urls.add(images.get(i).getCompressPath());
+        }
+        runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                showImg();
+//                showImg();
+//                adapterPicasso=new ImageAdapterPicasso(BarAdActivity.this, urls);
+                adapterTImage =new ImageAdapterTImage(BarAdActivity.this ,urls);
+                Log.e(tag,"adapterTImage");
+//                list_view.setAdapter(adapterPicasso);
+                list_view.setAdapter(adapterTImage);
+                Log.e(tag,"setAdapter");
+                list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        makeText("你点击了 postion==" +position);
+                    }
+                });
+//                linearLayout.setVisibility(View.GONE);
                 poupCamera.dismiss();
             }
         });
@@ -405,6 +311,11 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
     //此处仅为演示效果
     private void showImg() {
 //        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.llImages);
+//        View view = LayoutInflater.from(this).inflate(R.layout.image_show, null);
+//        ImageView imageView1 = (ImageView) view.findViewById(R.id.imgShow1);
+//        ImageView imageView2 = (ImageView) view.findViewById(R.id.imgShow2);
+//        ImageView imageView3 = (ImageView) view.findViewById(R.id.imgShow3);
+//       imageView1.setLayoutParams(la);  //设置宽高
         for (int i = 0, j = images.size(); i < j - 1; i += 2) {
             View view = LayoutInflater.from(this).inflate(R.layout.image_show, null);
             ImageView imageView1 = (ImageView) view.findViewById(R.id.imgShow1);
@@ -419,6 +330,39 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
             Glide.with(this).load(new File(images.get(images.size() - 1).getCompressPath())).into(imageView1);
             linearLayout.addView(view);
         }
+
+
+
+//        gridAdapter = new GridAdapterTImage(this, images);
+//        gridView.setAdapter(gridAdapter);
+//        gridView.setVisibility(View.VISIBLE);//初始化时,让其不可见,只有当添加图片上传成功后,可见
+//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                //判断点击的是否是最后一个   ,如果是最后一个的话  ,需要 添加数据
+//                Timber.e(tag+" position = " position +);
+//                if (position == parent.getChildCount() - 1) {
+////                    addDatas();
+//                    makeText("你需要添加图片进来!!!");
+//                }
+//            }
+//        });
+//        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                if (position < images.size()) {
+//                    if (isShowDelete) {//删除图片显示时长按隐藏
+//                        isShowDelete = false;
+//                        gridAdapter.setIsShowDelete(isShowDelete);
+//                    } else {//删除图片隐藏式长按显示
+//                        isShowDelete = true;
+//                        gridAdapter.setIsShowDelete(isShowDelete);
+//                    }
+//                }
+//                return false;
+//            }
+//        });
     }
 
     @Override
@@ -428,5 +372,26 @@ public class SendBarAdActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
+    //    private void addDatas() {
+//        BaseIcon animalAdd = new BaseIcon("", R.drawable.ad);
+//        datas.add(animalAdd);
+//        gridAdapter.notifyDataSetChanged();
+//    }
+
+//    private void initDatas() {
+//
+//        BaseIcon animal0 = new BaseIcon("兔八哥", R.drawable.ad);
+//        BaseIcon animal1 = new BaseIcon("眼镜蛇", R.drawable.ad);
+//        BaseIcon animal2 = new BaseIcon("小金鱼", R.drawable.ad);
+//        BaseIcon animal3 = new BaseIcon("千里马", R.drawable.ad);
+//        BaseIcon animal4 = new BaseIcon("米老鼠", R.drawable.ad);
+//        BaseIcon animal5 = new BaseIcon("大国宝", R.drawable.ad);
+//        datas.add(animal0);
+//        datas.add(animal1);
+//        datas.add(animal2);
+//        datas.add(animal3);
+//        datas.add(animal4);
+//        datas.add(animal5);
+//    }
 
 }

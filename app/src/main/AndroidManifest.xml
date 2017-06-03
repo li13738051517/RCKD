@@ -147,7 +147,7 @@
 
         <!-- 发帖模块 -->
         <activity
-            android:name=".activity.SendBarAdActivity"
+            android:name=".activity.BarAdActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
@@ -157,7 +157,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.SendBarArtCratfsActivity"
+            android:name=".activity.BarArtCratfsActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.SendBarTempJobActivity"
@@ -168,7 +168,7 @@
             android:name=".activity.SendBarFriendActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.SendBarCarActivity"
+            android:name=".activity.BarCarActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>

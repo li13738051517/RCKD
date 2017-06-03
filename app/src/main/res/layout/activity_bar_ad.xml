@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.SendBarAdActivity"
+    tools:context=".activity.BarAdActivity"
     android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/re_base"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -29,22 +30,23 @@
 
             <Button
                 android:id="@+id/imageView3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
                 android:layout_below="@+id/in"
                 android:layout_gravity="top|center"
-                android:layout_margin="25dp"
+                android:layout_margin="8dp"
                 android:background="@drawable/photo"
                 android:src="@drawable/photo" />
 
             <TextView
+                android:id="@+id/tv_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="拍张照片"
                 android:textSize="14sp"
                 android:textColor="@color/white"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="5dp" />
         </LinearLayout>
 
 
@@ -52,14 +54,11 @@
             android:id="@+id/lin1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
-            android:layout_below="@+id/ll_item"
-            android:layout_marginTop="3dp"
             android:background="@drawable/textbg"
             android:orientation="horizontal"
+            android:layout_below="@+id/ll_item"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentStart="true">
 
             <TextView
                 android:id="@+id/text_tie"
@@ -141,6 +140,7 @@
 
 
         <android.support.v7.widget.AppCompatEditText
+
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
             android:gravity="start"
             android:hint="在此畅所欲言吧"
             android:textSize="14sp"
-            android:lines="8"
+            android:lines="3"
             android:paddingBottom="@dimen/bot_jp"
             android:paddingTop="@dimen/bot_jp"
             android:textColorHint="@color/hint_color"
@@ -166,33 +166,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-
-
-
         <GridView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignEnd="@+id/button"
-            android:layout_alignLeft="@+id/button"
-            android:layout_alignRight="@+id/button"
-            android:layout_alignStart="@+id/button"
+            android:layout_height="wrap_content"
+            android:minHeight="500dp"
             android:layout_below="@+id/textView"
-            android:numColumns="5"
-            android:visibility="gone" />
-
-
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
+            android:gravity="center"
+            android:numColumns="3"
+            android:padding="5dp" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
+            android:layout_below="@+id/list_view"
             android:background="@color/green"
             android:text="发表"
+
+            android:layout_gravity="bottom"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
-
     </RelativeLayout>
-
 </ScrollView>

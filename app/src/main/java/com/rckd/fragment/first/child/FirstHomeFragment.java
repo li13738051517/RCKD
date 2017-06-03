@@ -1,62 +1,31 @@
 package com.rckd.fragment.first.child;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.PixelFormat;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Fade;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import com.rckd.R;
-import com.rckd.activity.BrowserActivity;
 import com.rckd.activity.MainActivity;
 import com.rckd.adpter.FirstHomeAdapter;
-import com.rckd.application.AppConfig;
 import com.rckd.bean.Article;
 import com.rckd.event.TabSelectedEvent;
 import com.rckd.helper.DetailTransition;
 import com.rckd.inter.OnItemClickListener;
-import com.rckd.utils.X5WebView;
-import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
-import com.tencent.smtt.export.external.interfaces.JsResult;
-import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
-import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
-import com.tencent.smtt.sdk.CookieSyncManager;
-import com.tencent.smtt.sdk.DownloadListener;
-import com.tencent.smtt.sdk.ValueCallback;
-import com.tencent.smtt.sdk.WebChromeClient;
-import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
-import com.tencent.smtt.utils.TbsLog;
-import com.yanzhenjie.permission.AndPermission;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import pub.devrel.easypermissions.EasyPermissions;
 import timber.log.Timber;
-
-import static com.baidu.location.h.j.t;
-import static com.rckd.base.BaseActivity.REQUEST_CODE_PERMISSION_LOCATION;
-import static com.rckd.base.BaseActivity.REQUEST_CODE_SETTING;
 
 /**
  * Created by LiZheng on 16/6/5.
@@ -127,7 +96,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
 //        }
     /*getWindow().addFlags(
                 android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
-        View view = inflater.inflate(R.layout.zhihu_fragment_first2_home, container, false);
+        View view = inflater.inflate(R.layout.zhihu_fragment_first_home_index, container, false);
         EventBus.getDefault().register(this);
         initView(view);
         return view;
@@ -137,7 +106,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
 
 //        mViewParent = (ViewGroup) view.findViewById(R.id.webView1);//去找这个
 //        mViewParent.setVisibility(View.VISIBLE);
-//        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+//        mToolbar = (Toolbar) view.findViewById(R.id.toolbar_top);
         mRecy = (RecyclerView) view.findViewById(R.id.recy);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
 //        mFab = (FloatingActionButton) view.findViewById(R.id.fab);

@@ -17,7 +17,6 @@ import java.util.List;
  * Created by LiZheng on 2017/5/22 0022.
  * 自定义adapter 实现动态添加删除功能
  */
-
 public class GridAdapter extends BaseAdapter {
     private Context context;
     private List<BaseIcon> datas;

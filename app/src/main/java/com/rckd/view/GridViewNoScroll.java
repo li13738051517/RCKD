@@ -1,17 +1,19 @@
 package com.rckd.view;
 
 import android.widget.GridView;
+import android.widget.ScrollView;
 
 /**
  * Created by LiZheng on 2017/5/13 0013.
  */
 
-public class MyGridView extends GridView {
+public class GridViewNoScroll extends GridView {
 
-    public MyGridView(android.content.Context context,
-                      android.util.AttributeSet attrs) {
+    public GridViewNoScroll(android.content.Context context,
+                            android.util.AttributeSet attrs) {
         super(context, attrs);
     }
+
 
     /**
      * 设置不滚动

@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -41,7 +39,7 @@ import com.rckd.bean.City;
 import com.rckd.db.DBHelper;
 import com.rckd.db.DBPingYinUtil;
 import com.rckd.db.DataBaseHelper;
-import com.rckd.view.MyLetterListView;
+import com.rckd.view.LetterListView;
 import com.tencent.smtt.utils.TbsLog;
 import com.yanzhenjie.permission.AndPermission;
 
@@ -51,30 +49,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.RunnableFuture;
 import java.util.regex.Pattern;
 
-import io.reactivex.ObservableSource;
-import io.reactivex.disposables.CompositeDisposable;
 import timber.log.Timber;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.os.SystemClock;
-import android.util.Log;
-import android.view.View;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
-
-import java.util.concurrent.Callable;
-
-import static com.baidu.location.h.j.s;
 
 /**
  * Created by LiZheng on 2017/5/4 0004.
@@ -96,7 +73,7 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
     private ListView personList;
     private ListView resultList;
     private TextView overlay; // 对话框首字母textview
-    private MyLetterListView letterListView; // A-Z listview
+    private LetterListView letterListView; // A-Z listview
     private HashMap<String, Integer> alphaIndexer;// 存放存在的汉语拼音首字母和与之对应的列表位置
     private String[] sections;// 存放存在的汉语拼音首字母
     private Handler handler;
@@ -172,7 +149,7 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
 
             }
         });
-        letterListView = (MyLetterListView) findViewById(R.id.MyLetterListView01);
+        letterListView = (LetterListView) findViewById(R.id.MyLetterListView01);
         letterListView.setOnTouchingLetterChangedListener(new LetterListViewListener());
         alphaIndexer = new HashMap<String, Integer>();
         handler = new Handler();
@@ -869,7 +846,7 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
 
     private boolean isScroll = false;
 
-    private class LetterListViewListener implements MyLetterListView.OnTouchingLetterChangedListener {
+    private class LetterListViewListener implements LetterListView.OnTouchingLetterChangedListener {
 
         @Override
         public void onTouchingLetterChanged(final String s) {

@@ -39,6 +39,7 @@ public class ViewPagerFragment extends com.rckd.base.BaseFragment {
         mTab = (TabLayout) view.findViewById(R.id.tab);
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
 
+
         mTab.addTab(mTab.newTab());
         mTab.addTab(mTab.newTab());
 //        mTab.addTab(mTab.newTab());

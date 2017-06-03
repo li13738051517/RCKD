@@ -16,7 +16,7 @@ import com.rckd.R;
  * 自定义Button ,制造水波纹特效
  * 在lyout中引用
  */
-public class MyButton extends  android.support.v7.widget.AppCompatImageButton {
+public class ButtonWaterRipples extends  android.support.v7.widget.AppCompatImageButton {
 
 
     private static final int INVALIDATE_DURATION = 15;     //每次刷新的时间间隔
@@ -35,7 +35,7 @@ public class MyButton extends  android.support.v7.widget.AppCompatImageButton {
     private long downTime = 0;                 //按下的时间
 
 
-    public MyButton(Context context, AttributeSet attrs) {
+    public ButtonWaterRipples(Context context, AttributeSet attrs) {
         super(context, attrs);
         initPaint();
         TAP_TIMEOUT = ViewConfiguration.getLongPressTimeout();

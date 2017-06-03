@@ -122,18 +122,18 @@ public class SendBarPasteJobActivity extends BaseActivity implements View.OnClic
 
 
     private void addDatas() {
-        BaseIcon animalAdd = new BaseIcon("大国宝", R.drawable.ad);
+        BaseIcon animalAdd = new BaseIcon( R.drawable.ad ,"大国宝");
         datas.add(animalAdd);
         gridAdapter.notifyDataSetChanged();
     }
 
     private void initDatas() {
-        BaseIcon animal0 = new BaseIcon("兔八哥", R.drawable.ad);
-        BaseIcon animal1 = new BaseIcon("眼镜蛇", R.drawable.ad);
-        BaseIcon animal2 = new BaseIcon("小金鱼", R.drawable.ad);
-        BaseIcon animal3 = new BaseIcon("千里马", R.drawable.ad);
-        BaseIcon animal4 = new BaseIcon("米老鼠", R.drawable.ad);
-        BaseIcon animal5 = new BaseIcon("大国宝", R.drawable.ad);
+        BaseIcon animal0 = new BaseIcon(R.drawable.ad ,"兔八哥") ;
+        BaseIcon animal1 = new BaseIcon(R.drawable.ad ,"眼镜蛇" );
+        BaseIcon animal2 = new BaseIcon( R.drawable.ad,"小金鱼");
+        BaseIcon animal3 = new BaseIcon( R.drawable.ad, "千里马");
+        BaseIcon animal4 = new BaseIcon(R.drawable.ad, "米老鼠" );
+        BaseIcon animal5 = new BaseIcon( R.drawable.ad ,"大国宝");
         datas.add(animal0);
         datas.add(animal1);
         datas.add(animal2);

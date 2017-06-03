@@ -15,6 +15,7 @@ import com.rckd.R;
 
 /**
  * Created by LiZheng on 16/6/3.
+ * 底部 tab
  */
 public class BottomBarTab extends FrameLayout {
     public ImageView mIcon;

@@ -23,7 +23,7 @@ import static com.baidu.location.h.j.t;
  * Created by LiZheng on 2017/5/8 0008.
  */
 //匠工约定
-public class SendBarArtCratfsActivity extends BaseActivity implements  View.OnClickListener {
+public class BarArtCratfsActivity extends BaseActivity implements  View.OnClickListener {
     @BindView(R.id.left_btn) Button left;
     @BindView( R.id.title_text) TextView  title_text;
     @BindView(R.id.text_ad) TextView text_ad; //类别选择

@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 
 /**
  * Created by LiZheng on 16/6/3.
+ * 底部
  */
 public class BottomBar extends LinearLayout {
     private static final int TRANSLATE_DURATION_MILLIS = 200;

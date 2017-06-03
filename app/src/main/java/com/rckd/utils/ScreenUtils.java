@@ -13,8 +13,8 @@ import android.view.WindowManager;
 
 /**
  * Created by LiZheng on 2017/3/17 0017.
+ * 屏幕相关工具
  */
-
 public class ScreenUtils {
     private  String tag=ScreenUtils.class.getName().toString();
 

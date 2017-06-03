@@ -16,7 +16,7 @@ import android.widget.ImageView;
 
 import com.baidu.location.BDLocation;
 import com.rckd.R;
-import com.rckd.adpter.MyBaseAdapter;
+import com.rckd.adpter.BaseAdapterQd;
 import com.rckd.anim.FragmentAnimator;
 import com.rckd.base.BaseActivity;
 import com.rckd.base.BaseFragment;
@@ -46,7 +46,6 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.RunnableFuture;
 
 import timber.log.Timber;
 
@@ -159,7 +158,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
         mData.add(new BaseIcon(R.mipmap.jgyd, "匠工约定"));
         mData.add(new BaseIcon(R.mipmap.dtqz, "打听求助"));
         mData.add(new BaseIcon(R.mipmap.gegz, "广而告之"));
-        mAdapter = new MyBaseAdapter<BaseIcon>(mData, R.layout.item_grid_icon) {
+        mAdapter = new BaseAdapterQd<BaseIcon>(mData, R.layout.item_grid_icon) {
             @Override
             public void bindView(ViewHolder holder, BaseIcon obj) {
                 holder.setImageResource(R.id.img_icon, obj.getiId());
@@ -197,7 +196,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //顺风拼车
                     case 4:
                         makeText("你点击了 pos = 4  ");
-                        startActivity(SendBarCarActivity.class);
+                        startActivity(BarCarActivity.class);
                         break;
                     //交友征婚
                     case 5:
@@ -213,7 +212,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                     //匠工约定
                     case 7:
                         makeText("你点击了 pos = 7  ");
-                        startActivity(SendBarArtCratfsActivity.class);
+                        startActivity(BarArtCratfsActivity.class);
                         break;
 //打听求助
 
@@ -224,10 +223,10 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //广而告之
                     case 9:
                         makeText("你点击了 pos = 9  ");
-                        startActivity(SendBarAdActivity.class);
+                        startActivity(BarAdActivity.class);
 //                        LayoutInflater inflater = getLayoutInflater();
                         // 通过inflate方法将layout转化为view
-//                        v = inflater.inflate(R.layout.activity_send_ad, null);
+//                        v = inflater.inflate(R.layout.activity_bar_ad, null);
 //                        mViewParent.addView(v, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
 //                        mViewParent.setVisibility(View.VISIBLE);
                         //利用反射机制
@@ -248,7 +247,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //        popup.getView().findViewById(R.id.text1).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                startActivity(SendBarAdActivity.class);
+//                startActivity(BarAdActivity.class);
 //            }
 //        });
 //        popup.getView().findViewById(R.id.text2).setOnClickListener(new View.OnClickListener() {
@@ -260,7 +259,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //        popup.getView().findViewById(R.id.text3).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                startActivity(SendBarArtCratfsActivity.class);
+//                startActivity(BarArtCratfsActivity.class);
 //            }
 //        });
 //        popup.getView().findViewById(R.id.text4).setOnClickListener(new View.OnClickListener() {
@@ -278,7 +277,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //        popup.getView().findViewById(R.id.text6).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                startActivity(SendBarCarActivity.class);
+//                startActivity(BarCarActivity.class);
 //            }
 //        });
 //        popup.getView().findViewById(R.id.text7).setOnClickListener(new View.OnClickListener() {

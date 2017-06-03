@@ -13,8 +13,8 @@ import timber.log.Timber;
 /**
  * Created by LiZheng on 2017/3/27 0027.
  */
-public class MyLetterListView extends View {
-    private static String tag = MyLetterListView.class.getName();
+public class LetterListView extends View {
+    private static String tag = LetterListView.class.getName();
     OnTouchingLetterChangedListener onTouchingLetterChangedListener;
     String[] b = {"定位", "最近", "热门", "全部", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
             "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
@@ -23,18 +23,18 @@ public class MyLetterListView extends View {
     Paint paint = new Paint();
     boolean showBkg = false;
 
-    public MyLetterListView(Context context, AttributeSet attrs, int defStyle) {
+    public LetterListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
         Timber.e( tag+" Context context, AttributeSet attrs, int defStyle",tag);
     }
 
-    public MyLetterListView(Context context, AttributeSet attrs) {
+    public LetterListView(Context context, AttributeSet attrs) {
         super(context, attrs);
         Timber.e( tag+" Context context, AttributeSet attrs",tag);
     }
 
-    public MyLetterListView(Context context) {
+    public LetterListView(Context context) {
         super(context);
         Timber.e( tag+" Context context",tag);
     }

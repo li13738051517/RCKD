@@ -14,16 +14,16 @@ import java.util.ArrayList;
 /**
  * Created by LiZheng on 2015/9/22 0022.
  */
-public abstract class MyBaseAdapter<T> extends BaseAdapter {
+public abstract class BaseAdapterQd<T> extends BaseAdapter {
 
     private ArrayList<T> mData;
     private int mLayoutRes;           //布局id
 
 
-    public MyBaseAdapter() {
+    public BaseAdapterQd() {
     }
 
-    public MyBaseAdapter(ArrayList<T> mData, int mLayoutRes) {
+    public BaseAdapterQd(ArrayList<T> mData, int mLayoutRes) {
         this.mData = mData;
         this.mLayoutRes = mLayoutRes;
     }
