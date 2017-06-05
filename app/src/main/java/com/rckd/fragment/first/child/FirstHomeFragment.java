@@ -10,14 +10,23 @@ import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 
 import com.rckd.R;
 import com.rckd.activity.MainActivity;
+import com.rckd.adpter.BaseAdapterQd;
 import com.rckd.adpter.FirstHomeAdapter;
 import com.rckd.bean.Article;
+import com.rckd.bean.BaseIcon;
 import com.rckd.event.TabSelectedEvent;
 import com.rckd.helper.DetailTransition;
 import com.rckd.inter.OnItemClickListener;
+import com.rckd.loader.GlidImageLoader;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -27,22 +36,30 @@ import java.util.List;
 
 import timber.log.Timber;
 
+import static android.R.id.list;
+import static com.baidu.location.h.j.G;
+import static com.rckd.R.id.grid_photo;
+import static com.rckd.R.id.gv;
+
 /**
  * Created by LiZheng on 16/6/5.
  */
 public class FirstHomeFragment extends com.rckd.base.BaseFragment implements SwipeRefreshLayout.OnRefreshListener  /* , com.yanzhenjie.permission.PermissionListener  */{
     private static String tag= FirstHomeFragment.class.getName();//tag标记
-
+    Banner banner;
+    GridView gridView;//gv  1
+    BaseAdapter mAdapterGv;//adpter 1
+    ArrayList<BaseIcon> mData ;
+    GridView gridView2;   // gv 2
+    BaseAdapter  mAdapterGv2; // madapter 2
+    ArrayList<BaseIcon> mData2 ;
 //    private Toolbar mToolbar;
     private RecyclerView mRecy;
     private SwipeRefreshLayout mRefreshLayout;
 //    private FloatingActionButton mFab;
-
     private FirstHomeAdapter mAdapter;
-
     private boolean mInAtTop = true;
     private int mScrollTotal;
-
     private String[] mTitles = new String[]{
             "Use imagery to express a distinctive voice and exemplify creative excellence.",
             "An image that tells a story is infinitely more interesting and informative.",
@@ -54,7 +71,6 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
     private int[] mImgRes = new int[]{
             R.drawable.bg_first, R.drawable.bg_second, R.drawable.bg_third, R.drawable.bg_fourth, R.drawable.bg_fifth
     };
-
 
     public static FirstHomeFragment newInstance() {
 
@@ -73,6 +89,10 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
 //    private URL mIntentUrl;
 //    private ValueCallback<Uri> uploadFile;
 
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -102,7 +122,122 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
         return view;
     }
 
+
     private void initView(View view) {
+//        initImgData();
+        banner = (Banner) view.findViewById(R.id.banner);
+        //本地图片数据（资源文件）
+        List<Integer> list=new ArrayList<>();
+        list.add(R.mipmap.b1);
+        list.add(R.mipmap.b2);
+        list.add(R.mipmap.b3);
+        list.add(R.mipmap.b1);
+        list.add(R.mipmap.b2);
+        list.add(R.mipmap.b3);
+        banner.setImages(list)
+                .setImageLoader(new GlidImageLoader())
+                .start();
+
+
+        gridView=(GridView)view.findViewById(R.id.gv);
+        mData = new ArrayList<BaseIcon>();
+        //此处添加数据 ,仅仅只是添加几张图片的视图,可以这样写
+        mData.add(new BaseIcon(R.mipmap.zhaopin, "最新招聘"));
+        mData.add(new BaseIcon(R.mipmap.qiuzhi, "最新求职"));
+        mData.add(new BaseIcon(R.mipmap.fwzs, "我的匹配"));
+        mData.add(new BaseIcon(R.mipmap.eszj, "本地客服"));
+        mData.add(new BaseIcon(R.mipmap.sf, "扎工作"));
+        mData.add(new BaseIcon(R.mipmap.jyzh, "找人才"));
+        mData.add(new BaseIcon(R.mipmap.lsdg, "名企招聘"));
+        mData.add(new BaseIcon(R.mipmap.jgyd, "置顶帖子"));
+
+        mAdapterGv = new BaseAdapterQd<BaseIcon>(mData, R.layout.item_grid_icon) {
+            @Override
+            public void bindView(BaseAdapterQd.ViewHolder holder, BaseIcon obj) {
+                holder.setImageResource(R.id.img_icon, obj.getiId());
+                holder.setText(R.id.txt_icon, obj.getiName());
+            }
+        };
+       gridView.setAdapter(mAdapterGv);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        break;
+
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        break;
+                }
+
+            }
+        });
+
+        gridView2=(GridView)view.findViewById(R.id.gv2);
+        mData2 = new ArrayList<BaseIcon>();
+        //此处添加数据 ,仅仅只是添加几张图片的视图,可以这样写
+        mData2.add(new BaseIcon(R.mipmap.jgyd, "匠工约定"));
+        mData2.add(new BaseIcon(R.mipmap.sf, "顺风拼车"));
+        mData2.add(new BaseIcon(R.mipmap.lsdg, "临时短工"));
+        mData2.add(new BaseIcon(R.mipmap.jyzh, "交友征婚"));
+        mData2.add(new BaseIcon(R.mipmap.dtqz, "打听求助"));
+        mData2.add(new BaseIcon(R.mipmap.eszj, "二手之家"));
+        mData2.add(new BaseIcon(R.mipmap.fwzs, "房屋出售"));
+        mData2.add(new BaseIcon(R.mipmap.gegz, "广而告之"));
+
+        mAdapterGv2 = new BaseAdapterQd<BaseIcon>(mData2, R.layout.item_grid_icon) {
+            @Override
+            public void bindView(BaseAdapterQd.ViewHolder holder, BaseIcon obj) {
+                holder.setImageResource(R.id.img_icon, obj.getiId());
+                holder.setText(R.id.txt_icon, obj.getiName());
+            }
+        };
+        gridView2.setAdapter(mAdapterGv2);
+        gridView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        break;
+                }
+
+            }
+        });
+
+
+
+
+
+
+
+
+
 
 //        mViewParent = (ViewGroup) view.findViewById(R.id.webView1);//去找这个
 //        mViewParent.setVisibility(View.VISIBLE);
@@ -145,6 +280,10 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
             }
         });
 
+
+
+
+
         // Init Datas
         List<Article> articleList = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
@@ -183,6 +322,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
 //        });
 
 //        initWeb();
+
     }
 
     @Override
@@ -530,4 +670,20 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
 //
 //
 //    }
+
+
+    //增强体验感
+    @Override
+    public void onStart() {
+        super.onStart();
+        //开始轮播
+        banner.startAutoPlay();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //结束轮播
+        banner.stopAutoPlay();
+    }
 }

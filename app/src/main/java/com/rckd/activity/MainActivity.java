@@ -218,7 +218,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 
                     case 8:
                         makeText("你点击了 pos = 8  ");
-                        startActivity(SendBarHelpActivity.class);
+                        startActivity(BarHelpActivity.class);
                         break;
 //广而告之
                     case 9:
@@ -253,7 +253,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //        popup.getView().findViewById(R.id.text2).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                startActivity(SendBarHelpActivity.class);
+//                startActivity(BarHelpActivity.class);
 //            }
 //        });
 //        popup.getView().findViewById(R.id.text3).setOnClickListener(new View.OnClickListener() {

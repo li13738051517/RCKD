@@ -4,113 +4,157 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jph.takephoto.app.TakePhoto;
 import com.jph.takephoto.model.TImage;
 import com.jph.takephoto.model.TResult;
 import com.rckd.R;
+import com.rckd.adpter.GridAdapter;
 import com.rckd.adpter.ImageAdapterTImage;
 import com.rckd.base.BaseActivity;
+import com.rckd.bean.BaseIcon;
 import com.rckd.utils.ScreenUtils;
 import com.rckd.utils.TakePhotoUtils;
 import com.rckd.view.PoupCamera;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import cn.addapp.pickers.common.LineConfig;
-import cn.addapp.pickers.listeners.OnItemPickListener;
-import cn.addapp.pickers.picker.NumberPicker;
-import cn.addapp.pickers.picker.SinglePicker;
 import timber.log.Timber;
 
-import static com.baidu.location.h.j.s;
+import static com.baidu.location.h.j.B;
 import static com.baidu.location.h.j.v;
 import static com.rckd.R.id.list_view;
 import static com.rckd.R.id.tv_camera;
 
 /**
  * Created by LiZheng on 2017/5/8 0008.
+ * //打听求助
  */
-//匠工约定
-public class BarArtCratfsActivity extends BaseActivity implements  View.OnClickListener {
-    private  static  String tag=BarArtCratfsActivity.class.getName();
+public class BarHelpActivity extends BaseActivity implements  View.OnClickListener {
+    private  static String tag=BarHelpActivity.class.getName();
+
+    //-----------
+    Button left_btn;
+    TextView title_text;
+    Button right_btn;
+    //------------
+
+    View view;
+    ImageView imageView3;//拍照发帖
+    TextView text_tie; // 类别名称
+    TextView text_ad;//
+    TextView text_tie2;
+    EditText text_ad2;
     //
-    @BindView(R.id.left_btn) Button left;
-    @BindView(R.id.title_text) TextView  title_text;
-    @BindView(R.id.right_btn) Button right;
+    TextView textView;
+    String test = "";
+    String testArear = "";
 
-    @BindView(R.id.text_ad2)  EditText text_ad2; //帖子标题
-    @BindView(R.id.textView) AppCompatEditText textView;// 帖子内容
-    @BindView(R.id.button) Button button;
-    @Nullable
-    String title ="";
-    @Nullable
-    String area ="";
+    GridView list_view;
+//    private GridAdapter gridAdapter;
+//    private boolean isShowDelete;
+//  11  private List<BaseIcon> datas = new ArrayList<BaseIcon>();
 
-    @BindView(R.id.imageView3) Button photo;
-    @BindView(R.id.list_view) GridView list_view;
-
-    //--------------- optitions
-    @BindView(R.id.text_tie) TextView text_tie;
-    @BindView(R.id.text_ad) TextView text_ad;
-    @BindView(R.id.lin1) LinearLayout lin1;
-
-
-
-
+    Button button;
     //---------------
-
     PoupCamera poupCamera;
     TextView tv_camera;
     TextView tv_pic;
     int screenWidth;
     int screenHeight;
     TakePhoto takePhoto;
-    //----------
+//----------
     ImageAdapterTImage adapterTImage;
     ArrayList<TImage> images;
-    ArrayList<String> urls=new ArrayList<>();
-
-
-    //类别选择器
-    String[]  strOpt=   new String[]{"我是工匠", "我找工匠"};
-
+    private ArrayList<String> urls=new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bar_art);
 
-        ButterKnife.bind(this);
-        left.setVisibility(View.VISIBLE);
-        left.setOnClickListener(this);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        view = inflater.inflate(R.layout.activity_help_me, null);
+
+        //-------------
+        left_btn = (Button) view.findViewById(R.id.in).findViewById(R.id.left_btn);
+        left_btn.setVisibility(View.VISIBLE);
+        left_btn.setOnClickListener(this);
+        title_text = (TextView) view.findViewById(R.id.in).findViewById(R.id.title_text);
         title_text.setVisibility(View.VISIBLE);
-        right.setVisibility(View.GONE);
-        title_text.setText("匠工约定");
+        title_text.setText("打听求助");
+        right_btn=(Button)view.findViewById(R.id.in).findViewById(R.id.right_btn);
+        right_btn.setVisibility(View.GONE);
+
+        //-----------------
+        text_tie = (TextView) view.findViewById(R.id.text_tie);
+        text_tie.setText("类别名称");
+        text_ad = (TextView) view.findViewById(R.id.text_ad);
+        text_ad.setText("打听求助");
+
+        text_tie2 = (TextView) view.findViewById(R.id.text_tie2);
+        text_tie2.setText("帖子标题");
+        text_ad2 = (EditText) view.findViewById(R.id.text_ad2);
+
+        //-------拍照
+
+        imageView3 = (ImageView) view.findViewById(R.id.imageView3);
+        imageView3.setOnClickListener(this);
+//        test = text_ad2.getText().toString();
+//        testArear = textView.getText().toString();
+        //拍照之后加载的视图
+        list_view = (GridView) view.findViewById(R.id.list_view);
+//        initDatas(); //实际上是由  上传图片后将图片加载到GridView中 ,在此之前  需要判断时候获取读取sd卡 ,或者  网络等相关权限
+//        gridAdapter = new GridAdapter(this, datas);
+//        gridView.setAdapter(gridAdapter);
+//        gridView.setVisibility(View.GONE);//初始化时,让其不可见,只有当添加图片上传成功后,可见
+//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                //判断点击的是否是最后一个   ,如果是最后一个的话  ,需要 添加数据
+//                if (position == parent.getChildCount() - 1) {
+////                    addDatas();
+//                }
+//            }
+//        });
+//        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                if (position < datas.size()) {
+//                    if (isShowDelete) {//删除图片显示时长按隐藏
+//                        isShowDelete = false;
+//                        gridAdapter.setIsShowDelete(isShowDelete);
+//                    } else {//删除图片隐藏式长按显示
+//                        isShowDelete = true;
+//                        gridAdapter.setIsShowDelete(isShowDelete);
+//                    }
+//                }
+//                return false;
+//            }
+//        });
+
+        textView =(AppCompatEditText)view.findViewById(R.id.textView);
+        button=(Button) view.findViewById(R.id.button);
         button.setOnClickListener(this);
-        photo.setOnClickListener(this);
-        //------------拍照对象
+        imageView3 = (ImageView) view.findViewById(R.id.imageView3);
+        imageView3.setOnClickListener(this);
+
+        // 显示 ,将布局中的内容显示
+        setContentView(view);
+//        setContentView(R.layout.test_for_sign);
+
+        //以下部分在布局视图加载之后再去在家,一面占用资源
         takePhoto=getTakePhoto();
         screenWidth= ScreenUtils.getScreenWidth(this);
         screenHeight=ScreenUtils.getScreenHeight(this);
-
-
-
-        //-----------
-        text_tie.setOnClickListener(this);
-        text_ad.setOnClickListener(this);
-        lin1.setOnClickListener(this);
     }
 
     @Override
@@ -121,35 +165,11 @@ public class BarArtCratfsActivity extends BaseActivity implements  View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-
-            case   R.id.text_tie:
-
-            case   R.id.text_ad:
-            case   R.id.lin1:
-//                makeText("正在加载数据,请稍后!!!");
-                Timber.e(tag+" opt ",tag);
-                onConstellationPicker(lin1,strOpt);
-                break;
-
-
-            case  R.id.left_btn:
+        switch (v.getId()) {
+            case R.id.left_btn:
                 finish();
+//                defaultFinish();
                 break;
-            case R.id.button:
-                title=text_ad2.getText().toString().trim();
-                area=textView.getText().toString().trim();
-                if (title.isEmpty() || title ==null){
-                    makeText("帖子不能没有主题哦!!!");
-                    return;
-                }
-                if (area ==null || area.isEmpty() ){
-                    makeText("帖子不能没有内容哦!!!");
-                    return;
-                }
-                makeText("恭喜 ,发帖成功!!!");
-                break;
-
             case R.id.imageView3:
                 makeText("即将拍照....");
                 Timber.e(tag+" 即将拍照  " ,tag);
@@ -190,16 +210,27 @@ public class BarArtCratfsActivity extends BaseActivity implements  View.OnClickL
                     }
                 });
                 poupCamera.showPopupWindow();
-                //这句话很重要,这就好比你创建了对象,但是却没有明显的使用它一样
+
+            case R.id.button:
+                test=text_ad2.getText().toString().trim();
+                testArear =textView.getText().toString().trim();
+
+                if (test.isEmpty() || test == null) {
+                    makeText("温馨提示:帖子不能没有标题哦!");
+                    return;
+                }
+                if (testArear.isEmpty() || testArear == null) {
+                    makeText("温馨提示:帖子不能没有内容哦!");
+                    return;
+                }
+                makeText("发帖成功!");
                 break;
         }
-
-//        super.onClick(v);
     }
 
 
-    //-----------------使用拍照的相关结果  ----------------
-    //权限问题前面已经解决好了,你无需在做处理
+    //------------------------拍照
+
     //取消照相
     @Override
     public void takeCancel() {
@@ -213,12 +244,18 @@ public class BarArtCratfsActivity extends BaseActivity implements  View.OnClickL
         poupCamera.dismiss();
     }
 
+
+    //    int imgId[];
+//    List<Map<String, Object>> listItems = new ArrayList<>();
+//    HashMap<Integer,TImage> imgsObj=new HashMap<>();
     //照相成功
     @Override
     public void takeSuccess(TResult result) {
         //拍照操作成功成功后在此操作
         super.takeSuccess(result);
+//        showImg(result.getImages());
         images= result.getImages(); //获取图片的数组集合
+
         if(images.size()==0){
             return;
         }
@@ -245,49 +282,7 @@ public class BarArtCratfsActivity extends BaseActivity implements  View.OnClickL
                 poupCamera.dismiss();
             }
         });
-    }
 
-
-    /**
-     * 传入View ,传入需要的对象
-     * @param view
-     * @param strings
-     */
-    public void onConstellationPicker(final View view , String [] strings) {
-        SinglePicker<String> picker = new SinglePicker<>(this,strings);
-        picker.setCanLoop(false);//不禁用循环
-        picker.setTopBackgroundColor(0xFFEEEEE);
-        picker.setTopHeight(50);
-        picker.setTopLineColor(0xFF33B5E5);
-        picker.setTopLineHeight(1);
-        picker.setTitleText("请选择");
-        picker.setTitleTextColor(0xFF999999);
-        picker.setTitleTextSize(12);
-        picker.setCancelTextColor(0xFF33B5E5);
-        picker.setCancelTextSize(13);
-        picker.setSubmitTextColor(0xFF33B5E5);
-        picker.setSubmitTextSize(13);
-        picker.setSelectedTextColor(0xFFEE0000);
-        picker.setUnSelectedTextColor(0xFF999999);
-        LineConfig config = new LineConfig();
-        config.setColor(0xFFEE0000);//线颜色
-        config.setAlpha(140);//线透明度
-        config.setRatio((float) (1.0 / 8.0));//线比率
-        picker.setLineConfig(config);
-        picker.setItemWidth(180);
-        picker.setBackgroundColor(0xFFE1E1E1);
-        //picker.setSelectedItem(isChinese ? "处女座" : "Virgo");
-        picker.setSelectedIndex(0);
-        picker.setOnItemPickListener(new OnItemPickListener<String>() {
-            @Override
-            public void onItemPicked(int index, String item) {
-                makeText("index=" + index +"\n"+" item=" + item);
-                if (view.getId()==R.id.lin1 || view.getId()== R.id.text_tie||  view.getId()==R.id.text_ad  ){
-                    text_ad.setText(item);
-                }
-            }
-        });
-        picker.show();
     }
 
 }

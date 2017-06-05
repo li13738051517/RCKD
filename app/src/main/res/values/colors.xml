@@ -35,4 +35,6 @@
     <color name="bottom_bg">#40BAF8</color>
     <color name="holo_gray_light">#33999999</color>
     <color name="holo_blue_bright">#ff00ddff</color>
+    <color name="main_color">#5CB85C</color>
+    <color name="copper">#e54ee5</color>
 </resources>

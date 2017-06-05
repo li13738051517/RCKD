@@ -21,21 +21,21 @@ import cn.addapp.pickers.picker.SinglePicker;
 //import static com.baidu.location.h.j.R;
 
 /**
- * 自定义顶部及底部
- * @author matt
- * blog: addapp.cn
+ * 自定义Picker
+ * @author LiZheng
+ * @see cn.addapp.pickers.picker.SinglePicker
  */
 public class CustomPicker extends SinglePicker<String> implements OnSingleWheelListener {
     private TextView titleView;
 
-    public CustomPicker(Activity activity) {
-        super(activity, new String[]{
-                "Java/Android", "PHP/MySQL", "HTML/CSS/JS", "C/C++"
-        });
-        setSelectedIndex(1);
-        setLineConfig(new LineConfig(0.06f));
-        setOnSingleWheelListener(this);
-    }
+//    public CustomPicker(Activity activity) {
+//        super(activity, new String[]{
+//                "Java/Android", "PHP/MySQL", "HTML/CSS/JS", "C/C++"
+//        });
+//        setSelectedIndex(1);
+//        setLineConfig(new LineConfig(0.06f));
+//        setOnSingleWheelListener(this);
+//    }
 
     public CustomPicker(Activity activity , String [] strings) {
 //        super(activity, new String[]{

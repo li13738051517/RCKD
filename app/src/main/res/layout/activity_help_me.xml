@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.SendBarHelpActivity"
+    tools:context=".activity.BarHelpActivity"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
             android:layout_below="@+id/ll_item"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:background="@drawable/textbg"
             android:orientation="horizontal"
             android:layout_alignParentLeft="true"
@@ -101,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
             android:layout_below="@+id/lin1"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:background="@drawable/textbg"
             android:orientation="horizontal"
             android:layout_toRightOf="@+id/imageView2"
@@ -147,7 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lin2"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:background="@drawable/textbg"
             android:gravity="start"
             android:hint="在此畅所欲言吧"
@@ -161,18 +161,6 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottombar_height"
-            android:layout_alignEnd="@+id/textView"
-            android:layout_alignLeft="@+id/imageView2"
-            android:layout_alignRight="@+id/textView"
-            android:layout_alignStart="@+id/imageView2"
-            android:layout_below="@+id/list_view"
-            android:layout_marginTop="5dp"
-            android:background="@color/green"
-            android:text="发表" />
 
         <TextView
             android:id="@+id/imageView2"
@@ -187,17 +175,32 @@
             android:text="拍照上传图片"
             android:visibility="gone" />
 
-        <GridView
+        <com.rckd.view.GridViewNoScroll
             android:id="@+id/list_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/button"
             android:layout_alignLeft="@+id/button"
             android:layout_alignRight="@+id/button"
             android:layout_alignStart="@+id/button"
-            android:layout_below="@+id/imageView2"
-            android:numColumns="5"
-            android:visibility="gone" />
+            android:layout_below="@+id/textView"
+            android:layout_marginBottom="1dp"
+            android:numColumns="3"
+            android:padding="1dp"
+            />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_alignEnd="@+id/textView"
+            android:layout_alignLeft="@+id/imageView2"
+            android:layout_alignRight="@+id/textView"
+            android:layout_alignStart="@+id/imageView2"
+            android:layout_below="@+id/list_view"
+            android:layout_marginTop="1dp"
+            android:background="@color/green"
+            android:text="发表" />
 
 
     </RelativeLayout>

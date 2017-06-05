@@ -69,17 +69,21 @@ public class BarAdActivity extends BaseActivity implements View.OnClickListener 
     Button left_btn;
     TextView title_text;
     Button right_btn;
+    //------------------
     View view;
     Button imageView3;//拍照发帖
     TextView text_tie; // 类别名称
     TextView text_ad;//
     TextView text_tie2;
     EditText text_ad2;
-    Uri imageUri;//获取image的uri
+    //-------------------
+//    Uri imageUri;//获取image的uri
     LinearLayout linearLayout;
     TakePhoto takePhoto;
+
     TextView textView;
     Button button;
+    //----------------
     String test = "";//帖子标题
     String testArear = "";//发帖内容区域
 
@@ -94,7 +98,7 @@ public class BarAdActivity extends BaseActivity implements View.OnClickListener 
 
     GridView list_view;
     ImageAdapterTImage adapterTImage;
-    ImageAdapterPicasso adapterPicasso;
+//    ImageAdapterPicasso adapterPicasso;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 //        getTakePhoto().onCreate(savedInstanceState);  //先让takephoto
@@ -245,6 +249,7 @@ public class BarAdActivity extends BaseActivity implements View.OnClickListener 
                 }
                 //---------------------post 请求  //url =?   &  &  &
                 //此处图片集合images ,post请求全部带上
+                makeText("发帖成功!");
                 break;
         }
     }
@@ -297,6 +302,7 @@ public class BarAdActivity extends BaseActivity implements View.OnClickListener 
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         makeText("你点击了 postion==" +position);
+                        //具体的处理在此,时情况而定
                     }
                 });
 //                linearLayout.setVisibility(View.GONE);

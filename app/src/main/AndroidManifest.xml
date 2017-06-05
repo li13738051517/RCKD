@@ -152,7 +152,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.SendBarHelpActivity"
+            android:name=".activity.BarHelpActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
