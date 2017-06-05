@@ -160,12 +160,12 @@
             android:name=".activity.BarArtCratfsActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.SendBarTempJobActivity"
+            android:name=".activity.BarTempJobActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.SendBarFriendActivity"
+            android:name=".activity.BarFriendActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.BarCarActivity"

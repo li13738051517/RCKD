@@ -200,14 +200,13 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                         break;
                     //交友征婚
                     case 5:
-
                         makeText("你点击了 pos = 5  ");
-                        startActivity(SendBarFriendActivity.class);
+                        startActivity(BarFriendActivity.class);
                         break;
 //临时短工
                     case 6:
                         makeText("你点击了 pos = 6  ");
-                        startActivity(SendBarTempJobActivity.class);
+                        startActivity(BarTempJobActivity.class);
                         break;
                     //匠工约定
                     case 7:
@@ -265,13 +264,13 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //        popup.getView().findViewById(R.id.text4).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                startActivity(SendBarTempJobActivity.class);
+//                startActivity(BarTempJobActivity.class);
 //            }
 //        });
 //        popup.getView().findViewById(R.id.text5).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                startActivity(SendBarFriendActivity.class);
+//                startActivity(BarFriendActivity.class);
 //            }
 //        });
 //        popup.getView().findViewById(R.id.text6).setOnClickListener(new View.OnClickListener() {
