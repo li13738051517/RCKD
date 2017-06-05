@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
             android:layout_below="@+id/ll_item"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:background="@drawable/textbg"
             android:orientation="horizontal"
             android:layout_alignParentLeft="true"
@@ -99,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
             android:layout_below="@+id/lin1"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:background="@drawable/textbg"
             android:orientation="horizontal"
             android:layout_toRightOf="@+id/imageView2"
@@ -145,7 +145,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
             android:layout_below="@+id/lin2"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:background="@drawable/textbg"
             android:orientation="horizontal"
             android:layout_toRightOf="@+id/imageView2"
@@ -187,51 +187,6 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:id="@+id/lin4"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottombar_height"
-            android:layout_below="@+id/lin3"
-            android:layout_marginTop="3dp"
-            android:background="@drawable/textbg"
-            android:orientation="horizontal"
-            android:layout_toRightOf="@+id/imageView2"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true">
-
-            <TextView
-                android:id="@+id/text_tie4"
-                android:layout_width="@dimen/wd"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|left"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginRight="@dimen/bot_jp"
-                android:text="出发时间"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="@dimen/fab_margin"
-                android:layout_gravity="center_vertical"
-                android:background="@color/black" />
-
-            <TextView
-                android:id="@+id/text_ad4"
-                android:layout_width="wrap_content"
-                android:textSize="14sp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/text_tie2"
-                android:layout_alignBottom="@+id/text_tie2"
-                android:layout_gravity="center|right"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_toEndOf="@+id/text_tie2"
-                android:layout_toRightOf="@+id/text_tie2"
-                android:gravity="center|left"
-                android:hint="11:25:30"
-                android:maxLines="1" />
-
-        </LinearLayout>
-
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/textView"
             android:layout_width="match_parent"
@@ -244,27 +199,17 @@
             android:paddingBottom="@dimen/bot_jp"
             android:paddingTop="@dimen/bot_jp"
             android:textColorHint="@color/hint_color"
-            android:layout_below="@+id/lin4"
+            android:layout_below="@+id/lin3"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_below="@+id/textView"
             android:id="@+id/llImages"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottombar_height"
-            android:layout_marginTop="14dp"
-            android:background="@color/green"
-            android:text="发表"
-            android:layout_below="@+id/llImages"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/imageView2"
@@ -279,7 +224,7 @@
             android:text="拍照上传图片"
             android:visibility="gone" />
 
-        <GridView
+        <com.rckd.view.GridViewNoScroll
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -288,9 +233,20 @@
             android:layout_alignRight="@+id/button"
             android:layout_alignStart="@+id/button"
             android:layout_below="@+id/llImages"
-            android:numColumns="5"
-            android:visibility="gone" />
+            android:numColumns="3"
+            />
 
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_marginTop="5dp"
+            android:background="@color/green"
+            android:text="发表"
+            android:layout_below="@+id/list_view"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 

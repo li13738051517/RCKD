@@ -708,11 +708,6 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
     }
 
 
-
-
-
-
-
     private TencentLocationListener listener = new TencentLocationListener() {
         @Override
         public void onLocationChanged(TencentLocation tencentLocation, int error, String reason) {

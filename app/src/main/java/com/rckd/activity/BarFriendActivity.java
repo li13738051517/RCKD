@@ -31,40 +31,38 @@ import cn.addapp.pickers.listeners.OnItemPickListener;
 import cn.addapp.pickers.picker.SinglePicker;
 import timber.log.Timber;
 
-import static com.rckd.R.id.left_btn;
-import static com.rckd.R.id.list_view;
-import static com.rckd.R.id.title_text;
-import static com.rckd.R.id.tv_camera;
+import static com.rckd.R.id.lin1;
+import static com.rckd.R.id.textView;
+import static com.rckd.R.id.text_ad;
+import static com.rckd.R.id.text_ad2;
 
 /**
  * Created by LiZheng on 2017/5/8 0008.
  */
-//顺风拼车
-public class BarCarActivity extends BaseActivity implements View.OnClickListener {
-    private static final String  tag=BarCarActivity.class.getName();
-    //--------------
-    @BindView(R.id.left_btn) Button left_btn;
-    @BindView(R.id.title_text) TextView title_text;
-    @BindView(R.id.right_btn)Button right_btn;
+//交友征婚
+public class BarFriendActivity extends BaseActivity implements View.OnClickListener {
+    private  static  final  String tag=BarFriendActivity.class.getName();
 
-    //--------------- optitions
+    @BindView(R.id.left_btn) Button left;
+    @BindView(R.id.title_text) TextView title_text;
+    @BindView(R.id.right_btn) Button right;
+    //------------
     @BindView(R.id.text_tie) TextView text_tie;
     @BindView(R.id.text_ad) TextView text_ad;
     @BindView(R.id.lin1) LinearLayout lin1;
-    //----
 
-    @BindView(R.id.text_ad2) EditText text_ad2; //起点
-    @BindView(R.id.text_ad3)   EditText text_ad3;//终点
-    @BindView(R.id.textView) AppCompatEditText textView;// 帖子内容
-    String test1 ="";
-    String test2="";
+    @BindView(R.id.text_ad2) EditText text_ad2; //帖子标题
+    @BindView(R.id.textView) EditText textView;// 帖子内容
+
+    //--------
+    @BindView(R.id.button) Button button;
+    @BindView(R.id.imageView3) Button photo;
+    @BindView(R.id.list_view) GridView list_view;
+
+    //
+    String title ="";
     String area ="";
 
-    @BindView(R.id.button) Button button; //发帖按钮
-    @BindView(R.id.imageView3) Button photo;//拍照按钮
-    @BindView(R.id.list_view) GridView  list_view;
-
-    //------------------
 
     //---------------
 
@@ -79,37 +77,34 @@ public class BarCarActivity extends BaseActivity implements View.OnClickListener
     ArrayList<TImage> images;
     ArrayList<String> urls=new ArrayList<>();
 
-
     //类别选择器
-    String[]  strOpt=   new String[]{"我是车主", "我找乘客"};
-
+    String[]  strOpt=  new String[]{"寻找女友", "寻找男友"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_car_bar );
+//        setContentView(R.layout.test_for_sign);
+        setContentView(R.layout.activity_find_friend);
         ButterKnife.bind(this);
-        //-----------------------
-        left_btn.setVisibility(View.VISIBLE);
-        left_btn.setOnClickListener(this);
+        left.setVisibility(View.VISIBLE);
+        left.setOnClickListener(this);
         title_text.setVisibility(View.VISIBLE);
-        right_btn.setVisibility(View.GONE);
-        title_text.setText("顺风拼车");
-        //---------------
+        right.setVisibility(View.GONE);
+        title_text.setText("交友征婚");
+
+        //---------
+        button.setOnClickListener(this);
+        photo.setOnClickListener(this);
+
+        //-----------------
+        //------------拍照对象
+        takePhoto=getTakePhoto();
+        screenWidth= ScreenUtils.getScreenWidth(this);
+        screenHeight=ScreenUtils.getScreenHeight(this);
         //-----------
         text_tie.setOnClickListener(this);
         text_ad.setOnClickListener(this);
         lin1.setOnClickListener(this);
-
-        //------
-        button.setOnClickListener(this);
-        photo.setOnClickListener(this);
-        //---------------
-        takePhoto=getTakePhoto();
-        screenWidth= ScreenUtils.getScreenWidth(this);
-        screenHeight=ScreenUtils.getScreenHeight(this);
-
-
 
     }
 
@@ -118,24 +113,22 @@ public class BarCarActivity extends BaseActivity implements View.OnClickListener
         return 0;
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+
             case   R.id.text_tie:
             case   R.id.text_ad:
             case   R.id.lin1:
-//                makeText("正在加载数据,请稍后!!!");
+
                 Timber.e(tag+" opt ",tag);
                 onConstellationPicker(R.id.lin1,strOpt);
-
                 break;
+
             case R.id.imageView3:
                 makeText("即将拍照....");
                 Timber.e(tag+" 即将拍照  " ,tag);
                 poupCamera=new PoupCamera(this);
-//                cb=(CheckBox) poupCamera.getView().findViewById(R.id.checkBox);
-//                cb.setOnCheckedChangeListener(this);
                 tv_camera=(TextView)  poupCamera.getView().findViewById(R.id.tv_camera); //从相机
                 tv_pic=(TextView) poupCamera.getView().findViewById(R.id.tv_camera_ku); //从 图库
                 tv_camera.setOnClickListener(new View.OnClickListener() {
@@ -172,20 +165,15 @@ public class BarCarActivity extends BaseActivity implements View.OnClickListener
                 poupCamera.showPopupWindow();
                 //这句话很重要,这就好比你创建了对象,但是却没有明显的使用它一样
                 break;
-            case R.id.left_btn:
+
+            case  R.id.left_btn:
                 finish();
                 break;
-
             case R.id.button:
-                test1=text_ad2.getText().toString().trim();
-                test2=text_ad3.getText().toString().trim();
+                title=text_ad2.getText().toString().trim();
                 area=textView.getText().toString().trim();
-                if (test1.isEmpty() || test1 ==null){
-                    makeText("此帖子不能不知道起点哦!!!");
-                    return;
-                }
-                if (test2.isEmpty() || test2==null){
-                    makeText("此帖子不能不知道终点哦!!!");
+                if (title.isEmpty() || title ==null){
+                    makeText("帖子不能没有主题哦!!!");
                     return;
                 }
                 if (area ==null || area.isEmpty() ){
@@ -196,10 +184,14 @@ public class BarCarActivity extends BaseActivity implements View.OnClickListener
                 break;
 
         }
+
     }
 
 
-    //---------------------------
+    //------------------------------------takephoto
+
+
+
     //-----------------使用拍照的相关结果  ----------------
     //权限问题前面已经解决好了,你无需在做处理
     //取消照相
@@ -248,16 +240,16 @@ public class BarCarActivity extends BaseActivity implements View.OnClickListener
             }
         });
     }
-    //------------------
 
 
-
+    //---------------------------------
 
     /**
-     * 传入View ,传入需要的对象
+     *
+     * @param id
      * @param strings
      */
-    private void onConstellationPicker(final  int  id  , final String [] strings) {
+    public void onConstellationPicker(final  int  id  , final String [] strings) {
         SinglePicker<String> picker = new SinglePicker<>(this,strings);
         picker.setCanLoop(false);//不禁用循环
         picker.setTopBackgroundColor(0xFFEEEEE);

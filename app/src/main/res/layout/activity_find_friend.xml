@@ -134,7 +134,7 @@
                 android:layout_toEndOf="@+id/text_tie2"
                 android:layout_toRightOf="@+id/text_tie2"
                 android:gravity="center|left"
-                android:hint="18-26岁"
+                android:hint="帖子标题"
                 android:minEms="2"
                 android:maxLines="1" />
 
