@@ -267,7 +267,7 @@ public class BarHelpActivity extends BaseActivity implements  View.OnClickListen
             public void run() {
 //                showImg();
 //                adapterPicasso=new ImageAdapterPicasso(BarAdActivity.this, urls);
-                adapterTImage =new ImageAdapterTImage(mContext ,urls);
+                adapterTImage =new ImageAdapterTImage(BarHelpActivity.this ,urls);
                 Log.e(tag,"adapterTImage");
 //                list_view.setAdapter(adapterPicasso);
                 list_view.setAdapter(adapterTImage);

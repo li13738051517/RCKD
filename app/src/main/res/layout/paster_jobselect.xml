@@ -5,19 +5,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.BarJobWantActivity"
     android:orientation="vertical">
-
-    <include layout="@layout/base_title" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/city_gray"/>
-
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:visibility="gone" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/city_gray" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="left|center"
+        android:paddingLeft="20dp"
+        android:text="请选择发帖类型"
+        android:background="@color/green"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        android:textSize="18sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/city_gray" />
     <TextView
         android:id="@+id/text1"
         android:layout_width="match_parent"
@@ -25,15 +36,13 @@
         android:layout_gravity="center_horizontal"
         android:gravity="left|center"
         android:paddingLeft="20dp"
-        android:text="全职招聘"
+        android:text="全职求职"
         android:textColor="@color/black"
         android:textSize="18sp" />
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/city_gray" />
-
     <TextView
         android:id="@+id/text2"
         android:layout_width="match_parent"
@@ -41,15 +50,12 @@
         android:layout_gravity="center_horizontal"
         android:gravity="left|center"
         android:paddingLeft="20dp"
-        android:text="兼职招聘"
+        android:text="兼职求职"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/city_gray"/>
-
-
-
+        android:background="@color/city_gray" />
 </LinearLayout>

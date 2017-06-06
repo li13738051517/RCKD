@@ -187,6 +187,10 @@
             android:layout_marginBottom="1dp"
             android:numColumns="3"
             android:padding="1dp"
+            android:horizontalSpacing="3dp"
+            android:listSelector="#00000000"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="3dp"
             />
 
         <Button

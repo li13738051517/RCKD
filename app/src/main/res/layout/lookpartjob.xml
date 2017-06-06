@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.BarTempJobActivity"
-    android:orientation="vertical">
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/re_base"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
-
-        <include
-            android:id="@+id/in"
-            layout="@layout/base_title"/>
-
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <include layout="@layout/base_title" android:id="@+id/include"/>
         <LinearLayout
             android:id="@+id/ll_item"
             android:layout_width="match_parent"
@@ -41,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="拍张照片"
+                android:text="拍张照片吧"
                 android:textSize="14sp"
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp" />
@@ -69,7 +58,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:textSize="14sp"
-                android:text="类别名称" />
+                android:text="期望职位" />
 
             <View
                 android:layout_width="1dp"
@@ -77,7 +66,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="@color/black" />
 
-            <TextView
+            <EditText
                 android:id="@+id/text_ad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -89,7 +78,8 @@
                 android:layout_marginStart="15dp"
                 android:layout_toEndOf="@+id/text_tie"
                 android:layout_toRightOf="@+id/text_tie"
-                android:text="我是短工" />
+                android:hint="ITgongchengshi "
+                />
 
         </LinearLayout>
 
@@ -114,7 +104,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:textSize="14sp"
-                android:text="帖子标题" />
+                android:text="职位类别" />
 
             <View
                 android:layout_width="1dp"
@@ -139,17 +129,20 @@
 
         </LinearLayout>
 
+
+
         <LinearLayout
             android:id="@+id/lin3"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
-            android:layout_below="@+id/lin2"
+            android:layout_below="@+id/lin1"
             android:layout_marginTop="1dp"
             android:background="@drawable/textbg"
             android:orientation="horizontal"
             android:layout_toRightOf="@+id/imageView2"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentEnd="true"
+            android:weightSum="1">
 
             <TextView
                 android:id="@+id/text_tie3"
@@ -159,7 +152,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:textSize="14sp"
-                android:text="岗位名称" />
+                android:text="期望薪资" />
 
             <View
                 android:layout_width="1dp"
@@ -179,7 +172,116 @@
                 android:layout_toEndOf="@+id/text_tie2"
                 android:layout_toRightOf="@+id/text_tie2"
                 android:gravity="center|left"
-                android:hint="清洁工"
+                android:hint="3000"
+                android:maxEms="8"
+                android:maxLines="1"
+                android:layout_weight="0.42" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+            <TextView
+                android:id="@+id/text_money"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center"
+                android:gravity="right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:textSize="14sp"
+                android:text="元/天"
+                android:layout_weight="0.46" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_below="@+id/lin1"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:id="@+id/text_tie4"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:textSize="14sp"
+                android:text="工作地点" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/text_ad4"
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/text_tie2"
+                android:layout_alignBottom="@+id/text_tie2"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_toEndOf="@+id/text_tie2"
+                android:layout_toRightOf="@+id/text_tie2"
+                android:gravity="center|left"
+                android:hint="广东"
+                android:maxLines="1" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin5"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_below="@+id/lin1"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:id="@+id/text_tie5"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:textSize="14sp"
+                android:text="出工日期" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/text_ad5"
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/text_tie2"
+                android:layout_alignBottom="@+id/text_tie2"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_toEndOf="@+id/text_tie2"
+                android:layout_toRightOf="@+id/text_tie2"
+                android:gravity="center|left"
+                android:hint="2016-0606-17:12"
                 android:maxLines="1" />
 
         </LinearLayout>
@@ -189,11 +291,11 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lin3"
+            android:layout_below="@+id/lin2"
             android:layout_marginTop="1dp"
             android:background="@drawable/textbg"
             android:gravity="start"
-            android:hint="在此畅所欲言吧"
+            android:hint="自我介绍一下吧,护着随便说说都可以哦"
             android:textSize="14sp"
             android:lines="5"
             android:paddingBottom="@dimen/bot_jp"
@@ -204,14 +306,16 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
+
+
+
         <LinearLayout
             android:layout_below="@+id/textView"
             android:id="@+id/llImages"
             android:orientation="vertical"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
-
 
         <TextView
             android:id="@+id/imageView2"
@@ -220,7 +324,7 @@
             android:layout_alignLeft="@+id/textView"
             android:layout_alignStart="@+id/textView"
             android:layout_below="@+id/textView"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:drawableLeft="@drawable/upload"
             android:gravity="center"
             android:text="拍照上传图片"
@@ -228,6 +332,7 @@
 
         <com.rckd.view.GridViewNoScroll
             android:id="@+id/list_view"
+            android:layout_margin="1dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignEnd="@+id/button"
@@ -241,6 +346,8 @@
             android:stretchMode="columnWidth"
             android:verticalSpacing="3dp"
             />
+
+
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
@@ -252,9 +359,9 @@
             android:layout_below="@+id/list_view"
             android:layout_marginTop="5dp"
             android:background="@color/green"
-            android:text="发表" />
+            android:text="发布" />
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </ScrollView>

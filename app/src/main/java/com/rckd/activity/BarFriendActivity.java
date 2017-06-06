@@ -224,7 +224,7 @@ public class BarFriendActivity extends BaseActivity implements View.OnClickListe
             public void run() {
 //                showImg();
 //                adapterPicasso=new ImageAdapterPicasso(BarAdActivity.this, urls);
-                adapterTImage =new ImageAdapterTImage(mContext ,urls);
+                adapterTImage =new ImageAdapterTImage(BarFriendActivity.this ,urls);
                 Log.e(tag,"adapterTImage");
 //                list_view.setAdapter(adapterPicasso);
                 list_view.setAdapter(adapterTImage);

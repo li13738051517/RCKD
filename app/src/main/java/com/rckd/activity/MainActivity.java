@@ -175,22 +175,22 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //发招聘贴
                     case 0:
                         makeText("你点击了 pos = 0 ");
-                        startActivity(SendBarJobWantActivity.class);
+                        startActivity(BarJobWantActivity.class);
                         break;
                     //发求职贴
                     case 1:
                         makeText("你点击了 pos = 1  ");
-                        startActivity(SendBarPasteJobActivity.class);
+                        startActivity(BarPasteJobActivity.class);
                         break;
                     //房屋出售
                     case 2:
                         makeText("你点击了 pos = 2  ");
-                        startActivity(SendBarHouseSaleActivity.class);
+                        startActivity(BarHouseSaleActivity.class);
                         break;
                     //二手之家
                     case 3:
                         makeText("你点击了 pos = 3  ");
-                        startActivity(SendBarOldHomeActivity.class);
+                        startActivity(BarOldHomeActivity.class);
                         break;
 
 //顺风拼车
@@ -282,25 +282,25 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //        popup.getView().findViewById(R.id.text7).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                startActivity(SendBarOldHomeActivity.class);
+//                startActivity(BarOldHomeActivity.class);
 //            }
 //        });
 //        popup.getView().findViewById(R.id.text8).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                startActivity(SendBarHouseSaleActivity.class);
+//                startActivity(BarHouseSaleActivity.class);
 //            }
 //        });
 //        popup.getView().findViewById(R.id.text9).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                startActivity(SendBarPasteJobActivity.class);
+//                startActivity(BarPasteJobActivity.class);
 //            }
 //        });
 //        popup.getView().findViewById(R.id.text10).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                startActivity(SendBarJobWantActivity.class);
+//                startActivity(BarJobWantActivity.class);
 //            }
 //        });
 

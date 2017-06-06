@@ -8,9 +8,11 @@ import android.content.res.Configuration;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Vibrator;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.lody.turbodex.TurboDex;
 import com.rckd.BuildConfig;
 import com.rckd.base.BaseActivity;
 import com.rckd.db.DBHelper;
@@ -37,6 +39,7 @@ import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 import cn.addapp.pickers.util.LogUtils;
 import timber.log.Timber;
 
+import static com.lody.turbodex.TurboDex.enableTurboDex;
 import static timber.log.Timber.DebugTree;
 
 
@@ -479,6 +482,20 @@ public class BaseApplication extends android.app.Application {
         Timber.e(tag + " initDB over  ", tag);
     }
 
+
+    //让应用支持多dex文件 ,时为了解决int 值 超过 65536
+    //有三种方式
+    /*
+    1、在AndroidManifest.xml的application中声明android.support.multidex.MultiDexApplication；
+    2、如果你已经有自己的Application类，让其继承MultiDexApplication；
+    3、如果你的Application类已经继承自其它类，你不想修改它，那么可以重写attachBaseContext()方法：
+     */
+    @Override
+    protected void attachBaseContext(Context base) {
+        TurboDex.enableTurboDex();
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 }
 
 

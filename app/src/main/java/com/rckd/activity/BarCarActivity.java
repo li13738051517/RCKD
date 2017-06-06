@@ -232,7 +232,7 @@ public class BarCarActivity extends BaseActivity implements View.OnClickListener
             public void run() {
 //                showImg();
 //                adapterPicasso=new ImageAdapterPicasso(BarAdActivity.this, urls);
-                adapterTImage =new ImageAdapterTImage(mContext ,urls);
+                adapterTImage =new ImageAdapterTImage(BarCarActivity.this ,urls);
                 Log.e(tag,"adapterTImage");
 //                list_view.setAdapter(adapterPicasso);
                 list_view.setAdapter(adapterTImage);

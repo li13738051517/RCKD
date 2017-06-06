@@ -2,7 +2,6 @@ package com.rckd.activity;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,11 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.location.h.j;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.google.gson.Gson;
 import com.rckd.R;
@@ -28,13 +25,12 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 
-import butterknife.OnClick;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import timber.log.Timber;
 
-import static com.baidu.location.h.j.S;
-import static com.rckd.R.id.ed3;
-import static com.rckd.R.id.et3;
-import static com.rckd.R.id.lin3;
+import static com.baidu.location.h.j.B;
+import static com.baidu.location.h.j.t;
 
 /**
  * Created by LiZheng on 2017/5/8 0008.
@@ -42,26 +38,26 @@ import static com.rckd.R.id.lin3;
 /*
 //发招聘贴
  */
-public class SendBarJobWantActivity extends BaseActivity implements View.OnClickListener {
+public class BarJobWantActivity extends BaseActivity implements View.OnClickListener {
 
-    private  static String tag=SendBarJobWantActivity.class.getName();
+    private  static String tag=BarJobWantActivity.class.getName();
     @Override
     protected int fragmentLayoutId() {
         return 0;
     }
 
+    //-------------------------
     View view;
     LayoutInflater inflater;
-
     TextView text1;
     TextView text2;
-
-
+    //----------------
     Button left_btn;
     TextView title_text;
     Button right_btn;
-    FrameLayout frameLayout;
+    FrameLayout frameLayout;//framelayout真正显示加载页面
 
+    //---------------------
     private ArrayList<JsonBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<>();
@@ -79,24 +75,30 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.job_sendbar_ac);
+        //-------------------
         text1 = (TextView) findViewById(R.id.text1);
         text1.setVisibility(View.VISIBLE);
         text1.setText("全职招聘");
         text1.setOnClickListener(this);
 
+        //------------------------
         text2 = (TextView) findViewById(R.id.text2);
         text2.setVisibility(View.VISIBLE);
         text2.setText("兼职招聘");
         text2.setOnClickListener(this);
 
 
+        //---------------
         left_btn = (Button) findViewById(R.id.left_btn);
         left_btn.setVisibility(View.VISIBLE);
         left_btn.setOnClickListener(this);
         title_text = (TextView) findViewById(R.id.title_text);
         title_text.setVisibility(View.VISIBLE);
-        title_text.setText("选择发布类型");
+        title_text.setText("请选择发布类型");
+
+        //--------
         frameLayout =(FrameLayout) findViewById(R.id.frame);
+        //--------------
 
         mHandler.sendEmptyMessage(MSG_LOAD_DATA);//解析城市三联列表
     }
@@ -121,6 +123,7 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
                 //view的相关事件可以写在此处
                 fullJobView.onClick(view);
                 frameLayout.addView(view);
+
                 frameLayout.setVisibility(View.VISIBLE);
                 title_text.setText("全职工作");
                 //当利用帧布局加载后  ,需要将   原来的布局 隐藏掉
@@ -157,7 +160,7 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
                 case MSG_LOAD_DATA:
                     if (thread==null){//如果已创建就不再重新创建子线程了
 
-                        Toast.makeText(SendBarJobWantActivity.this,"开始解析数据",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BarJobWantActivity.this,"开始解析数据",Toast.LENGTH_SHORT).show();
                         thread = new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -170,12 +173,12 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
                     break;
 
                 case MSG_LOAD_SUCCESS:
-                    Toast.makeText(SendBarJobWantActivity.this,"解析数据成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BarJobWantActivity.this,"解析数据成功",Toast.LENGTH_SHORT).show();
                     isLoaded = true;
                     break;
 
                 case MSG_LOAD_FAILED:
-                    Toast.makeText(SendBarJobWantActivity.this,"解析数据失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BarJobWantActivity.this,"解析数据失败",Toast.LENGTH_SHORT).show();
                     break;
 
             }
@@ -288,44 +291,28 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
         return detail;
     }
 
+    //--------------------------fulljobview
+    public class FullJobView  implements  View.OnClickListener{
+        FullJobView  fullJobView;
+        Context context;
+        TextView et3; //城市列表
+        EditText et1;
+        EditText et2;
+        EditText et4;
+        EditText et5;
 
 
 
-
-
-
-
- public class FullJobView  implements  View.OnClickListener{
-     FullJobView  fullJobView;
-     Context context;
-     TextView et3; //城市列表
-      private View rootView;
-//        EditText ed1;
-//      LinearLayout lin2  ,lin3;
-
-//     private   FullJobView(){
-//         init();
-//     }
-//     private   FullJobView(View rootView){
-//         this.rootView = rootView;
-//         init();
-//     }
-
+        private View rootView;
         public   FullJobView (View rootView ,Context context){
-//            if ( fullJobView ==null) {
-//                synchronized (FullJobView.class) {
-//                    if (fullJobView == null) {
-//                        fullJobView = new FullJobView(rootView);
-//                    }
-//                }
-//            }
             this.rootView = rootView;
             this.context=context;
             init();
         }
-        //
-        private  void init(){
 
+
+        //----------------
+        private  void init(){
             et3=(TextView)   rootView.findViewById(R.id.et3);
             et3.setOnClickListener(this);
             rootView.findViewById(R.id.tv3).setOnClickListener(this);
@@ -353,6 +340,14 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
     }
 
 
+
+
+
+
+
+
+    //----------------------partjobview
+
     public  class  PartJobView implements  View.OnClickListener{
         FullJobView  fullJobView;
         Context context;
@@ -374,6 +369,9 @@ public class SendBarJobWantActivity extends BaseActivity implements View.OnClick
 
         }
     }
+
+
+
 
 }
 

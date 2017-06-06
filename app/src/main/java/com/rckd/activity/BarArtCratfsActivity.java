@@ -227,7 +227,7 @@ public class BarArtCratfsActivity extends BaseActivity implements  View.OnClickL
             public void run() {
 //                showImg();
 //                adapterPicasso=new ImageAdapterPicasso(BarAdActivity.this, urls);
-                adapterTImage =new ImageAdapterTImage(mContext ,urls);
+                adapterTImage =new ImageAdapterTImage(BarArtCratfsActivity.this ,urls);
                 Log.e(tag,"adapterTImage");
 //                list_view.setAdapter(adapterPicasso);
                 list_view.setAdapter(adapterTImage);
@@ -249,7 +249,7 @@ public class BarArtCratfsActivity extends BaseActivity implements  View.OnClickL
      * 传入View ,传入需要的对象
      * @param strings
      */
-    public void onConstellationPicker(final  int  id  , final String [] strings) {
+    private void onConstellationPicker(final  int  id  , final String [] strings) {
         SinglePicker<String> picker = new SinglePicker<>(this,strings);
         picker.setCanLoop(false);//不禁用循环
         picker.setTopBackgroundColor(0xFFEEEEE);

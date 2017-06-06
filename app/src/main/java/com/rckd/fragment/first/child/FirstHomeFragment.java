@@ -16,6 +16,7 @@ import android.widget.GridView;
 
 import com.rckd.R;
 import com.rckd.activity.MainActivity;
+import com.rckd.activity.NewJobActivity;
 import com.rckd.adpter.BaseAdapterQd;
 import com.rckd.adpter.FirstHomeAdapter;
 import com.rckd.bean.Article;
@@ -38,6 +39,7 @@ import timber.log.Timber;
 
 import static android.R.id.list;
 import static com.baidu.location.h.j.G;
+import static com.baidu.location.h.j.n;
 import static com.rckd.R.id.grid_photo;
 import static com.rckd.R.id.gv;
 
@@ -163,8 +165,11 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
+                    //最新招聘
                     case 0:
+                        startActivity(NewJobActivity.class);
                         break;
+
 
                     case 1:
                         break;

@@ -286,7 +286,7 @@ public class BarAdActivity extends BaseActivity implements View.OnClickListener 
             return;
         }
         for (int i=0;i<images.size();i++){
-            urls.add(images.get(i).getCompressPath());
+            urls.add(images.get(i).getCompressPath());//获得路径
         }
         runOnUiThread(new Runnable() {
             @Override
@@ -302,7 +302,7 @@ public class BarAdActivity extends BaseActivity implements View.OnClickListener 
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         makeText("你点击了 postion==" +position);
-                        //具体的处理在此,时情况而定
+                        //具体的处理在此,时情况而定.
                     }
                 });
 //                linearLayout.setVisibility(View.GONE);
@@ -315,27 +315,27 @@ public class BarAdActivity extends BaseActivity implements View.OnClickListener 
 
 
     //此处仅为演示效果
-    private void showImg() {
+//    private void showImg() {
 //        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.llImages);
 //        View view = LayoutInflater.from(this).inflate(R.layout.image_show, null);
 //        ImageView imageView1 = (ImageView) view.findViewById(R.id.imgShow1);
 //        ImageView imageView2 = (ImageView) view.findViewById(R.id.imgShow2);
 //        ImageView imageView3 = (ImageView) view.findViewById(R.id.imgShow3);
 //       imageView1.setLayoutParams(la);  //设置宽高
-        for (int i = 0, j = images.size(); i < j - 1; i += 2) {
-            View view = LayoutInflater.from(this).inflate(R.layout.image_show, null);
-            ImageView imageView1 = (ImageView) view.findViewById(R.id.imgShow1);
-            ImageView imageView2 = (ImageView) view.findViewById(R.id.imgShow2);
-            Glide.with(this).load(new File(images.get(i).getCompressPath())).into(imageView1);
-            Glide.with(this).load(new File(images.get(i + 1).getCompressPath())).into(imageView2);
-            linearLayout.addView(view);
-        }
-        if (images.size() % 2 == 1) {
-            View view = LayoutInflater.from(this).inflate(R.layout.image_show, null);
-            ImageView imageView1 = (ImageView) view.findViewById(R.id.imgShow1);
-            Glide.with(this).load(new File(images.get(images.size() - 1).getCompressPath())).into(imageView1);
-            linearLayout.addView(view);
-        }
+//        for (int i = 0, j = images.size(); i < j - 1; i += 2) {
+//            View view = LayoutInflater.from(this).inflate(R.layout.image_show, null);
+//            ImageView imageView1 = (ImageView) view.findViewById(R.id.imgShow1);
+//            ImageView imageView2 = (ImageView) view.findViewById(R.id.imgShow2);
+//            Glide.with(this).load(new File(images.get(i).getCompressPath())).into(imageView1);
+//            Glide.with(this).load(new File(images.get(i + 1).getCompressPath())).into(imageView2);
+//            linearLayout.addView(view);
+//        }
+//        if (images.size() % 2 == 1) {
+//            View view = LayoutInflater.from(this).inflate(R.layout.image_show, null);
+//            ImageView imageView1 = (ImageView) view.findViewById(R.id.imgShow1);
+//            Glide.with(this).load(new File(images.get(images.size() - 1).getCompressPath())).into(imageView1);
+//            linearLayout.addView(view);
+//        }
 
 
 
@@ -369,7 +369,7 @@ public class BarAdActivity extends BaseActivity implements View.OnClickListener 
 //                return false;
 //            }
 //        });
-    }
+//    }
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
