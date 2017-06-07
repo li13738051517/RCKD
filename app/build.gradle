@@ -178,6 +178,8 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
 
     compile 'com.youth.banner:banner:1.4.9'  //最新版本
+    compile 'com.alibaba:fastjson:1.2.31'
+    compile 'com.alibaba:fastjson:1.1.57.android'
 
 
     compile 'com.github.asLody:turbodex:1.1.0'

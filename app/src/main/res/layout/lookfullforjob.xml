@@ -295,6 +295,7 @@
             android:layout_alignParentStart="true">
 
             <TextView
+
                 android:textSize="14sp"
                 android:id="@+id/text6"
                 android:layout_width="@dimen/wd"
@@ -310,7 +311,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="@color/black" />
 
-            <EditText
+            <TextView
                 android:id="@+id/ed6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -321,7 +322,8 @@
                 android:layout_marginStart="15dp"
                 android:layout_toEndOf="@+id/text_tie"
                 android:layout_toRightOf="@+id/text_tie"
-                android:hint="androidIT"
+                android:hint="电子商务"
+                android:text="电子商务"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -352,7 +354,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="@color/black" />
 
-            <EditText
+            <TextView
                 android:id="@+id/ed7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -363,7 +365,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_toEndOf="@+id/text_tie"
                 android:layout_toRightOf="@+id/text_tie"
-                android:hint="150000"
+                android:text="面议"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -439,7 +441,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="@color/black" />
 
-            <EditText
+            <TextView
                 android:id="@+id/ed9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -450,7 +452,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_toEndOf="@+id/text_tie"
                 android:layout_toRightOf="@+id/text_tie"
-                android:hint="宣城市广德县"
+                android:hint="安徽省宣城市广德县"
                 android:textSize="14sp" />
         </LinearLayout>
 

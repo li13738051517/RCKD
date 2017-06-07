@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.rckd.bean.JsonBean;
 import com.rckd.utils.GetJsonDataUtil;
 
 import org.json.JSONArray;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -137,7 +139,6 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
                 view = inflater.inflate(R.layout.partjob, null);
                 partJobView =new PartJobView(view ,mContext);
                 partJobView.onClick(view);
-
                 frameLayout.addView(view);
                 title_text.setText("兼职工作");
                 frameLayout.setVisibility(View.VISIBLE);
@@ -295,13 +296,29 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
     public class FullJobView  implements  View.OnClickListener{
         FullJobView  fullJobView;
         Context context;
+        //-------------
         TextView et3; //城市列表
+        TextView tv3;
+        LinearLayout lin3;
+        //-----------
         EditText et1;
-        EditText et2;
-        EditText et4;
-        EditText et5;
+        String nameJob="";
+        TextView et5;
+        Button bt;
+        EditText et;
+        String num="";
+        TextView et2;
 
-
+        TextView et4;
+        String area="";
+        TextView et12;
+        EditText  textView;
+        String con="";
+        TextView et6;
+        TextView et7;
+        TextView et8;
+        EditText et_a9;
+        EditText et9;
 
         private View rootView;
         public   FullJobView (View rootView ,Context context){
@@ -313,10 +330,39 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
 
         //----------------
         private  void init(){
+            //--------------
             et3=(TextView)   rootView.findViewById(R.id.et3);
             et3.setOnClickListener(this);
-            rootView.findViewById(R.id.tv3).setOnClickListener(this);
-            rootView.findViewById(R.id.lin3).setOnClickListener(this);
+            tv3=(TextView)rootView.findViewById(R.id.tv3);
+            tv3.setOnClickListener(this);
+            lin3=(LinearLayout)rootView.findViewById(R.id.lin3);
+            lin3.setOnClickListener(this);
+
+            //-------------
+            bt=(Button) rootView.findViewById(R.id.bt);
+            bt.setOnClickListener(this);
+
+            //
+            et1=(EditText) rootView.findViewById(R.id.et1);
+            et5=(TextView)rootView.findViewById(R.id.et5);
+            et=(EditText)rootView.findViewById(R.id.et);
+            //-------------
+            et2=(TextView)rootView.findViewById(R.id.et2);
+            et2.setOnClickListener(this);
+
+            et4=(EditText) rootView.findViewById(R.id.et4);
+            et12=(TextView) rootView.findViewById(R.id.et12);
+            et12.setOnClickListener(this);
+            textView=(EditText) rootView.findViewById(R.id.textView);
+            et6=(TextView) rootView.findViewById(R.id.et6);
+            et6.setOnClickListener(this);
+            et7=(TextView) rootView.findViewById(R.id.et7);
+            et7.setOnClickListener(this);
+
+
+
+
+
 
         }
 
@@ -333,6 +379,30 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
                         Toast.makeText(mContext,"数据暂未解析成功，请等待",Toast.LENGTH_SHORT).show();
                     }
                     break;
+
+                case R.id.bt:
+                    nameJob=et1.getText().toString().trim();
+                    if (nameJob==null || nameJob.isEmpty()){
+                        makeText("此帖子不能没有职位哦");
+                        return;
+                    }
+                    num=et.getText().toString().trim();
+                    if (num==null || num.isEmpty()  || Integer.parseInt(num) <=0){
+                        makeText("招聘人数不能少于1个人哦");
+                        return;
+                    }
+                    area=et4.getText().toString().trim();
+                    if (area.isEmpty() || area ==null){
+                        makeText("工作区域不能为空");
+                        return;
+                    }
+                    con=textView.getText().toString().trim();
+                    if (con==null || con.isEmpty() ){
+                        makeText("进行职位描述会吸引更多人才哦!!!");
+                        return;
+                    }
+                    makeText("恭喜你,发帖成功!!!");
+                    //----------------post请求注意编码放肆
 
             }
 
