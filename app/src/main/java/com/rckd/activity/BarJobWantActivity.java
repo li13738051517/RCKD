@@ -32,6 +32,8 @@ import butterknife.ButterKnife;
 import timber.log.Timber;
 
 import static com.baidu.location.h.j.B;
+import static com.baidu.location.h.j.I;
+import static com.baidu.location.h.j.r;
 import static com.baidu.location.h.j.t;
 
 /**
@@ -416,14 +418,35 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
 
 
 
-    //----------------------partjobview
+    //----------------------partjobview  用单独的累去管理view
 
     public  class  PartJobView implements  View.OnClickListener{
         FullJobView  fullJobView;
         Context context;
-        TextView et3; //城市列表
-        private View rootView;
+        View rootView;
+        EditText et1;
+        String jobNmae="";
+        TextView et5;
+        EditText et;
+        String num;
+        EditText    text_ad3;
+        String money="";
+        TextView text_money;
+        TextView et3;
+        EditText et4;
+        TextView text_a5;
+        TextView text_d5;
+        TextView et6;
+        TextView et7;
+        TextView et8;
+        EditText et_a9;
+        EditText et9;
+        EditText textView;
+        String con="";
+        TextView et10;
 
+        TextView et11;
+        Button bt;
 
         public   PartJobView (View rootView ,Context context){
             this.rootView = rootView;
@@ -432,10 +455,57 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
         }
 
         private  void init(){
+            et1=(EditText)rootView.findViewById(R.id.et1);
+            et5=(TextView) rootView.findViewById(R.id.et5);
+            et=(EditText)rootView.findViewById(R.id.et);
+            text_ad3=(EditText)rootView.findViewById(R.id.text_ad3);
+            text_money=(TextView)rootView.findViewById(R.id.text_money);
+            et3=(TextView) rootView.findViewById(R.id.et3);
+            et4=(EditText) rootView.findViewById(R.id.et4);
+            text_a5 =(TextView)rootView.findViewById(R.id.text_a5);
+            text_d5=(TextView) rootView.findViewById(R.id.text_d5);
+            et6=(TextView) rootView.findViewById(R.id.et6);
+            et7=(TextView)rootView.findViewById(R.id.et7);
+            et8=(TextView) rootView.findViewById(R.id.et8);
+            et_a9=( EditText)rootView.findViewById(R.id.et_a9);
+            et9=(EditText)rootView.findViewById(R.id.et9);
+            textView=(EditText) rootView.findViewById(R.id.textView);
+            et10=(TextView) rootView.findViewById(R.id.et10);
+
+            et11=(TextView) rootView.findViewById(R.id.et11);
+            bt=(Button) rootView.findViewById(R.id.bt);
+            bt.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            switch (v.getId()){
+                case  R.id.bt:
+                    makeText("发帖成功");
+                    jobNmae=et1.getText().toString().trim();
+                    if (jobNmae==null|| jobNmae.isEmpty()){
+                        makeText("期望职位名称不能没有哦!!!");
+                        return;
+                    }
+                    num=et.getText().toString().trim();
+                   if (num==null || num.isEmpty() || (Integer.parseInt(num)<=0)){
+                       makeText("招聘人数不能少于1个人");
+                       return;
+                   }
+                   money=text_ad3.getText().toString().trim();
+                    if ( money==null ||  money.isEmpty() || (Integer.parseInt( money)<=0)){
+                        makeText("期望薪资不能为0元!!!");
+                        return;
+                    }
+                    con=textView.getText().toString().trim();
+                    if (con==null || con.isEmpty()){
+                        makeText("职位描述不能没有哦");
+                        return;
+
+                    }
+
+                    break;
+            }
 
         }
     }

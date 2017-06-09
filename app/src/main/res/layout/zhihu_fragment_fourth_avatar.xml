@@ -14,212 +14,236 @@
         <RelativeLayout
             android:id="@+id/re_ll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="5dp">
+            android:layout_height="wrap_content">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/image_icon"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:src="@mipmap/ic_launcher"
-                android:layout_margin="@dimen/bot_jp"
-                app:civ_border_width="1dp"
-                app:civ_border_color="@color/gray_line_color"/>
+            <include layout="@layout/user_top" />
 
-            <TextView
-                android:id="@+id/tv_num"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/relative1"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_phne"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginTop="13dp"
-                android:layout_toEndOf="@+id/image_icon"
-                android:layout_toRightOf="@+id/image_icon"
-                android:maxLines="1"
-                android:textSize="14sp"
-                tools:text="积分:36" />
+                android:layout_below="@id/re_top"
+                android:background="@color/white"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="0dp"
+                    android:alpha="10"
+                    android:background="@color/line_bg"
+                    android:orientation="vertical" />
 
-            <TextView
-                android:id="@+id/tv_phne"
-                android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/job_want_bg"
+                    android:layout_width="fill_parent"
+                    android:layout_marginTop="30dp"
+                    android:layout_height="40dp">
+
+                    <ImageView
+                        android:id="@+id/job_want_icon"
+                        android:layout_width="26dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/job_want_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/job_want_icon"
+                        android:text="我的求职"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/job_line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="0dp"
+                    android:alpha="10"
+                    android:background="@color/line_bg"
+                    android:orientation="vertical" />
+
+                <RelativeLayout
+                    android:id="@+id/my_recruit_bg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/job_line">
+
+                    <ImageView
+                        android:id="@+id/my_recruit_icon"
+                        android:layout_width="26dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/my_recruit_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/my_recruit_icon"
+                        android:text="我的招聘"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/person_line2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="0dp"
+                    android:alpha="10"
+                    android:background="@color/line_bg"
+                    android:orientation="vertical" />
+
+                <RelativeLayout
+                    android:id="@+id/person_bg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp">
+
+                    <ImageView
+                        android:id="@+id/person_icon"
+                        android:layout_width="26dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/gr" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/person_icon"
+                        android:text="账号管理"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/person_line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/person_bg"
+                    android:layout_marginTop="0dp"
+                    android:alpha="10"
+                    android:background="@color/line_bg"
+                    android:orientation="vertical" />
+
+                <RelativeLayout
+                    android:id="@+id/company_bg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/person_line">
+
+                    <ImageView
+                        android:id="@+id/company_icon"
+                        android:layout_width="26dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/gs" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/company_icon"
+                        android:text="便民贴管理"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/company_line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/company_bg"
+                    android:layout_marginTop="0dp"
+                    android:alpha="10"
+                    android:background="@color/line_bg"
+                    android:orientation="vertical" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative2"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/image_icon"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginTop="@dimen/bot_jp"
-                android:layout_toEndOf="@+id/image_icon"
-                android:layout_toRightOf="@+id/image_icon"
-                android:maxLines="1"
-                android:text="13738051517"
-                android:textSize="20sp" />
+                android:layout_below="@+id/relative1"
+                android:layout_marginTop="30dp"
+                android:background="@color/white">
+                <RelativeLayout
+                    android:id="@+id/pay_bg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignEnd="@+id/pay_line"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignRight="@+id/pay_line">
 
+                    <ImageView
+                        android:id="@+id/pay_icon"
+                        android:layout_width="26dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/pay_icon" />
 
-            <TextView
-                android:id="@+id/tv_person_resume"
-                android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/pay_icon"
+                        android:text="充值"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/pay_line"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/pay_bg"
+                    android:layout_marginTop="0dp"
+                    android:alpha="10"
+                    android:background="@color/line_bg"
+                    android:orientation="vertical" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative3"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/image_icon"
-                android:layout_marginTop="10dp"
-                android:gravity="left|center"
-                android:drawableLeft="@drawable/icon_person"
-                android:text="完善个人简历"
-                android:textSize="14sp" />
+                android:layout_below="@+id/relative2"
+                android:background="@color/white">
+                <RelativeLayout
+                    android:id="@+id/logout_bg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp">
 
-            <TextView
-                android:id="@+id/tv_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_person_resume"
-                android:layout_marginTop="8dp"
-                android:drawableLeft="@drawable/icon_bar"
-                android:gravity="left|center"
-                android:text="求职贴管理"
-                android:textSize="14sp" />
+                    <ImageView
+                        android:id="@+id/logout_icon"
+                        android:layout_width="26dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/logout_icon" />
 
-            <TextView
-                android:id="@+id/company"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_bar"
-                android:layout_marginTop="8dp"
-                android:gravity="left|center"
-                android:drawableLeft="@drawable/icon_magnifying_glass"
-                android:text="已查看的公司"
-                android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/logout_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/logout_icon"
+                        android:text="注销帐号"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
 
-            <TextView
-                android:gravity="left|center"
-                android:id="@+id/take_job"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/company"
-                android:layout_marginTop="18dp"
-                android:drawableLeft="@drawable/fragmentation_ic_right"
-                android:text="完善招聘方资料"
-                android:textSize="14sp" />
-
-            <TextView
-
-                android:gravity="left|center"
-                android:id="@+id/bar_job"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/take_job"
-                android:layout_marginTop="8dp"
-                android:drawableLeft="@drawable/fragmentation_ic_right"
-                android:text="招聘贴管理"
-                android:textSize="14sp" />
-
-            <TextView
-                android:gravity="left|center"
-                android:id="@+id/see_job"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/bar_job"
-                android:layout_marginTop="8dp"
-                android:drawableLeft="@drawable/fragmentation_ic_right"
-                android:text="已查看的简历"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/advertise"
-                android:gravity="left|center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/see_job"
-                android:layout_marginTop="8dp"
-                android:drawableLeft="@drawable/icon_heart"
-                android:text="已收藏的简历"
-                android:textSize="14sp" />
-
-
-            <TextView
-                android:gravity="left|center"
-                android:id="@+id/join_mq"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/advertise"
-                android:layout_marginTop="8dp"
-                android:drawableLeft="@drawable/fragmentation_ic_right"
-                android:text="加入名企"
-                android:textSize="14sp" />
-
-
-            <TextView
-                android:gravity="left|center"
-                android:id="@+id/update_psd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/join_mq"
-                android:layout_marginTop="20dp"
-                android:drawableLeft="@drawable/fragmentation_ic_right"
-
-                android:text="修改密码"
-                android:textSize="14sp" />
-
-
-            <TextView
-                android:gravity="left|center"
-                android:id="@+id/record"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/update_psd"
-                android:layout_marginTop="8dp"
-                android:drawableLeft="@drawable/fragmentation_ic_right"
-
-                android:text="消费记录"
-                android:textSize="14sp" />
-
-            <TextView
-                android:gravity="left|center"
-                android:id="@+id/change_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:drawableLeft="@drawable/fragmentation_ic_right"
-                android:text="更换手机号码"
-                android:textSize="14sp"
-                android:layout_below="@+id/record"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-
-            <TextView
-                android:gravity="left|center"
-                android:id="@+id/bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/change_phone"
-                android:layout_marginTop="14dp"
-                android:drawableLeft="@drawable/fragmentation_ic_right"
-                android:text="便名帖管理"
-                android:textSize="14sp" />
-
-
-            <TextView
-                android:gravity="left|center"
-                android:id="@+id/charge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/bar"
-                android:layout_marginTop="20dp"
-                android:drawableLeft="@drawable/fragmentation_ic_right"
-
-                android:text="充值"
-                android:textSize="14sp" />
-
-            <TextView
-                android:gravity="left|center"
-                android:id="@+id/logout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/charge"
-                android:layout_marginTop="8dp"
-                android:drawableLeft="@drawable/fragmentation_ic_right"
-                android:text="注销"
-                android:textSize="14sp" />
+            </RelativeLayout>
 
         </RelativeLayout>
     </ScrollView>

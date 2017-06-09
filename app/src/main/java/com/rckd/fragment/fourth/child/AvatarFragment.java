@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,9 +31,16 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements View.O
     }
 
 
+    //-------------------top
     @BindView(R.id.image_icon) de.hdodenhof.circleimageview.CircleImageView image_icon;
     @BindView(R.id.tv_phne) TextView tv_phne;
     @BindView(R.id.tv_num) TextView tv_num;
+
+
+    //---------------
+    @BindView(R.id.job_want_bg) RelativeLayout job_want_bg;
+    @BindView(R.id.my_recruit_bg) RelativeLayout my_recruit_bg;
+    @BindView(R.id.person_bg) RelativeLayout person_bg;
 
 
 
@@ -49,50 +57,30 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements View.O
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_person_resume:
+            case R.id.image_icon:
+                makeText("更换头像成功!!!");
+                break;
+            //我的求职
+            case R.id.job_want_bg:
+                //-----------------弹出对话框供选择
+                break;
+            //我的招聘
+            case R.id.my_recruit_bg:
+                break;
+            //账号管理
+            case R.id.person_bg:
+                break;
+            //便名帖管理
+            case R.id.company_bg:
+                break;
+            //充值
+            case R.id.pay_bg:
                 break;
 
-            case R.id.tv_bar:
+            //注销账号
+            case R.id.logout_bg:
                 break;
 
-            case R.id.company:
-                break;
-
-
-            case R.id.take_job:
-                break;
-
-            case R.id.bar_job:
-                break;
-
-            case R.id.see_job:
-                break;
-
-            case R.id.advertise:
-                break;
-
-            case  R.id.join_mq:
-                break;
-
-
-            case R.id.update_psd:
-                break;
-
-
-            case R.id.record:
-                break;
-
-            case R.id.change_phone:
-                break;
-
-            case  R.id.bar:
-                break;
-
-            case R.id.charge:
-                break;
-            case R.id.logout:
-                //注销
-               break;
 
 
         }

@@ -638,11 +638,11 @@
                 android:layout_gravity="center|right"
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginStart="15dp"
-                android:textSize="14sp"
                 android:layout_toEndOf="@+id/text_tie"
                 android:layout_toRightOf="@+id/text_tie"
+                android:maxLines="1"
                 android:text="人才快递"
-                android:maxLines="1" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
