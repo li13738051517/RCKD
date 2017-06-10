@@ -201,4 +201,10 @@
     <string name="city_hotcity_searchedittext_hint">请输入城市名,首字母或拼音</string>
     <string name="signup_agreeTerms">注册即表示同意 <a href="http://www.baidu.com/">用户协议与隐私条例</a></string>
 
+
+    <string name="progressActivityErrorButton">重新加载</string>
+    <string name="progressActivityEmptyTitlePlaceholder">未加载到任何内容!</string>
+    <string name="progressActivityEmptyContentPlaceholder">We couldn\'t find anything. Tap the button to take your first image</string>
+    <string name="progressActivityErrorTitlePlaceholder">No Connection</string>
+    <string name="progressActivityErrorContentPlaceholder">网络不给力哦，加载失败</string>
 </resources>

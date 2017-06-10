@@ -74,7 +74,6 @@ repositories {
 
 dependencies {
     compile 'com.android.support:multidex:1.0.1'
-//    compile fileTree(include: ['*.jar'], dir: 'libs')
     provided fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -83,7 +82,6 @@ dependencies {
 
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:design:25.3.1'
-//    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile files('libs/bcprov-jdk14.jar')
     compile files('libs/tbs_sdk_thirdapp_v3.1.0.1034_43100_sharewithdownload_obfs_20170301_182143.jar')
@@ -99,6 +97,19 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'
     compile 'com.yanzhenjie:permission:1.0.5'
     compile 'pub.devrel:easypermissions:0.2.1'
+
+
+    compile 'com.facebook.rebound:rebound:0.3.8'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.flyco.pageindicator:FlycoPageIndicator_Lib:1.0.0@aar'
+    compile 'com.malinskiy:materialicons:1.0.2'
+
+
+
+
+
+
+
 
     compile 'io.reactivex:rxjava:1.2.2'
     compile 'io.reactivex:rxandroid:1.2.1'
@@ -175,7 +186,7 @@ dependencies {
 
     compile 'com.github.addappcn:android-pickers:1.0.1'
     compile 'de.hdodenhof:circleimageview:2.1.0'
-
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.18'
     compile 'com.squareup.picasso:picasso:2.5.2'
 
     compile 'com.youth.banner:banner:1.4.9'  //最新版本
@@ -183,6 +194,13 @@ dependencies {
     compile 'com.alibaba:fastjson:1.1.57.android'
 
 
+
     compile 'com.github.asLody:turbodex:1.1.0'
+
+//ForRecyclerView
+    compile 'com.zhy:base-rvadapter:3.0.3'
+    //ForListView
+    compile 'com.zhy:base-adapter:3.0.3'
+
 
 }

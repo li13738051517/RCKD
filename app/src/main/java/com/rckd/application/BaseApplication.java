@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Vibrator;
 import android.support.multidex.MultiDex;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -25,6 +26,7 @@ import com.squareup.leakcanary.LeakCanary;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.TbsDownloader;
 import com.tencent.smtt.sdk.TbsListener;
+import com.uuch.adlibrary.utils.DisplayUtil;
 import com.yanzhenjie.nohttp.Logger;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.OkHttpNetworkExecutor;
@@ -62,6 +64,18 @@ public class BaseApplication extends android.app.Application {
     public static List<BaseActivity> activityList = new ArrayList<>();
     public static Boolean isLogin = false;//默认未登录,全局设置,无需放在共享文档中 ,登陆成功后同步cookies
 
+
+    private void initDisplayOpinion() {
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        DisplayUtil.density = dm.density;
+        DisplayUtil.densityDPI = dm.densityDpi;
+        DisplayUtil.screenWidthPx = dm.widthPixels;
+        DisplayUtil.screenhightPx = dm.heightPixels;
+        DisplayUtil.screenWidthDip = DisplayUtil.px2dip(getApplicationContext(), dm.widthPixels);
+        DisplayUtil.screenHightDip = DisplayUtil.px2dip(getApplicationContext(), dm.heightPixels);
+    }
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -74,6 +88,8 @@ public class BaseApplication extends android.app.Application {
         initLogDebug();
         initThread();
         initNoHttp();
+        //
+        initDisplayOpinion();
 //initAppIcon();
         initPicture();
         initTBS();
@@ -497,6 +513,8 @@ public class BaseApplication extends android.app.Application {
         MultiDex.install(this);
     }
 }
+
+
 
 
 
