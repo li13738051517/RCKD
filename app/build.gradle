@@ -94,7 +94,7 @@ dependencies {
     compile 'com.facebook.fresco:animated-gif:0.12.0'
     compile 'com.facebook.fresco:animated-webp:0.12.0'
     compile 'com.facebook.fresco:webpsupport:0.12.0'
-    compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'com.jakewharton:butterknife:8.6.0'
     compile 'com.yanzhenjie:permission:1.0.5'
     compile 'pub.devrel:easypermissions:0.2.1'
 
@@ -114,7 +114,7 @@ dependencies {
     compile 'io.reactivex:rxjava:1.2.2'
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.google.code.gson:gson:2.8.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
     compile 'com.mylhyl:acp:1.1.7'
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
     testCompile 'com.squareup.okhttp3:mockwebserver:3.8.0'

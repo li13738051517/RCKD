@@ -36,8 +36,8 @@
                 <RelativeLayout
                     android:id="@+id/job_want_bg"
                     android:layout_width="fill_parent"
-                    android:layout_marginTop="30dp"
-                    android:layout_height="40dp">
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp">
 
                     <ImageView
                         android:id="@+id/job_want_icon"
@@ -63,6 +63,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="0dp"
                     android:alpha="10"
+                    android:layout_marginLeft="30dp"
                     android:background="@color/line_bg"
                     android:orientation="vertical" />
 
@@ -97,6 +98,7 @@
                     android:layout_marginTop="0dp"
                     android:alpha="10"
                     android:background="@color/line_bg"
+                    android:layout_marginLeft="30dp"
                     android:orientation="vertical" />
 
                 <RelativeLayout
@@ -129,6 +131,7 @@
                     android:layout_below="@+id/person_bg"
                     android:layout_marginTop="0dp"
                     android:alpha="10"
+                    android:layout_marginLeft="30dp"
                     android:background="@color/line_bg"
                     android:orientation="vertical" />
 
@@ -208,6 +211,7 @@
                     android:layout_below="@+id/pay_bg"
                     android:layout_marginTop="0dp"
                     android:alpha="10"
+                    android:layout_marginLeft="30dp"
                     android:background="@color/line_bg"
                     android:orientation="vertical" />
 
@@ -242,9 +246,17 @@
                         android:text="注销帐号"
                         android:textColor="@color/black" />
                 </RelativeLayout>
-
             </RelativeLayout>
+            <LinearLayout
 
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+
+                android:layout_below="@+id/relative3"
+                android:layout_marginTop="0dp"
+                android:alpha="10"
+                android:background="@color/line_bg"
+                android:orientation="vertical" />
         </RelativeLayout>
     </ScrollView>
 </FrameLayout>
