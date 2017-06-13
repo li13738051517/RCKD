@@ -16,4 +16,5 @@
     <dimen name="bottombar_wechat_height">52dp</dimen>
     <dimen name="wb_city_search_ablum_height">55.0dip</dimen>
     <dimen name="wd">70dp</dimen><!-- 自定义宽度 -->
+
 </resources>

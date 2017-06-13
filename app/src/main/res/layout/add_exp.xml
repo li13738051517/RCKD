@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/lin1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottombar_height"
+        android:background="@drawable/textbg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_tie1"
+            android:layout_width="@dimen/wd"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:layout_marginRight="@dimen/bot_jp"
+            android:textSize="14sp"
+            android:text="入职时间" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/fab_margin"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+        <EditText
+            android:id="@+id/text_ad1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:text="不公开"
+            android:textSize="14sp"
+            android:layout_weight="0.75"
+            android:layout_marginStart="15dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lin2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottombar_height"
+        android:background="@drawable/textbg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_tie2"
+            android:layout_width="@dimen/wd"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:layout_marginRight="@dimen/bot_jp"
+            android:textSize="14sp"
+
+            android:text="离职时间" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/fab_margin"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+        <EditText
+            android:id="@+id/text_ad2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:text="不公开"
+            android:textSize="14sp"
+            android:layout_weight="0.75"
+            android:layout_marginStart="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottombar_height"
+        android:background="@drawable/textbg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/wd"
+            android:id="@+id/text_tie3"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:layout_marginRight="@dimen/bot_jp"
+            android:textSize="14sp"
+            android:text="工作单位" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/fab_margin"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+        <EditText
+            android:id="@+id/text_ad3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:hint="请输入工作单位"
+            android:textSize="14sp"
+            android:layout_marginStart="15dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lin4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottombar_height"
+        android:background="@drawable/textbg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/wd"
+            android:id="@+id/text_tie4"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:layout_marginRight="@dimen/bot_jp"
+            android:textSize="14sp"
+            android:text="担任职位" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/fab_margin"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+        <EditText
+            android:id="@+id/text_ad4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:hint="请输入担任职位"
+            android:textSize="14sp"
+            android:layout_marginStart="15dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lin5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottombar_height"
+        android:background="@drawable/textbg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/wd"
+            android:id="@+id/text_tie5"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:layout_marginRight="@dimen/bot_jp"
+            android:textSize="14sp"
+            android:text="离职原因" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/fab_margin"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+        <EditText
+            android:id="@+id/text_ad5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:hint="请输入离职原音"
+            android:textSize="14sp"
+            android:layout_marginStart="15dp" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/lin6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textbg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/wd"
+            android:id="@+id/text_tie6"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:layout_marginRight="@dimen/bot_jp"
+            android:textSize="14sp"
+            android:text="工作描述" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/fab_margin"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+        <EditText
+            android:id="@+id/text_ad6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:hint="请输入离职原音"
+            android:textSize="14sp"
+            android:layout_marginStart="15dp" />
+    </LinearLayout>
+
+
+</LinearLayout>

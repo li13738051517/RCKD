@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.PrefectPersonData"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/re_base"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <include
+            android:id="@+id/in"
+            layout="@layout/base_title"/>
+
+        <LinearLayout
+            android:id="@+id/ll_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/in"
+            android:background="@color/city_gray"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/imageView3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@+id/in"
+                android:layout_gravity="top|center"
+                android:layout_margin="25dp"
+                android:background="@drawable/photo"
+                android:src="@drawable/photo" />
+
+            <TextView
+                android:id="@+id/tv_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="拍张照片上传个人资料吧"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_below="@+id/ll_item"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:id="@+id/text_tie"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:textSize="14sp"
+                android:text="姓名" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+
+            <EditText
+                android:id="@+id/text_ad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/text_tie"
+                android:layout_alignBottom="@+id/text_tie"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:textSize="14sp"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/text_tie"
+                android:layout_toRightOf="@+id/text_tie"
+                android:hint="李政"
+                 />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_below="@+id/lin1"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:id="@+id/text_tie2"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:text="性别"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+
+            <EditText
+                android:id="@+id/text_ad2"
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/text_tie2"
+                android:layout_alignBottom="@+id/text_tie2"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_toEndOf="@+id/text_tie2"
+                android:layout_toRightOf="@+id/text_tie2"
+                android:gravity="center|left"
+                android:hint="男"
+                android:minEms="2"
+                android:maxLines="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_below="@+id/lin2"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:id="@+id/text_tie3"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:text="出生年月"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+
+            <EditText
+                android:id="@+id/text_ad3"
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/text_tie2"
+                android:layout_alignBottom="@+id/text_tie2"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_toEndOf="@+id/text_tie2"
+                android:layout_toRightOf="@+id/text_tie2"
+                android:gravity="center|left"
+                android:hint="1992"
+                android:minEms="2"
+                android:maxLines="1" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_below="@+id/lin2"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:id="@+id/text_tie4"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:text="居住地址"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+
+            <EditText
+                android:id="@+id/text_ad4"
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/text_tie2"
+                android:layout_alignBottom="@+id/text_tie2"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_toEndOf="@+id/text_tie2"
+                android:layout_toRightOf="@+id/text_tie2"
+                android:gravity="center|left"
+                android:hint="安徽省宣城市广德县"
+                android:minEms="2"
+                android:maxLines="1" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin5"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_below="@+id/lin2"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:id="@+id/text_tie5"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:text="工作年限"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+
+            <EditText
+                android:id="@+id/text_ad5"
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/text_tie2"
+                android:layout_alignBottom="@+id/text_tie2"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_toEndOf="@+id/text_tie2"
+                android:layout_toRightOf="@+id/text_tie2"
+                android:gravity="center|left"
+                android:hint="1-3年"
+                android:minEms="2"
+                android:maxLines="1" />
+        </LinearLayout>
+
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textbg"
+            android:gravity="start"
+            android:hint="自我介绍(选填)"
+            android:textSize="14sp"
+            android:lines="5"
+            android:paddingBottom="@dimen/bot_jp"
+            android:paddingTop="@dimen/bot_jp"
+            android:textColorHint="@color/hint_color"
+            android:layout_below="@+id/lin3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignStart="@+id/textView"
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="3dp"
+            android:paddingLeft="10dp"
+            android:gravity="left|center"
+            android:text="选填项" />
+        <FrameLayout
+            android:id="@+id/frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_below="@+id/textView"
+            android:id="@+id/llImages"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.rckd.view.GridViewNoScroll
+            android:id="@+id/list_view"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignEnd="@+id/button"
+            android:layout_alignLeft="@+id/button"
+            android:layout_alignRight="@+id/button"
+            android:layout_alignStart="@+id/button"
+            android:layout_below="@+id/llImages"
+            android:numColumns="3"
+            android:horizontalSpacing="3dp"
+            android:listSelector="#00000000"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="3dp"
+            />
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_marginTop="5dp"
+            android:background="@color/green"
+            android:text="保存资料"
+            android:layout_below="@+id/list_view"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </LinearLayout>
+
+</ScrollView>

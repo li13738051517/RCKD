@@ -207,4 +207,7 @@
     <string name="progressActivityEmptyContentPlaceholder">We couldn\'t find anything. Tap the button to take your first image</string>
     <string name="progressActivityErrorTitlePlaceholder">No Connection</string>
     <string name="progressActivityErrorContentPlaceholder">网络不给力哦，加载失败</string>
+
+      <!-- -->
+
 </resources>

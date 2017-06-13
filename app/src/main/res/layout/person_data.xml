@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/lin1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottombar_height"
+        android:background="@drawable/textbg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_tie1"
+            android:layout_width="@dimen/wd"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:layout_marginRight="@dimen/bot_jp"
+            android:textSize="14sp"
+            android:text="婚姻状况" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/fab_margin"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+        <EditText
+            android:id="@+id/text_ad1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:text="不公开"
+            android:textSize="14sp"
+            android:layout_marginStart="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottombar_height"
+        android:background="@drawable/textbg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_tie2"
+            android:layout_width="@dimen/wd"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:layout_marginRight="@dimen/bot_jp"
+            android:textSize="14sp"
+
+            android:text="政治面貌" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/fab_margin"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+        <EditText
+            android:id="@+id/text_ad2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:text="群众"
+            android:textSize="14sp"
+
+            android:layout_marginStart="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottombar_height"
+        android:background="@drawable/textbg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_tie3"
+            android:layout_width="@dimen/wd"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:layout_marginRight="@dimen/bot_jp"
+            android:textSize="14sp"
+
+            android:text="资格证书" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/fab_margin"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+        <EditText
+            android:id="@+id/text_ad3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:hint="请填写"
+            android:textSize="14sp"
+            android:layout_marginStart="15dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lin4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottombar_height"
+        android:background="@drawable/textbg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_tie4"
+            android:layout_width="@dimen/wd"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:layout_marginRight="@dimen/bot_jp"
+            android:textSize="14sp"
+            android:text="语言证书" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/fab_margin"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+        <EditText
+            android:id="@+id/text_ad4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:hint="请填写"
+            android:textSize="14sp"
+            android:layout_marginStart="15dp" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/lin5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottombar_height"
+        android:background="@drawable/textbg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_tie5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:layout_marginRight="@dimen/bot_jp"
+            android:textSize="16sp"
+            android:layout_weight="0.5"
+            android:textColor="@color/changbtn_text_color"
+            android:text="+添加工作经历" />
+
+        <View
+            android:layout_width="1dp"
+            android:visibility="gone"
+            android:layout_height="@dimen/fab_margin"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/text_ad5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="@dimen/bot_jp"
+            android:hint="请填写"
+            android:layout_weight="0.5"
+            android:text="(工作经历越多面试机会越多)"
+            android:textSize="10sp"
+            android:gravity="right"
+            android:paddingRight="20dp"
+            android:textColor="@color/green"
+            android:layout_marginStart="15dp" />
+    </LinearLayout>
+
+
+</LinearLayout>
