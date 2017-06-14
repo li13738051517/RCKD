@@ -27,3 +27,6 @@
 -keep class com.unionpay.mobile.android.**{*;}
 -keepattributes InnerClasses
 -dontoptimize
+-keep class com.chad.library.adapter.** {
+   *;
+}

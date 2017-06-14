@@ -38,4 +38,5 @@
     <color name="main_color">#5CB85C</color>
     <color name="copper">#e54ee5</color>
     <color name="mc">#c8ccd1</color>
+    <color name="item_bg">#FFFFFF</color>
 </resources>

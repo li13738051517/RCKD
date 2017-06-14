@@ -38,6 +38,7 @@
         android:layout_marginRight="0dp"
         android:background="@color/transparent"
         android:padding="10dp"
+
         android:text="关闭"
         android:textSize="16sp"
         android:visibility="invisible" />

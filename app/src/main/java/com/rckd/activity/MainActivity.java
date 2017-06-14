@@ -165,7 +165,9 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                 holder.setText(R.id.txt_icon, obj.getiName());
             }
         };
-        grid_photo.setAdapter(mAdapter);
+        grid_photo.setAdapter(mAdapter);//
+
+        //可直接时clsss的数组集合根据位置直接启动
         grid_photo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="spin_prompt">招聘类型</string>
+    <string-array name="languages">
+        <item>全职</item>
+        <item>兼职</item>
+    </string-array>
+
+</resources>

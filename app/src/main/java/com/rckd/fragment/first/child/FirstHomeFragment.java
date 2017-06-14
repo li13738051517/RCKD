@@ -3,6 +3,11 @@ package com.rckd.fragment.first.child;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,9 +19,12 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 
+import com.flyco.tablayout.SegmentTabLayout;
+import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.rckd.R;
 import com.rckd.activity.MainActivity;
 import com.rckd.activity.NewJobActivity;
+import com.rckd.activity.SeeAdActivity;
 import com.rckd.adpter.BaseAdapterQd;
 import com.rckd.adpter.FirstHomeAdapter;
 import com.rckd.bean.Article;
@@ -47,6 +55,14 @@ import static com.rckd.R.id.gv;
  * Created by LiZheng on 16/6/5.
  */
 public class FirstHomeFragment extends com.rckd.base.BaseFragment implements SwipeRefreshLayout.OnRefreshListener  /* , com.yanzhenjie.permission.PermissionListener  */{
+    String[] titles = {"名企招聘", "便民动态", "新闻动态"};
+
+    ArrayList<Fragment> mFragments = new ArrayList<>();//集合用来管理单独的页面
+    ViewPager viewPager;
+//    private View mDecorView;
+
+    SegmentTabLayout tab_layout;
+
     private static String tag= FirstHomeFragment.class.getName();//tag标记
     Banner banner;
     GridView gridView;//gv  1
@@ -121,12 +137,18 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
         View view = inflater.inflate(R.layout.zhihu_fragment_first_home_index, container, false);
         EventBus.getDefault().register(this);
         initView(view);
+
         return view;
     }
 
 
     private void initView(View view) {
 //        initImgData();
+        //Fragment的假数据初始化
+        for (String title : titles) {
+            mFragments.add(TabCardFragment.getInstance("Switch ViewPager " + title));
+        }
+
         banner = (Banner) view.findViewById(R.id.banner);
         //本地图片数据（资源文件）
         List<Integer> list=new ArrayList<>();
@@ -160,7 +182,8 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
                 holder.setText(R.id.txt_icon, obj.getiName());
             }
         };
-       gridView.setAdapter(mAdapterGv);
+        gridView.setAdapter(mAdapterGv);
+        //gridview加载
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -229,6 +252,8 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
                     case 6:
                         break;
                     case 7:
+                        //查看广而告之中的内容
+                        startActivity(SeeAdActivity.class);
                         break;
                 }
 
@@ -247,7 +272,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
 //        mViewParent = (ViewGroup) view.findViewById(R.id.webView1);//去找这个
 //        mViewParent.setVisibility(View.VISIBLE);
 //        mToolbar = (Toolbar) view.findViewById(R.id.toolbar_top);
-        mRecy = (RecyclerView) view.findViewById(R.id.recy);
+         mRecy = (RecyclerView) view.findViewById(R.id.recy);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
 //        mFab = (FloatingActionButton) view.findViewById(R.id.fab);
 
@@ -327,6 +352,49 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
 //        });
 
 //        initWeb();
+
+
+//        tab_layout
+
+
+        tab_layout=(SegmentTabLayout)view.findViewById(R.id.tab_layout);
+        viewPager= (ViewPager) view.findViewById(R.id.viewPager);
+//        tab_layout.setTabData();   //设置标题叔叔
+        viewPager.setAdapter(new   MyPagerAdapter(getFragmentManager()));
+
+        tab_layout.setTabData(titles);
+        tab_layout.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelect(int position) {
+                    viewPager.setCurrentItem(position);
+            }
+
+            @Override
+            public void onTabReselect(int position) {
+
+            }
+        });
+        //viewpage 的页监听
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                tab_layout.setCurrentTab(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        viewPager.setCurrentItem(1);
+
+
+
 
     }
 
@@ -690,5 +758,28 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
         super.onStop();
         //结束轮播
         banner.stopAutoPlay();
+    }
+
+    public  class   MyPagerAdapter extends FragmentPagerAdapter{
+        public  MyPagerAdapter(FragmentManager fm){
+            super(fm);
+        }
+
+//
+        @Override
+        public int getCount() {
+//            return 0;
+            return mFragments.size();
+        }
+        @Override
+        public CharSequence getPageTitle(int position) {
+//            return super.getPageTitle(position);
+            return  titles[position];
+        }
+        @Override
+        public Fragment getItem(int position) {
+//            return null;
+            return  mFragments.get(position);
+        }
     }
 }
