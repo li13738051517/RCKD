@@ -48,10 +48,7 @@ import static timber.log.Timber.DebugTree;
 /**
  * Created by LiZheng on 2017/3/15 0015.
  */
-
-
 //https://github.com/litesuits/android-common    base_utils
-
 public class BaseApplication extends android.app.Application {
 
     private static String tag = BaseApplication.class.getName().toString();
@@ -64,7 +61,9 @@ public class BaseApplication extends android.app.Application {
     public static List<BaseActivity> activityList = new ArrayList<>();
     public static Boolean isLogin = false;//默认未登录,全局设置,无需放在共享文档中 ,登陆成功后同步cookies
 
-
+    /**
+     * 初始化屏幕相关内容
+     */
     private void initDisplayOpinion() {
         DisplayMetrics dm = getResources().getDisplayMetrics();
         DisplayUtil.density = dm.density;

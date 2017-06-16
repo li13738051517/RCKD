@@ -41,6 +41,7 @@ public class OtherPagerFragment extends com.rckd.base.BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.zhihu_fragment_second_pager_other, container, false);
         initView(view);
+
         return view;
     }
 

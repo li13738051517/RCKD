@@ -13,7 +13,6 @@ import com.rckd.R;
 /**
  * Created by LiZheng on 2017/5/3 0003.
  */
-
 public class PoupBar extends razerdp.basepopup.BasePopupWindow implements View.OnClickListener {
     protected View popupView;
     protected Context mContext;

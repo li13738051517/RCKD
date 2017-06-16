@@ -166,14 +166,14 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
         gridView=(GridView)view.findViewById(R.id.gv);
         mData = new ArrayList<BaseIcon>();
         //此处添加数据 ,仅仅只是添加几张图片的视图,可以这样写
-        mData.add(new BaseIcon(R.mipmap.zhaopin, "最新招聘"));
-        mData.add(new BaseIcon(R.mipmap.qiuzhi, "最新求职"));
-        mData.add(new BaseIcon(R.mipmap.fwzs, "我的匹配"));
-        mData.add(new BaseIcon(R.mipmap.eszj, "本地客服"));
-        mData.add(new BaseIcon(R.mipmap.sf, "扎工作"));
-        mData.add(new BaseIcon(R.mipmap.jyzh, "找人才"));
-        mData.add(new BaseIcon(R.mipmap.lsdg, "名企招聘"));
-        mData.add(new BaseIcon(R.mipmap.jgyd, "置顶帖子"));
+        mData.add(new BaseIcon(R.mipmap.icon_bm_r1_c1, "最新招聘"));
+        mData.add(new BaseIcon(R.mipmap.icon_bm_r1_c2, "最新求职"));
+        mData.add(new BaseIcon(R.mipmap.icon_bm_r1_c3, "我的匹配"));
+        mData.add(new BaseIcon(R.mipmap.icon_bm_r1_c4, "本地客服"));
+        mData.add(new BaseIcon(R.mipmap.icon_bm_r2_c5, "扎工作"));
+        mData.add(new BaseIcon(R.mipmap.icon_bm_r2_c6, "找人才"));
+        mData.add(new BaseIcon(R.mipmap.icon_bm_r2_c7, "名企招聘"));
+        mData.add(new BaseIcon(R.mipmap.icon_bm_r2_c8, "置顶帖子"));
 
         mAdapterGv = new BaseAdapterQd<BaseIcon>(mData, R.layout.item_grid_icon) {
             @Override

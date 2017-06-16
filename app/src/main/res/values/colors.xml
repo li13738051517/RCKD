@@ -18,6 +18,9 @@
     <color name="gray_hight_line">#eaeaea</color>
     <color name="city_gray">#494a49</color>
     <color name="orange">#fe8925</color>
+    <color name="orange_home">#FFFDDD67</color>
+    <color name="blue_home">#FF97DFFF</color>
+    <color name="gray_home">#FFBEA4FF</color>
     <color name="text_gray">#4d4d4d</color>
     <color name="hint_color">#aaaaaa</color>
     <color name="changbtn_text_color">#fc760c</color>
@@ -26,6 +29,7 @@
     <color name="blue">#0068b6</color>
     <color name="text_black">#6f6e6e</color>
     <color name="message_blue">#00adee</color>
+
     <color name="message_red">#ee1d24</color>
     <color name="gray_line_color">#d9d9d9</color>
     <color name="popup_bg">#8f000000</color>

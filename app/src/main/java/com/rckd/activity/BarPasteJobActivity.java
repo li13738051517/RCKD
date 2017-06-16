@@ -110,6 +110,21 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
         ButterKnife.bind(this);
         tv1.setOnClickListener(this);
         tv2.setOnClickListener(this);
+
+        Button  leftBtn =ButterKnife.findById(this,R.id.left_btn);
+        leftBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        TextView title=ButterKnife.findById(this,R.id.title_text);
+        title.setVisibility(View.VISIBLE);
+        title.setText("请选择发帖类型");
+
+        Button rightBtn=ButterKnife.findById(this,R.id.right_btn);
+        rightBtn.setVisibility(View.GONE);
+
         frameLayout.setVisibility(View.GONE);
 //        //-----------------
         //----------

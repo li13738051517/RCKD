@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/titleView"
+        android:id="@+id/in"
         layout="@layout/base_title"
         android:layout_width="fill_parent"
         android:layout_height="48dp" />
@@ -15,12 +15,11 @@
         android:id="@+id/userbg"
         android:layout_width="fill_parent"
         android:layout_height="44dp"
-        android:layout_below="@id/titleView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/textbg">
+        android:background="@drawable/textbg"
+        android:layout_below="@+id/in"
+        android:layout_alignLeft="@+id/psdbg"
+        android:layout_alignStart="@+id/psdbg">
 
         <EditText
             android:id="@+id/usertext"
@@ -53,7 +52,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="120dp"
             android:background="#00000000"
-            android:hint="验证码"
+            android:hint="请输入验证码"
+            android:inputType="numberPassword"
             android:paddingLeft="3dp"
             android:textColorHint="@color/hint_color"
             android:textSize="14dp" />
@@ -66,7 +66,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
             android:background="@drawable/codebtn"
-            android:text="获取手机验证码"
+            android:text="获取验证码"
             android:textColor="@color/white" />
     </RelativeLayout>
 
@@ -87,7 +87,7 @@
             android:layout_height="44dp"
             android:layout_marginLeft="10dp"
             android:background="#00000000"
-            android:hint="设置新密码"
+            android:hint="在此输入您的新密码"
             android:inputType="textPassword"
             android:paddingLeft="3dp"
             android:textColorHint="@color/hint_color"
@@ -111,7 +111,7 @@
             android:layout_height="44dp"
             android:layout_marginLeft="10dp"
             android:background="#00000000"
-            android:hint="确认密码"
+            android:hint="再次输入您的密码"
             android:inputType="textPassword"
             android:paddingLeft="3dp"
             android:textColorHint="@color/hint_color"
@@ -142,6 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/checkBox"
             android:layout_toRightOf="@+id/checkBox"
+
             android:text="@string/signup_agreeTerms" />
 
     </LinearLayout>

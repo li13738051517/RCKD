@@ -18,6 +18,7 @@ import com.baidu.location.BDLocation;
 import com.rckd.R;
 import com.rckd.adpter.BaseAdapterQd;
 import com.rckd.anim.FragmentAnimator;
+import com.rckd.application.AppConfig;
 import com.rckd.base.BaseActivity;
 import com.rckd.base.BaseFragment;
 import com.rckd.base.BaseMainFragment;
@@ -224,7 +225,14 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //广而告之
                     case 9:
                         makeText("你点击了 pos = 9  ");
-                        startActivity(BarAdActivity.class);
+//                        if (AppConfig.isLogin){
+                            startActivity(BarAdActivity.class  );
+//                        }
+//                        else{
+//                            startActivityForResult(LoginActivity.class,null,REQUEST_CODE_BAR_AD);
+//                        }
+
+
 //                        LayoutInflater inflater = getLayoutInflater();
                         // 通过inflate方法将layout转化为view
 //                        v = inflater.inflate(R.layout.activity_bar_ad, null);
@@ -542,12 +550,15 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
         }
         //根据结果吗判断事务
         switch (resultCode) {
-            case 2:
+            case RESULT_CODE_BAR_AD:
+                makeText("即将跳转界面!!!");
+                break;
+            case RESULT_CODE_CITY:
                 //定义规范
                 cityBtn.setText(data.getStringExtra("city"));
                 break;
             default:
-                Timber.e(tag + "   resultCode   =" + REQUEST_CODE_SETTING, tag);
+                Timber.e(tag + "   resultCode   = ????" , tag);
                 break;
 
         }
@@ -630,7 +641,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
         String nation = location.getCountry();//国家
         String province = location.getProvince(); //省
         final String city = location.getCity();//市
-        final   String   district = location.getDistrict();//district	区
+        final String district = location.getDistrict();//district	区/县
 //            String town = tencentLocation.getTown();//  镇
 //            String village = tencentLocation.getVillage();//村
 //            String street = tencentLocation.getStreet();//街道

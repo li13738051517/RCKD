@@ -148,8 +148,7 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.READ_PHONE_STATE
     };
-    public static final int REQUEST_CODE_PERMISSION_LOCATION = 100;//地图定位
-    public static final int REQUEST_CODE_SETTING = 300;//系统设置权限码
+
 
     public LocationClient mLocationClient; //百度地图
 
@@ -1317,4 +1316,24 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
 //    public void onClick(View v) {
 //
 //    }
+
+
+
+
+    //---------------------------------请求吗
+
+    public static final int REQUEST_CODE_PERMISSION_LOCATION = 100;//地图定位
+    public static final int REQUEST_CODE_SETTING = 300;//系统设置权限码
+    public static final int REQUEST_CODE_BAR_AD=301;//
+    public static final int REQUEST_CODE_LOGIN=302;
+
+
+
+    //--------------------------------------结果吗
+    public  static  final int RESULT_CODE_CITY=800;
+    public  static  final int RESULT_CODE_BAR_AD=801;
+    public static final int  RESULT_CODE_LOGIN=802;
+
+
+
 }

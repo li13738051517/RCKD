@@ -53,6 +53,8 @@ import java.util.regex.Pattern;
 
 import timber.log.Timber;
 
+import static com.baidu.location.h.j.I;
+
 /**
  * Created by LiZheng on 2017/5/4 0004.
  * http://lbsyun.baidu.com/index.php?title=android-locsdk/guide/getloc ,开发文档
@@ -66,6 +68,8 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
             Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.READ_EXTERNAL_STORAGE
     };
+
+    String city="";//搜索的结果
 
     private static String tag = CityListActivity.class.getName();
     private BaseAdapter adapter;
@@ -179,9 +183,10 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(getApplicationContext(),
-                        city_result.get(position).getName(), Toast.LENGTH_SHORT)
-                        .show();
+
+                city =city_result.get(position).getName().toString();
+                makeText(city);
+//                Toast.makeText(getApplicationContext(), city_result.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
         initOverlay();
@@ -210,7 +215,11 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.left_back:
+           case R.id.left_back:
+                Intent intent=new Intent();
+                intent.putExtra("city",city); //"city" key ,vaue 后填写实际数据
+                Bundle bundle=null;//可以使用bundle传递数据
+                setResult(RESULT_CODE_CITY ,intent);
                 finish();
                 break;
         }
@@ -993,5 +1002,6 @@ public class CityListActivity extends com.rckd.base.BaseActivity implements View
         }
     }
 //---------------------------------------------------------------------------------------------------------------------
+
 
 }
