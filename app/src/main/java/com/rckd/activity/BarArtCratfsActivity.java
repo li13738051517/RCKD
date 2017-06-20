@@ -105,8 +105,6 @@ public class BarArtCratfsActivity extends BaseActivity implements  View.OnClickL
         screenWidth= ScreenUtils.getScreenWidth(this);
         screenHeight=ScreenUtils.getScreenHeight(this);
 
-
-
         //-----------
         text_tie.setOnClickListener(this);
         text_ad.setOnClickListener(this);
@@ -145,6 +143,9 @@ public class BarArtCratfsActivity extends BaseActivity implements  View.OnClickL
                     return;
                 }
                 makeText("恭喜 ,发帖成功!!!");
+                //-------------------------
+                startActivity(SeeArtCratfsAdActivity.class);
+                finish();
                 break;
 
             case R.id.imageView3:

@@ -1,6 +1,5 @@
 package com.rckd.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,37 +18,31 @@ import com.rckd.bean.MultipleItem;
 
 import java.util.List;
 
-import javax.annotation.Untainted;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.baidu.location.h.j.r;
 
 /**
  * Created by LiZheng on 2017/6/13 0013.
  */
-//查看广而告之帖子
-public class SeeAdActivity extends BaseActivity implements View.OnClickListener {
+//查看房屋出售帖子
+public class SeeSeleHouseAdActivity extends BaseActivity implements View.OnClickListener {
     @Nullable@BindView(R.id.left_btn) Button leftBtn;
     @BindView(R.id.title_text) TextView title;
     @BindView(R.id.right_btn) Button rightBtn;
-    @BindView(R.id.rv_list) RecyclerView mRecyclerView;
+
     @Override
     protected int fragmentLayoutId() {
         return 0;
     }
-    List<MultipleItem> data;
-    MultipleItemQuickAdapter multipleItemAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.see_ad);
+        setContentView(R.layout.see_old_house_layout);
         ButterKnife.bind(this);
         leftBtn.setOnClickListener(this);
         title.setVisibility(View.VISIBLE);
-        title.setText("广而告之");
+        title.setText("房屋出售");
         //先定位
 
 
@@ -60,17 +53,7 @@ public class SeeAdActivity extends BaseActivity implements View.OnClickListener 
         rightBtn.setTextColor(getResources().getColor(R.color.white));
         rightBtn.setOnClickListener(this);
 
-        data  = DataServer.getMultipleItemData(); //
-        multipleItemAdapter = new MultipleItemQuickAdapter(this, data);
-        GridLayoutManager manager = new GridLayoutManager(this,4);
-        mRecyclerView.setLayoutManager(manager);
-        multipleItemAdapter.setSpanSizeLookup(new BaseQuickAdapter.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(GridLayoutManager gridLayoutManager, int position) {
-                return data.get(position).getSpanSize();
-            }
-        });
-        mRecyclerView.setAdapter(multipleItemAdapter);
+
 
     }
 

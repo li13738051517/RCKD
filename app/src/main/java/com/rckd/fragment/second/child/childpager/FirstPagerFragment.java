@@ -8,8 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.rckd.R;
+import com.rckd.activity.LookMeCompanyActivity;
 import com.rckd.activity.MainActivity;
 import com.rckd.adpter.HomeAdapter;
 import com.rckd.base.BaseFragment;
@@ -55,6 +57,10 @@ public class FirstPagerFragment extends BaseFragment implements SwipeRefreshLayo
         fragment.setArguments(args);
         return fragment;
     }
+
+
+    LinearLayout linearLayout;
+
 
     @Nullable
     @Override
@@ -105,6 +111,16 @@ public class FirstPagerFragment extends BaseFragment implements SwipeRefreshLayo
                 }
             }
         });
+
+
+        linearLayout=(LinearLayout) view.findViewById(R.id.lin);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(LookMeCompanyActivity.class);
+            }
+        });
+
     }
 
     @Override

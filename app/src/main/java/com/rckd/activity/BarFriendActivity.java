@@ -181,6 +181,10 @@ public class BarFriendActivity extends BaseActivity implements View.OnClickListe
                     return;
                 }
                 makeText("恭喜 ,发帖成功!!!");
+                //--------------------------------便名帖中不一定要有图片
+
+                startActivity(SeeMakeFriendsAdActivity.class);
+                finish();
                 break;
 
         }

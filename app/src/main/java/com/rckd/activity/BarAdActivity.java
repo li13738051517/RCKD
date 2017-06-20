@@ -247,9 +247,13 @@ public class BarAdActivity extends BaseActivity implements View.OnClickListener 
                     makeText("温馨提示:帖子不能没有内容哦!");
                     return;
                 }
+                //----------------
+                //图片费非必须项
                 //---------------------post 请求  //url =?   &  &  &
                 //此处图片集合images ,post请求全部带上
                 makeText("发帖成功!");
+                startActivity(SeeAdActivity.class);
+                finish();
                 break;
         }
     }

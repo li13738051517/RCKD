@@ -214,7 +214,6 @@ public class BarHelpActivity extends BaseActivity implements  View.OnClickListen
             case R.id.button:
                 test=text_ad2.getText().toString().trim();
                 testArear =textView.getText().toString().trim();
-
                 if (test.isEmpty() || test == null) {
                     makeText("温馨提示:帖子不能没有标题哦!");
                     return;
@@ -224,6 +223,11 @@ public class BarHelpActivity extends BaseActivity implements  View.OnClickListen
                     return;
                 }
                 makeText("发帖成功!");
+                //-------------------
+                //-------------可以有图片,非必须项
+
+                startActivity(SeeHelpAdActivity.class);
+                finish();
                 break;
         }
     }

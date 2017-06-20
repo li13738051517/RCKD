@@ -7,8 +7,9 @@
     tools:context=".activity.BarPasteJobActivity"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/re_base"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -60,7 +61,6 @@
             android:layout_alignParentStart="true">
 
             <TextView
-
                 android:id="@+id/text1"
                 android:layout_width="@dimen/wd"
                 android:layout_height="wrap_content"
@@ -68,6 +68,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:textSize="14sp"
+                android:drawableLeft="@drawable/ic_arrow_drop_down_black_24dp"
                 android:text="期望职位" />
 
             <View
@@ -91,196 +92,6 @@
                 android:layout_toRightOf="@+id/text_tie"
                />
 
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/lin2"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottombar_height"
-            android:layout_below="@+id/lin1"
-            android:layout_marginTop="3dp"
-            android:background="@drawable/textbg"
-            android:orientation="horizontal"
-            android:layout_toRightOf="@+id/imageView2"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true">
-
-            <TextView
-                android:id="@+id/text2"
-                android:layout_width="@dimen/wd"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|left"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginRight="@dimen/bot_jp"
-                android:text="性别"
-
-                android:textSize="14sp" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="@dimen/fab_margin"
-                android:layout_gravity="center_vertical"
-                android:background="@color/black" />
-
-
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center|center_horizontal"
-                android:contentDescription="性别"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radioMale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_marginLeft="@dimen/bot_jp"
-                    android:layout_marginRight="@dimen/bot_jp"
-                    android:text="男" />
-
-                <RadioButton
-                    android:id="@+id/radioFemale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_marginLeft="@dimen/bot_jp"
-                    android:layout_marginRight="@dimen/bot_jp"
-                    android:text="女" />
-            </RadioGroup>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lin3"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottombar_height"
-            android:background="@drawable/textbg"
-            android:orientation="horizontal"
-            android:layout_below="@+id/lin2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-            <TextView
-                android:textSize="14sp"
-                android:id="@+id/text3"
-                android:layout_width="@dimen/wd"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|left"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginRight="@dimen/bot_jp"
-                android:text="出生年份" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="@dimen/fab_margin"
-                android:layout_gravity="center_vertical"
-                android:background="@color/black" />
-
-            <EditText
-                android:id="@+id/ed3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/text_tie"
-                android:layout_alignBottom="@+id/text_tie"
-                android:layout_gravity="center|right"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginStart="15dp"
-                android:hint="请输入您的出生年份"
-                android:textSize="14sp"
-                android:layout_toEndOf="@+id/text_tie"
-                android:layout_toRightOf="@+id/text_tie"
-                />
-
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:id="@+id/lin4"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottombar_height"
-            android:background="@drawable/textbg"
-            android:orientation="horizontal"
-            android:layout_below="@+id/lin3"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-            <TextView
-                android:textSize="14sp"
-                android:id="@+id/text4"
-                android:layout_width="@dimen/wd"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|left"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginRight="@dimen/bot_jp"
-                android:text="最高学历" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="@dimen/fab_margin"
-                android:layout_gravity="center_vertical"
-                android:background="@color/black" />
-
-            <EditText
-                android:id="@+id/ed4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/text_tie"
-                android:layout_alignBottom="@+id/text_tie"
-                android:layout_gravity="center|right"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginStart="15dp"
-                android:layout_toEndOf="@+id/text_tie"
-                android:layout_toRightOf="@+id/text_tie"
-                android:hint="请输入您的最高学历"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lin5"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottombar_height"
-            android:background="@drawable/textbg"
-            android:orientation="horizontal"
-            android:layout_below="@+id/lin4"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-            <TextView
-                android:textSize="14sp"
-                android:id="@+id/text5"
-                android:layout_width="@dimen/wd"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|left"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginRight="@dimen/bot_jp"
-                android:text="工作经验" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="@dimen/fab_margin"
-                android:layout_gravity="center_vertical"
-                android:background="@color/black" />
-
-            <EditText
-                android:id="@+id/ed5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/text_tie"
-                android:layout_alignBottom="@+id/text_tie"
-                android:layout_gravity="center|right"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginStart="15dp"
-                android:layout_toEndOf="@+id/text_tie"
-                android:layout_toRightOf="@+id/text_tie"
-                android:hint="请输入您的工作经验"
-                android:textSize="14sp" />
         </LinearLayout>
 
 
@@ -370,51 +181,6 @@
         </LinearLayout>
 
 
-
-
-        <LinearLayout
-            android:id="@+id/lin8"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottombar_height"
-            android:background="@drawable/textbg"
-            android:orientation="horizontal"
-            android:layout_below="@+id/lin7"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-            <TextView
-                android:textSize="14sp"
-                android:id="@+id/text8"
-                android:layout_width="@dimen/wd"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|left"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginRight="@dimen/bot_jp"
-                android:text="期望职位" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="@dimen/fab_margin"
-                android:layout_gravity="center_vertical"
-                android:background="@color/black" />
-
-            <EditText
-                android:id="@+id/ed8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/text_tie"
-                android:layout_alignBottom="@+id/text_tie"
-                android:layout_gravity="center|right"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginStart="15dp"
-                android:layout_toEndOf="@+id/text_tie"
-                android:layout_toRightOf="@+id/text_tie"
-                android:hint="IT经理"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-
         <LinearLayout
             android:id="@+id/lin9"
             android:layout_width="match_parent"
@@ -460,68 +226,40 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/lin9"
             android:layout_marginTop="1dp"
-            android:background="@drawable/textbg"
             android:gravity="start"
+            android:background="@drawable/textbg"
             android:hint="自我评价一下吧"
-            android:inputType="text"
-            android:lines="5"
-            android:paddingBottom="@dimen/bot_jp"
+            android:minLines="5"
             android:paddingTop="@dimen/bot_jp"
             android:textColorHint="@color/hint_color"
-            android:textSize="14sp"
-            android:visibility="visible" />
+            android:textSize="14sp" />
 
-
-
-        <TextView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/bottombar_height"
-            android:layout_alignLeft="@+id/textView"
-            android:layout_alignStart="@+id/textView"
-            android:layout_below="@+id/textView"
-            android:layout_marginTop="3dp"
-            android:drawableLeft="@drawable/upload"
-            android:gravity="center"
-            android:text="拍照上传图片"
-            android:visibility="gone" />
 
         <com.rckd.view.GridViewNoScroll
             android:id="@+id/list_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignEnd="@+id/button"
-            android:layout_alignLeft="@+id/button"
-            android:layout_alignRight="@+id/button"
-            android:layout_alignStart="@+id/button"
-            android:layout_below="@+id/textView"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:gravity="center"
+            android:numColumns="3"
+            android:padding="1dp"
             android:horizontalSpacing="3dp"
             android:listSelector="#00000000"
             android:stretchMode="columnWidth"
             android:verticalSpacing="3dp"
-            android:numColumns="3" />
+            />
 
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
-            android:layout_alignEnd="@+id/textView"
-            android:layout_alignLeft="@+id/imageView2"
-            android:layout_alignRight="@+id/textView"
-            android:layout_alignStart="@+id/imageView2"
-            android:layout_below="@+id/list_view"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="1dp"
             android:background="@color/green"
             android:textColor="@color/black"
             android:text="发表"
-            android:textSize="14sp"
-            android:visibility="visible" />
-    </RelativeLayout>
+            android:textSize="14sp" />
+    </LinearLayout>
 
 </ScrollView>

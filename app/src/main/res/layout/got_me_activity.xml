@@ -2,13 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".activity.SeeAdActivity"
     android:layout_width="match_parent"
+    tools:context=".activity.GotMeActivity"
     android:layout_height="match_parent">
     <include layout="@layout/base_title"/>
+    <include layout="@layout/no_data" android:visibility="gone"/>
+    <include layout="@layout/pull_to_frefresh_listview"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.rckd.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -194,39 +195,46 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                     case 3:
                         makeText("你点击了 pos = 3  ");
                         startActivity(BarOldHomeActivity.class);
+                        popup.dismiss();
                         break;
-
 //顺风拼车
                     case 4:
                         makeText("你点击了 pos = 4  ");
                         startActivity(BarCarActivity.class);
+                        popup.dismiss();
                         break;
                     //交友征婚
                     case 5:
                         makeText("你点击了 pos = 5  ");
                         startActivity(BarFriendActivity.class);
+                        popup.dismiss();
+
                         break;
 //临时短工
                     case 6:
                         makeText("你点击了 pos = 6  ");
                         startActivity(BarTempJobActivity.class);
+                        popup.dismiss();
                         break;
                     //匠工约定
                     case 7:
                         makeText("你点击了 pos = 7  ");
                         startActivity(BarArtCratfsActivity.class);
+                        popup.dismiss();
                         break;
 //打听求助
 
                     case 8:
                         makeText("你点击了 pos = 8  ");
                         startActivity(BarHelpActivity.class);
+                        popup.dismiss();
                         break;
 //广而告之
                     case 9:
                         makeText("你点击了 pos = 9  ");
 //                        if (AppConfig.isLogin){
-                            startActivity(BarAdActivity.class  );
+                        startActivity(BarAdActivity.class  );
+                        popup.dismiss();
 //                        }
 //                        else{
 //                            startActivityForResult(LoginActivity.class,null,REQUEST_CODE_BAR_AD);
@@ -555,7 +563,13 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                 break;
             case RESULT_CODE_CITY:
                 //定义规范
-                cityBtn.setText(data.getStringExtra("city"));
+                String city= data.getStringExtra("city").toString().trim();
+                if (city.isEmpty()|| city==null){
+                    return;
+                }
+                city+="|切换";
+                cityBtn.setText(city);
+                mLocationClient.stop();
                 break;
             default:
                 Timber.e(tag + "   resultCode   = ????" , tag);
@@ -651,7 +665,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    cityBtn.setText(district + " | 切换");
+                    cityBtn.setText(district + "|切换");
                     Timber.e(tag + " " + district, tag);
                 }
             });
@@ -660,7 +674,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
           runOnUiThread(new Runnable() {
               @Override
               public void run() {
-                  cityBtn.setText(city + " | 切换");//默认地址
+                  cityBtn.setText(city + "|切换");//默认地址
                   Timber.e(tag + " " + city, tag);
               }
           });
@@ -668,7 +682,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    cityBtn.setText("未知 | 切换");//默认地址
+                    cityBtn.setText("未知|切换");//默认地址
                     Timber.e(tag + " 默认城市 ", tag);
                 }
             });
@@ -711,6 +725,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
     //可以腹泻返回键,根据自己的业务逻辑去处理
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
+
         return super.onKeyUp(keyCode, event);
     }
 
@@ -793,4 +808,9 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
         }
     };
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mLocationClient.stop();
+    }
 }

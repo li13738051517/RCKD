@@ -205,6 +205,9 @@ public class BarHouseSaleActivity extends BaseActivity implements  View.OnClickL
                     return;
                 }
                 makeText("发帖成功!!!");
+                //-------------------
+                startActivity(SeeSeleHouseAdActivity.class);
+                finish();
 
                 break;
         }

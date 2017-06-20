@@ -31,8 +31,6 @@ import cn.addapp.pickers.listeners.OnItemPickListener;
 import cn.addapp.pickers.picker.SinglePicker;
 import timber.log.Timber;
 
-import static com.rckd.R.id.list_view;
-
 /**
  * Created by LiZheng on 2017/5/8 0008.
  */
@@ -131,6 +129,13 @@ public class BarOldHomeActivity extends BaseActivity implements View.OnClickList
                 }
                 //post 请求
                 makeText("发帖成功");
+                //------------------------------------
+                startActivity(SeeOldHomeAdActivity.class);
+                finish();
+
+
+
+
 //                finish();
                 break;
             case R.id.imageView3:

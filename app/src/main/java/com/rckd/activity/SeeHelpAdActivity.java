@@ -1,6 +1,5 @@
 package com.rckd.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,18 +18,14 @@ import com.rckd.bean.MultipleItem;
 
 import java.util.List;
 
-import javax.annotation.Untainted;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.baidu.location.h.j.r;
 
 /**
  * Created by LiZheng on 2017/6/13 0013.
  */
 //查看广而告之帖子
-public class SeeAdActivity extends BaseActivity implements View.OnClickListener {
+public class SeeHelpAdActivity extends BaseActivity implements View.OnClickListener {
     @Nullable@BindView(R.id.left_btn) Button leftBtn;
     @BindView(R.id.title_text) TextView title;
     @BindView(R.id.right_btn) Button rightBtn;
@@ -45,11 +40,11 @@ public class SeeAdActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.see_ad);
+        setContentView(R.layout.see_help_ad);
         ButterKnife.bind(this);
         leftBtn.setOnClickListener(this);
         title.setVisibility(View.VISIBLE);
-        title.setText("广而告之");
+        title.setText("打听求助");
         //先定位
 
 

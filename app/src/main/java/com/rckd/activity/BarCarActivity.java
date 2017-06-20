@@ -193,6 +193,14 @@ public class BarCarActivity extends BaseActivity implements View.OnClickListener
                     return;
                 }
                 makeText("恭喜 ,发帖成功!!!");
+                //--------------------------------------
+                //--------------------网络请求成功后
+                startActivity(SeeCarAdActivity.class);
+                finish();
+
+
+
+
                 break;
 
         }

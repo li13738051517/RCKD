@@ -2,6 +2,7 @@ package com.rckd.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatEditText;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,7 @@ import static com.baidu.location.h.j.n;
 import static com.baidu.location.h.j.t;
 import static com.baidu.location.h.j.v;
 import static com.rckd.R.id.ed1;
+import static com.rckd.R.id.ed6;
 import static com.rckd.R.id.left_btn;
 import static com.rckd.R.id.lin;
 import static com.rckd.R.id.right_btn;
@@ -68,20 +70,6 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
     protected int fragmentLayoutId() {
         return 0;
     }
-//
-//    String test = null;
-//    String testArear = null;
-//
-//    private GridAdapter gridAdapter;
-//    private boolean isShowDelete;
-//    private List<BaseIcon> datas = new ArrayList<BaseIcon>();
-//    View view;
-//    ImageView imageView3;//拍照发帖
-//    TextView text_tie; // 类别名称
-//    TextView text_ad;//
-//    TextView text_tie2;
-//    EditText text_ad2;
-//    Uri imageUri;//获取image的uri
 
     //------------------take photo
     //---------------
@@ -99,8 +87,8 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
     ArrayList<String> urls=new ArrayList<>();
 
     //---------------
-    @BindView(R.id.text1) TextView tv1;
-    @BindView(R.id.text2) TextView tv2;
+    @Nullable@BindView(R.id.text1) TextView tv1;
+    @Nullable@BindView(R.id.text2) TextView tv2;
     @Nullable@BindView(R.id.frame) FrameLayout frameLayout;
     View view;
     @Override
@@ -132,65 +120,13 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
         takePhoto=getTakePhoto();
         screenWidth= ScreenUtils.getScreenWidth(this);
         screenHeight=ScreenUtils.getScreenHeight(this);
-        //-----------
-//        gridView = (GridView) findViewById(R.id.list_view);
-//        initDatas(); //实际上是由  上传图片后将图片加载到GridView中 ,在此之前  需要判断时候获取读取sd卡 ,或者  网络等相关权限
-//        gridAdapter = new GridAdapter(this, datas);
-//        gridView.setAdapter(gridAdapter);
-//        gridView.setVisibility(View.GONE);//初始化时,让其不可见,只有当添加图片上传成功后,可见
-//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                //判断点击的是否是最后一个   ,如果是最后一个的话  ,需要 添加数据
-//                if (position == parent.getChildCount() - 1) {
-//                    addDatas();
-//                }
-//            }
-//        });
-//        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                if (position < datas.size()) {
-//                    if (isShowDelete) {//删除图片显示时长按隐藏
-//                        isShowDelete = false;
-//                        gridAdapter.setIsShowDelete(isShowDelete);
-//                    } else {//删除图片隐藏式长按显示
-//                        isShowDelete = true;
-//                        gridAdapter.setIsShowDelete(isShowDelete);
-//                    }
-//                }
-//                return false;
-//            }
-//        });
-
-        //绑定一个匿名监听器
 
     }
 
 
 
 
-//    private void addDatas() {
-//        BaseIcon animalAdd = new BaseIcon( R.drawable.ad ,"大国宝");
-//        datas.add(animalAdd);
-//        gridAdapter.notifyDataSetChanged();
-//    }
-//
-//    private void initDatas() {
-//        BaseIcon animal0 = new BaseIcon(R.drawable.ad ,"兔八哥") ;
-//        BaseIcon animal1 = new BaseIcon(R.drawable.ad ,"眼镜蛇" );
-//        BaseIcon animal2 = new BaseIcon( R.drawable.ad,"小金鱼");
-//        BaseIcon animal3 = new BaseIcon( R.drawable.ad, "千里马");
-//        BaseIcon animal4 = new BaseIcon(R.drawable.ad, "米老鼠" );
-//        BaseIcon animal5 = new BaseIcon( R.drawable.ad ,"大国宝");
-//        datas.add(animal0);
-//        datas.add(animal1);
-//        datas.add(animal2);
-//        datas.add(animal3);
-//        datas.add(animal4);
-//        datas.add(animal5);
-//    }
+
 
 
     //----------------
@@ -203,7 +139,7 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
     GridView list_view;
     @Nullable@BindView(R.id.imageView3) Button photo;
 
-    @Nullable@BindView(ed1) EditText editTextName;
+    @Nullable@BindView(R.id.ed1) EditText editTextName;
     String name="";
 //    @Nullable@BindView(R.id.radioGroup)     RadioGroup group; //性别
 //    String sex="";
@@ -231,7 +167,7 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
     @Nullable@BindView(R.id.lin9) LinearLayout lin9;
 
 
-    @Nullable@BindView(R.id.textView) EditText textView;
+    @Nullable@BindView(R.id.textView) AppCompatEditText textView;
     String con="";
 
     @Nullable@BindView(R.id.button) Button button;
@@ -241,7 +177,7 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
     String[]  strOpt=  new String[]{"面议", "1000元以下" ,"1000-2000元" ,"2000-3000元" ,"3000-5000元","5000-8000元" ,"8000-12000元"  ,"12000-20000元" ,"200000元以上"};
 
 //------------------------------------
-    TextView    text_ad4;
+    TextView text_ad4;
     TextView text_a5;
     TextView text_d5;
 
@@ -298,7 +234,6 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
             case R.id.text2:
                 view=  LayoutInflater.from(this).inflate(R.layout.lookpartjob,null);
                 setContentView(view);
-
                 //------------------------
                final EditText ed1=(EditText)view.findViewById(R.id.text_ad) ;
                 final  EditText ed3=(EditText) view.findViewById(R.id.text_ad3);
@@ -356,10 +291,6 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                     }
                 });
 
-
-
-
-
                 Button button=(Button)view.findViewById(R.id.button);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -382,6 +313,7 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                         }
 
                         makeText("发帖成功!!!");
+                        //----------------------------------
                     }
                 });
 
@@ -458,16 +390,22 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                     makeText("温馨提示:期望职位不能没有哦");
                     return;
                 }
-
-//                if (test.isEmpty() || test == null) {
-//                    makeText("温馨提示:帖子不能没有标题哦!");
-//                    return;
-//                }
-//                if (testArear.isEmpty() || testArear == null) {
-//                    makeText("温馨提示:帖子不能没有内容哦!");
-//                    return;
-//                }
+                String  worktype= ed6.getText().toString().trim();
+                if (worktype==null || worktype.isEmpty()){
+                    makeText("工作职位类别不能为空");
+                    return;
+                }
+                String salary=ed7.getText().toString().trim();
+                if (salary ==null || salary.isEmpty()){
+                    makeText("工作薪水不能没有哦");
+                    return;
+                }
                 //请求
+
+                //-------------------------------
+
+
+
                 break;
 
         }

@@ -192,6 +192,11 @@ public class BarTempJobActivity extends BaseActivity implements View.OnClickList
                 }
 //请求发送 .post
                 makeText("发帖成功");
+                //----------------
+//-------------------图片非必须选项
+                startActivity(SeeTempWorkAdActivity.class);
+                finish();
+
                 break;
         }
     }

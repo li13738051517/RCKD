@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rckd.R;
+import com.rckd.activity.GotMeActivity;
 
 /**
  * Created by LiZheng on 16/6/5.
@@ -21,6 +23,7 @@ public class OtherPagerFragment extends com.rckd.base.BaseFragment {
 
     private TextView mTvTitle;
 
+    LinearLayout linearLayout;
     public static OtherPagerFragment newInstance(int type) {
 
         Bundle args = new Bundle();
@@ -46,6 +49,13 @@ public class OtherPagerFragment extends com.rckd.base.BaseFragment {
     }
 
     private void initView(View view) {
+        linearLayout=(LinearLayout)view.findViewById(R.id.lin);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(GotMeActivity.class);
+            }
+        });
         mTvTitle = (TextView) view.findViewById(R.id.tv_title);
 
         if (mType == TYPE_HOT) {

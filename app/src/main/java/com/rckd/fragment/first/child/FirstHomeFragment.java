@@ -6,18 +6,19 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Fade;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.flyco.tablayout.SegmentTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -25,6 +26,13 @@ import com.rckd.R;
 import com.rckd.activity.MainActivity;
 import com.rckd.activity.NewJobActivity;
 import com.rckd.activity.SeeAdActivity;
+import com.rckd.activity.SeeArtCratfsAdActivity;
+import com.rckd.activity.SeeCarAdActivity;
+import com.rckd.activity.SeeHelpAdActivity;
+import com.rckd.activity.SeeMakeFriendsAdActivity;
+import com.rckd.activity.SeeOldHomeAdActivity;
+import com.rckd.activity.SeeSeleHouseAdActivity;
+import com.rckd.activity.SeeTempWorkAdActivity;
 import com.rckd.adpter.BaseAdapterQd;
 import com.rckd.adpter.FirstHomeAdapter;
 import com.rckd.bean.Article;
@@ -33,9 +41,8 @@ import com.rckd.event.TabSelectedEvent;
 import com.rckd.helper.DetailTransition;
 import com.rckd.inter.OnItemClickListener;
 import com.rckd.loader.GlidImageLoader;
+import com.rckd.view.MyScrollView;
 import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -45,22 +52,18 @@ import java.util.List;
 
 import timber.log.Timber;
 
-import static android.R.id.list;
-import static com.baidu.location.h.j.G;
-import static com.baidu.location.h.j.n;
-import static com.rckd.R.id.grid_photo;
-import static com.rckd.R.id.gv;
-
 /**
  * Created by LiZheng on 16/6/5.
  */
 public class FirstHomeFragment extends com.rckd.base.BaseFragment implements SwipeRefreshLayout.OnRefreshListener  /* , com.yanzhenjie.permission.PermissionListener  */{
     String[] titles = {"名企招聘", "便民动态", "新闻动态"};
-
+    MyScrollView myScrollView;
+    private int kkk;
+    private int kkkk;//index
     ArrayList<Fragment> mFragments = new ArrayList<>();//集合用来管理单独的页面
-    ViewPager viewPager;
-//    private View mDecorView;
-
+    public static ViewPager viewPager;
+    private View mDecorView;
+    TextView tvshow;
     SegmentTabLayout tab_layout;
 
     private static String tag= FirstHomeFragment.class.getName();//tag标记
@@ -137,17 +140,18 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
         View view = inflater.inflate(R.layout.zhihu_fragment_first_home_index, container, false);
         EventBus.getDefault().register(this);
         initView(view);
-
         return view;
     }
 
 
     private void initView(View view) {
+        viewPager= (ViewPager) view.findViewById(R.id.viewPager);
 //        initImgData();
         //Fragment的假数据初始化
         for (String title : titles) {
             mFragments.add(TabCardFragment.getInstance("Switch ViewPager " + title));
         }
+        tvshow = (TextView) view.findViewById(R.id.tv_show);
 
         banner = (Banner) view.findViewById(R.id.banner);
         //本地图片数据（资源文件）
@@ -237,19 +241,34 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
+                    //便民贴
                     case 0:
+                        //查看匠工约定便民贴
+                        startActivity(SeeArtCratfsAdActivity.class);
                         break;
                     case 1:
+                        startActivity(SeeCarAdActivity.class);
                         break;
                     case 2:
+                        //查看临时短工便民贴
+                        startActivity(SeeTempWorkAdActivity.class);
                         break;
                     case 3:
+                        //查看交友征婚便民贴
+                        startActivity(SeeMakeFriendsAdActivity.class);
+
                         break;
                     case 4:
+                        //查看打听求助中的内容
+                        startActivity(SeeHelpAdActivity.class);
                         break;
                     case 5:
+                        //二手之家
+                        startActivity(SeeOldHomeAdActivity.class);
+
                         break;
                     case 6:
+                        startActivity(SeeSeleHouseAdActivity.class);
                         break;
                     case 7:
                         //查看广而告之中的内容
@@ -356,9 +375,10 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
 
 //        tab_layout
 
+        myScrollView=(MyScrollView) view.findViewById(R.id.scrollView);
 
         tab_layout=(SegmentTabLayout)view.findViewById(R.id.tab_layout);
-        viewPager= (ViewPager) view.findViewById(R.id.viewPager);
+
 //        tab_layout.setTabData();   //设置标题叔叔
         viewPager.setAdapter(new   MyPagerAdapter(getFragmentManager()));
 
@@ -394,8 +414,42 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
         viewPager.setCurrentItem(1);
 
 
+        myScrollView.setOnScrollListener(new MyScrollView.OnScrollListener() {
+            @Override
+            public void onScrollchanged(int scrollY) {
+                Log.e("haha ", scrollY + "  " + viewPager.getTop());
+                int translation = Math.max(scrollY, viewPager.getTop() - kkkk);
+               tab_layout.setTranslationY(translation);
+
+//                if (scrollY > kkk) {
+////                    ingo2top.setVisibility(View.VISIBLE);
+//                } else {
+////                    ingo2top.setVisibility(View.GONE);
+//                }
+            }
+
+            @Override
+            public void onTouchUp() {
+            }
+
+            @Override
+            public void onTouchDown() {
+            }
+        });
 
 
+        //获取控件大小
+        tvshow.post(new Runnable() {
+            @Override
+            public void run() {
+                kkk = tab_layout.getHeight();
+                kkkk = tab_layout.getHeight();
+            }
+        });
+
+
+        //其他控件相关操作,如在最下方处增加点击回到最顶层操作
+//       myScrollView.smoothScrollTo(0, 0);
     }
 
     @Override

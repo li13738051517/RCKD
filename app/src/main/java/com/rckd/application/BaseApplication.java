@@ -12,6 +12,7 @@ import android.support.multidex.MultiDex;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import com.blankj.utilcode.util.Utils;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.lody.turbodex.TurboDex;
 import com.rckd.BuildConfig;
@@ -103,6 +104,8 @@ public class BaseApplication extends android.app.Application {
         /***
          * 初始化定位sdk，建议在Application中创建如百度地图,腾讯地图,高德地图, 国内google 服务并不稳定
          */
+        // init it in the function of onCreate in ur Application
+        Utils.init(context);
 
     }
 
