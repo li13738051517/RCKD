@@ -140,7 +140,9 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
     @Nullable@BindView(R.id.imageView3) Button photo;
 
     @Nullable@BindView(R.id.ed1) EditText editTextName;
-    String name="";
+    //-----------------------全职求职贴的信息
+
+
 //    @Nullable@BindView(R.id.radioGroup)     RadioGroup group; //性别
 //    String sex="";
 //    @Nullable@BindView(R.id.ed3) EditText ed3;
@@ -185,6 +187,7 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            //全职求职贴
             case R.id.text1:
                 frameLayout.setVisibility(View.VISIBLE);
 //                setContentView(R.layout.lookfullforjob);
@@ -231,11 +234,12 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
 //                    }
 //                });
                 break;
+            //兼职求职贴
             case R.id.text2:
                 view=  LayoutInflater.from(this).inflate(R.layout.lookpartjob,null);
                 setContentView(view);
                 //------------------------
-               final EditText ed1=(EditText)view.findViewById(R.id.text_ad) ;
+                final EditText ed1=(EditText)view.findViewById(R.id.text_ad) ;
                 final  EditText ed3=(EditText) view.findViewById(R.id.text_ad3);
                 //------------------------------
                 TextView text_ad=(TextView) view.findViewById(R.id.text_ad2);
@@ -246,8 +250,6 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                 initTListener(lin2);
                 //------------------------------
                 final EditText   textView=(EditText) view.findViewById(R.id.textView);
-
-
                 //--------------//地址选择器
                 text_ad4 =(TextView) view.findViewById(R.id.text_ad4);
                 initTListener(text_ad4);
@@ -313,7 +315,8 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                         }
 
                         makeText("发帖成功!!!");
-                        //----------------------------------
+                        //--------------------------------------------------------
+                        //-----------------------------发帖成功后  ,跳转到我的帖子,兼职求职贴
                     }
                 });
 
@@ -385,7 +388,7 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                 //这句话很重要,这就好比你创建了对象,但是却没有明显的使用它一样
                 break;
             case R.id.button:
-                name=  editTextName.getText().toString().trim();
+                String  name=  editTextName.getText().toString().trim();
                 if (name.isEmpty() || name==null){
                     makeText("温馨提示:期望职位不能没有哦");
                     return;
@@ -400,12 +403,22 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                     makeText("工作薪水不能没有哦");
                     return;
                 }
+                String area=  ed9.getText().toString().trim();
+                if (area.isEmpty()|| area==null){
+                    makeText("工作地点不能没有哦");
+                    return;
+                }
                 //请求
-
-                //-------------------------------
-
-
-
+                //----------------------------------------------
+                //-------------------------------------信息保存起来跳转到到下一个界面 ???
+                Bundle bundle=new Bundle();
+                bundle.putInt("type",0);//自定义传到完善资料处,别名0;
+                //保证有值
+                bundle.putString("positionApplied",name);
+                bundle.putString("workType",worktype);
+                bundle.putString("salary",salary);
+                bundle.putString("area",area);
+                startActivity(PrefectPersonData.class,bundle);
                 break;
 
         }

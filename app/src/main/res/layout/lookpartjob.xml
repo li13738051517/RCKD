@@ -59,6 +59,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:textSize="14sp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="期望职位" />
 
             <View
@@ -104,6 +105,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:textSize="14sp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="职位类别" />
 
             <View
@@ -152,6 +154,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:textSize="14sp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="期望薪资" />
 
             <View
@@ -216,6 +219,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:textSize="14sp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="工作地点" />
 
             <View
@@ -314,7 +318,7 @@
             android:layout_marginTop="1dp"
             android:background="@drawable/textbg"
             android:gravity="start"
-            android:hint="自我介绍一下吧,护着随便说说都可以哦"
+            android:hint="自我介绍一下吧,不能没有内容哦!!!"
             android:textSize="14sp"
             android:lines="5"
             android:paddingBottom="@dimen/bot_jp"
@@ -367,6 +371,12 @@
             />
 
 
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
@@ -379,7 +389,6 @@
             android:layout_marginTop="5dp"
             android:background="@color/green"
             android:text="发布" />
-
 
     </LinearLayout>
 

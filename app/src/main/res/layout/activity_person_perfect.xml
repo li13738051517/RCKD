@@ -71,6 +71,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:textSize="14sp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="姓名" />
 
             <View
@@ -117,6 +118,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:text="性别"
+                android:drawableLeft="@drawable/tv_ch"
                 android:textSize="14sp" />
 
             <View
@@ -162,7 +164,8 @@
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
-                android:text="出生年月"
+                android:text="出生年份"
+                android:drawableLeft="@drawable/tv_ch"
                 android:textSize="14sp" />
 
             <View
@@ -255,6 +258,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:text="工作年限"
+                android:drawableLeft="@drawable/tv_ch"
                 android:textSize="14sp" />
 
             <View

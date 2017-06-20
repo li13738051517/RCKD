@@ -24,7 +24,6 @@ import static com.rckd.application.AppConfig.phone;
 /**
  * Created by LiZheng on 2017/6/14 0014.
  */
-
 public class LoginAccountActivity extends BaseActivity implements View.OnClickListener {
     static String tag=LoginAccountActivity.class.getName();
     //当布局中对应Fragment是,可让其绑定相应的fragent ,通过此方法

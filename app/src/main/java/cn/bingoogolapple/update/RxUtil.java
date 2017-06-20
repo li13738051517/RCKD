@@ -7,7 +7,7 @@ import rx.subjects.SerializedSubject;
 import rx.subjects.Subject;
 
 
-class RxUtil {
+public class RxUtil {
     private Subject<Object, Object> mBus;
     private static RxUtil sInstance;
 

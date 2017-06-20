@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/in"
             android:background="@color/city_gray"
+
             android:orientation="vertical">
 
             <Button
@@ -68,7 +69,8 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:textSize="14sp"
-                android:drawableLeft="@drawable/ic_arrow_drop_down_black_24dp"
+                android:drawableLeft="@drawable/tv_ch"
+
                 android:text="期望职位" />
 
             <View
@@ -114,6 +116,7 @@
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="职位类别" />
 
             <View
@@ -157,6 +160,7 @@
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="期望薪资" />
 
             <View
@@ -199,6 +203,7 @@
                 android:layout_gravity="center|left"
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="求职区域" />
 
             <View
@@ -230,7 +235,7 @@
             android:gravity="start"
             android:background="@drawable/textbg"
             android:hint="自我评价一下吧"
-            android:minLines="5"
+            android:lines="5"
             android:paddingTop="@dimen/bot_jp"
             android:textColorHint="@color/hint_color"
             android:textSize="14sp" />
@@ -258,7 +263,7 @@
             android:layout_marginTop="1dp"
             android:background="@color/green"
             android:textColor="@color/black"
-            android:text="发表"
+            android:text="下一步"
             android:textSize="14sp" />
     </LinearLayout>
 

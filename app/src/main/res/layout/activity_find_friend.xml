@@ -69,6 +69,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:textSize="14sp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="类型" />
 
             <View
@@ -114,6 +115,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:text="帖子标题"
+                android:drawableLeft="@drawable/tv_ch"
                 android:textSize="14sp" />
 
             <View

@@ -70,6 +70,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:textSize="14sp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="类别名称" />
 
             <View
@@ -115,6 +116,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:textSize="14sp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="帖子标题" />
 
             <View
@@ -149,7 +151,7 @@
             android:layout_marginTop="1dp"
             android:background="@drawable/textbg"
             android:gravity="start"
-            android:hint="在此畅所欲言吧"
+            android:hint="在此畅所欲言吧,帖子不能没有内容哦!!!"
             android:textSize="14sp"
             android:lines="5"
             android:paddingBottom="@dimen/bot_jp"

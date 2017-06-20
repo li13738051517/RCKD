@@ -59,7 +59,6 @@ import static com.baidu.location.h.j.I;
  * Created by LiZheng on 2017/5/4 0004.
  * http://lbsyun.baidu.com/index.php?title=android-locsdk/guide/getloc ,开发文档
  */
-
 public class CityListActivity extends com.rckd.base.BaseActivity implements View.OnClickListener, OnScrollListener, com.yanzhenjie.permission.PermissionListener {
     protected String[] strPression = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,

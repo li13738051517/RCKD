@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 /**
  * Created by LiZheng on 2017/6/19 0019.
  */
-//
+//我收到的简历
 public class GotMeActivity extends BaseActivity  implements View.OnClickListener{
      MVCHelper<List<Book>> mvcHelper;
     @BindView(R.id.left_btn) Button left;

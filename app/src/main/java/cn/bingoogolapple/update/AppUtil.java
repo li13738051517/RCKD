@@ -3,7 +3,7 @@ package cn.bingoogolapple.update;
 import android.app.Application;
 import android.util.Log;
 
-class AppUtil {
+public class AppUtil {
 
     static final Application sApp;
 

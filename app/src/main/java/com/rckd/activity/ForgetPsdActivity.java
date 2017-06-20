@@ -28,7 +28,6 @@ import static com.baidu.location.h.j.v;
 /**
  * Created by LiZheng on 2017/6/14 0014.
  */
-
 public class ForgetPsdActivity extends BaseActivity implements View.OnClickListener  ,ISMSListener{
     SMSReceiver mReceiver;
     static String tag=ForgetPsdActivity.class.getName();

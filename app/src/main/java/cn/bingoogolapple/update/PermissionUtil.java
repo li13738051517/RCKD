@@ -14,7 +14,7 @@ import java.util.List;
 import static cn.bingoogolapple.update.AppUtil.sApp;
 
 
-class PermissionUtil {
+public class PermissionUtil {
     private PermissionUtil() {
     }
 

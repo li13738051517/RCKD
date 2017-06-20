@@ -15,7 +15,6 @@ import timber.log.Timber;
 /**
  * Created by LiZheng on 2017/6/1 0001.
  */
-
 public class PoupCamera extends BasePopupWindow  {
     private String tag=PoupCamera.class.getName();
     private Context context;

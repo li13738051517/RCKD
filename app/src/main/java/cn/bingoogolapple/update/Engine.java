@@ -21,7 +21,7 @@ import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 
-class Engine {
+public class Engine {
     private static Engine sInstance;
 
     private DownloadApi mDownloadApi;

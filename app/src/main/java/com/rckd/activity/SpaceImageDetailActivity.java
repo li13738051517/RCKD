@@ -13,7 +13,7 @@ import com.rckd.view.SmoothImageView;
 
 import java.io.File;
 import java.util.ArrayList;
-
+//此处可以
 public class SpaceImageDetailActivity extends Activity {
 //	@Override
 //	protected int fragmentLayoutId() {

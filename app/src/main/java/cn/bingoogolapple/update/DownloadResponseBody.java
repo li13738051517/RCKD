@@ -15,7 +15,7 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 
-class DownloadResponseBody extends ResponseBody {
+public class DownloadResponseBody extends ResponseBody {
     private final ResponseBody mResponseBody;
     private BufferedSource mBufferedSource;
 

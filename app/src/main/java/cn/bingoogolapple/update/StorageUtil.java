@@ -10,7 +10,7 @@ import java.io.OutputStream;
 import static cn.bingoogolapple.update.AppUtil.sApp;
 
 
-class StorageUtil {
+public class StorageUtil {
     private static final String DIR_NAME_APK = "upgrade_apk";
 
     private StorageUtil() {

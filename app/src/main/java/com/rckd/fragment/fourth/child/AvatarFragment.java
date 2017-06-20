@@ -127,6 +127,8 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
                     public void onClick(View v) {
                         //
                         dialog.dismiss();
+                        //---------------------求职贴管理
+                        //此处弹出底部选择框
                     }
                 });
                 //已查看的公司

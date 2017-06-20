@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 /**
  * Created by LiZheng on 2017/6/19 0019.
  */
-//
+//谁看过我
 public class LookMeCompanyActivity extends BaseActivity  implements View.OnClickListener{
      MVCHelper<List<Book>> mvcHelper;
     @BindView(R.id.left_btn) Button left;
