@@ -2,6 +2,7 @@ package com.rckd.fragment.fourth.child;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -16,6 +17,9 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.rckd.R;
 import com.rckd.activity.PrefectPersonData;
+import com.rckd.activity.SeeMyPositionFullTimeActivity;
+import com.rckd.activity.SeeMyPositionPartTimeActivity;
+import com.rckd.view.SlideAppPostPopup;
 
 import org.bouncycastle.jce.provider.BrokenJCEBlockCipher;
 import org.greenrobot.eventbus.EventBus;
@@ -26,6 +30,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import timber.log.Timber;
 
 import static com.baidu.location.h.j.p;
+import static com.baidu.location.h.j.t;
+import static com.rckd.R.id.textView;
 
 /**
  * Created by LiZheng on 16/6/6.
@@ -33,6 +39,7 @@ import static com.baidu.location.h.j.p;
 public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.OnClickListener {
     private  static  final String tag=AvatarFragment.class.getName();
 
+    Intent intent;
     public static AvatarFragment newInstance() {
         Bundle args = new Bundle();
         AvatarFragment fragment = new AvatarFragment();
@@ -55,6 +62,8 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
     //-------------------------------------
     View view;//对话框布局仕途
     Dialog dialog; //对话框
+
+    SlideAppPostPopup appPostPopup;
 
     @Nullable
     @Override
@@ -115,8 +124,8 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
                     @Override
                     public void onClick(View v) {
                         //开启新的界面
-                        startActivity(PrefectPersonData.class);
                         dialog.dismiss();
+                        startActivity(PrefectPersonData.class);
                     }
                 });
 
@@ -127,7 +136,36 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
                     public void onClick(View v) {
                         //
                         dialog.dismiss();
+                        appPostPopup=new SlideAppPostPopup(baseActivity);
+
+                        TextView tvFullJob=(TextView)appPostPopup.getView().findViewById(R.id.tx_1);
+                        tvFullJob.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(SeeMyPositionFullTimeActivity.class);
+                                appPostPopup.dismiss();
+                            }
+                        });
+                        TextView tvPartJob=(TextView)appPostPopup.getView().findViewById(R.id.tx_2) ;
+                        tvPartJob.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(SeeMyPositionPartTimeActivity.class);
+                                appPostPopup.dismiss();
+                            }
+                        });
+//点击取消按钮时候的,优先级高
+                        TextView textView =(TextView) appPostPopup.getView().findViewById(R.id.dissmiss);
+                        textView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                appPostPopup.dismiss();
+                            }
+                        });
+                        appPostPopup.showPopupWindow();
+
                         //---------------------求职贴管理
+
                         //此处弹出底部选择框
                     }
                 });

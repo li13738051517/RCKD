@@ -148,6 +148,16 @@ public class BaseFragment extends Fragment implements  com.rckd.inter.ISupportFr
     }
 
     /**
+     *
+     * @param tClass clazz class for activity.
+     * @param bundle
+     * @param <T> {@link Activity}.
+     */
+    protected final <T extends Activity> void startActivity(Class<T> tClass , @Nullable Bundle bundle){
+        startActivity(new Intent(baseActivity,tClass),bundle);
+    }
+
+    /**
      * Start activity and finish my parent.
      *
      * @param clazz class for activity.

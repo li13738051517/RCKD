@@ -94,7 +94,7 @@ import timber.log.Timber;
  */
 public abstract class BaseActivity extends AppCompatActivity implements com.rckd.inter.ISupport, SensorEventListener ,
         com.jph.takephoto.app.TakePhoto.TakeResultListener,
-        com.jph.takephoto.permission.InvokeListener ,BDLocationListener {
+        com.jph.takephoto.permission.InvokeListener ,BDLocationListener ,View.OnClickListener {
     private Timer timer;
     private com.daimajia.numberprogressbar.NumberProgressBar bnp;
     protected FragmentationDelegate mFragmentationDelegate;
@@ -1312,10 +1312,11 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
     }
 
 
-//    @Override
-//    public void onClick(View v) {
-//
-//    }
+    @Override
+    public void onClick(View v) {
+        Timber.e(tag+" onclick " ,tag);
+
+    }
 
 
 

@@ -36,9 +36,7 @@ public class MyScrollView extends ScrollView {
 
     public interface OnScrollListener {
         public void onScrollchanged(int t);
-
         public void onTouchUp();
-
         public void onTouchDown();
     }
 

@@ -49,6 +49,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.OnClick;
 import timber.log.Timber;
 
 //import static com.baidu.location.h.j.M;

@@ -29,6 +29,7 @@
                 android:layout_marginRight="@dimen/bot_jp"
                 android:maxLines="1"
                 android:textSize="14sp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="职位名称" />
 
             <View
@@ -74,6 +75,7 @@
                 android:layout_marginRight="@dimen/bot_jp"
                 android:maxLines="1"
                 android:textSize="14sp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="职类类别" />
 
             <View
@@ -140,7 +142,7 @@
                 android:inputType="number"
                 android:layout_toEndOf="@+id/text_tie"
                 android:layout_toRightOf="@+id/text_tie"
-                android:hint="25人"
+                android:hint="10"
                 android:maxLines="1" />
 
         </LinearLayout>
@@ -166,6 +168,7 @@
                 android:layout_marginRight="@dimen/bot_jp"
                 android:maxLines="1"
                 android:textSize="14sp"
+                android:drawableLeft="@drawable/tv_ch"
                 android:text="薪资待遇"/>
 
             <View
@@ -209,7 +212,8 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:maxLines="1"
-                android:text="工作区域"
+                android:text="工作地区"
+                android:drawableLeft="@drawable/tv_ch"
                 android:textSize="14sp" />
 
             <View
@@ -241,6 +245,11 @@
             android:layout_height="1dp"/>
 
 
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/black"
+            android:layout_height="1dp"/>
+
         <LinearLayout
             android:id="@+id/lin4"
             android:layout_width="match_parent"
@@ -255,7 +264,7 @@
                 android:layout_marginLeft="@dimen/bot_jp"
                 android:layout_marginRight="@dimen/bot_jp"
                 android:maxLines="1"
-                android:text="详细地址"
+                android:text="福利待遇"
                 android:textSize="14sp" />
 
             <View
@@ -264,7 +273,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="@color/black" />
 
-            <EditText
+            <TextView
                 android:id="@+id/et4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -275,20 +284,20 @@
                 android:layout_marginStart="15dp"
                 android:layout_toEndOf="@+id/text_tie"
                 android:layout_toRightOf="@+id/text_tie"
-                android:hint="茗桂大厦13F"
+                android:text="五险、一金、包吃、包住、周末双休年底双薪、房补、话补"
                 android:maxLines="1"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:ellipsize="marquee"
                 android:textSize="14sp" />
 
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:background="@color/black"
-            android:layout_height="1dp"/>
 
         <LinearLayout
             android:id="@+id/lin12"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
+            android:visibility="gone"
             android:orientation="horizontal">
 
             <TextView
@@ -356,6 +365,53 @@
             android:layout_width="match_parent"
             android:background="@color/black"
             android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:id="@+id/lin7"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv7"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:maxLines="1"
+                android:text="学历要求"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/et7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/text_tie"
+                android:layout_alignBottom="@+id/text_tie"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/text_tie"
+                android:layout_toRightOf="@+id/text_tie"
+                android:maxLines="1"
+                android:text="不限"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
         <LinearLayout
             android:id="@+id/lin6"
             android:layout_width="match_parent"
@@ -393,50 +449,6 @@
                 android:hint="1-3年"
                 android:maxLines="1"
                 android:textSize="14sp" />
-
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:background="@color/black"
-            android:layout_height="1dp"/>
-
-        <LinearLayout
-            android:id="@+id/lin7"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottombar_height"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv7"
-                android:layout_width="@dimen/wd"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|left"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginRight="@dimen/bot_jp"
-                android:maxLines="1"
-                android:textSize="14sp"
-                android:text="学历要求" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="@dimen/fab_margin"
-                android:layout_gravity="center_vertical"
-                android:background="@color/black" />
-
-            <TextView
-                android:id="@+id/et7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/text_tie"
-                android:layout_alignBottom="@+id/text_tie"
-                android:layout_gravity="center|right"
-                android:layout_marginLeft="@dimen/bot_jp"
-                android:layout_marginStart="15dp"
-                android:textSize="14sp"
-                android:layout_toEndOf="@+id/text_tie"
-                android:layout_toRightOf="@+id/text_tie"
-                android:text="不限"
-                android:maxLines="1" />
 
         </LinearLayout>
         <View
@@ -525,7 +537,7 @@
                 android:layout_toRightOf="@+id/text_tie"
                 android:layout_weight="0.45"
                 android:hint="18"
-                android:maxLines="1"
+                android:maxLength="2"
                 android:textSize="14sp" />
 
             <View
@@ -548,7 +560,15 @@
                 android:layout_weight="0.45"
                 android:hint="55"
                 android:maxLines="1"
+                android:maxLength="2"
                 android:textSize="14sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="(不填为不限)"
+                android:textSize="14sp"
+                android:textColor="@color/changbtn_text_color"
+                android:layout_gravity="center|right"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 

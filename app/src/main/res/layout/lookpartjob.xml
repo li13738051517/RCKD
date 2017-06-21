@@ -376,6 +376,10 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
 
+        <include layout="@layout/person_add_info_in"></include>
+
+
+
 
         <Button
             android:id="@+id/button"

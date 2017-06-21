@@ -317,6 +317,9 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                         makeText("发帖成功!!!");
                         //--------------------------------------------------------
                         //-----------------------------发帖成功后  ,跳转到我的帖子,兼职求职贴
+                        startActivity(SeeMyPositionPartTimeActivity.class);
+                        finish();
+
                     }
                 });
 
@@ -419,6 +422,7 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                 bundle.putString("salary",salary);
                 bundle.putString("area",area);
                 startActivity(PrefectPersonData.class,bundle);
+                finish();
                 break;
 
         }

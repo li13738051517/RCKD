@@ -12,6 +12,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="0dp"
         android:background="@drawable/left_arrow"
+
         android:visibility="visible" />
 
 

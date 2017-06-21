@@ -42,7 +42,7 @@
 
             <TextView
                 android:textSize="@dimen/sp_16"
-                android:id="@+id/diss"
+                android:id="@+id/dissmiss"
                 android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/bottombar_height"

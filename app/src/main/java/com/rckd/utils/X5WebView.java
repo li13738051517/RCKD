@@ -187,7 +187,7 @@ public class X5WebView extends WebView {
             // arg3.confirm();
             // return true;
             Log.e("yuanhaizhou", "setX5webview = null");
-            return super.onJsAlert(null, "www.baidu.com", "aa", arg3);
+            return super.onJsAlert(null, "www.baidu.com", "ImproveHrDataActivity", arg3);
         }
 
         /**

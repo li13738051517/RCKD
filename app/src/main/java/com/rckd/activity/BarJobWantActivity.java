@@ -42,6 +42,7 @@ import static com.baidu.location.h.j.t;
 /*
 //发招聘贴
  */
+//发招聘贴
 public class BarJobWantActivity extends BaseActivity implements View.OnClickListener {
 
     private  static String tag=BarJobWantActivity.class.getName();
@@ -352,7 +353,7 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
             et2=(TextView)rootView.findViewById(R.id.et2);
             et2.setOnClickListener(this);
 
-            et4=(EditText) rootView.findViewById(R.id.et4);
+            et4=(TextView) rootView.findViewById(R.id.et4);
             et12=(TextView) rootView.findViewById(R.id.et12);
             et12.setOnClickListener(this);
             textView=(EditText) rootView.findViewById(R.id.textView);
@@ -360,10 +361,6 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
             et6.setOnClickListener(this);
             et7=(TextView) rootView.findViewById(R.id.et7);
             et7.setOnClickListener(this);
-
-
-
-
 
 
         }
@@ -393,11 +390,11 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
                         makeText("招聘人数不能少于1个人哦");
                         return;
                     }
-                    area=et4.getText().toString().trim();
-                    if (area.isEmpty() || area ==null){
-                        makeText("工作区域不能为空");
-                        return;
-                    }
+                    area=et4.getText().toString().trim();//福利待遇
+//                    if (area.isEmpty() || area ==null){
+//                        makeText("工作区域不能为空");
+//                        return;
+//                    }
                     con=textView.getText().toString().trim();
                     if (con==null || con.isEmpty() ){
                         makeText("进行职位描述会吸引更多人才哦!!!");
@@ -405,6 +402,9 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
                     }
                     makeText("恭喜你,发帖成功!!!");
                     //----------------post请求注意编码放肆
+                    //---------------------全职招聘
+                    startActivity(ImproveHrDataActivity.class);
+                    finish();
 
             }
 

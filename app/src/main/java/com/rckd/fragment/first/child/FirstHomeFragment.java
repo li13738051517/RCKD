@@ -588,7 +588,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
 //                 * 这里写入你自定义的window alert
 //                 */
 //                Log.e(tag, tag + " setX5webview = null");
-//                return super.onJsAlert(null, "www.baidu.com", "aa", arg3);
+//                return super.onJsAlert(null, "www.baidu.com", "ImproveHrDataActivity", arg3);
 //            }
 //
 //            /**
