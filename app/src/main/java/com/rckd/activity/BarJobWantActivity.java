@@ -402,7 +402,7 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
                     }
                     makeText("恭喜你,发帖成功!!!");
                     //----------------post请求注意编码放肆
-                    //---------------------全职招聘
+                    //---------------------全职招聘,完善招聘方资料
                     startActivity(ImproveHrDataActivity.class);
                     finish();
 
@@ -501,8 +501,11 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
                     if (con==null || con.isEmpty()){
                         makeText("职位描述不能没有哦");
                         return;
-
                     }
+                    //----------------------
+                    //----------------------我的招聘贴(兼职)
+                    startActivity(SeeMyRecruitmentPostPartActivity.class);
+                    finish();
 
                     break;
             }

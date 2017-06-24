@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    tools:context=".activity.SeeMyPositionFullTimeActivity"
+    tools:context=".activity.SeeMyRecruitmentPostPartActivity"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,11 +23,12 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:layout_alignParentBottom="true"
-
-        android:layout_alignParentRight="true"
-        android:layout_margin="24dp"
         android:src="@drawable/add_btn"
         android:background="@color/white"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="24dp"
+        android:layout_marginRight="24dp" />
 
 </RelativeLayout>

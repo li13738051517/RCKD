@@ -31,7 +31,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/job_want_icon1"
-            android:text="完善个人简历"
+            android:text="完善招聘方资料"
             android:textColor="@color/black" />
     </RelativeLayout>
 
@@ -63,7 +63,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/job_want_icon2"
-            android:text="求职贴管理"
+            android:text="招聘贴管理"
             android:textColor="@color/black" />
     </RelativeLayout>
 
@@ -94,9 +94,79 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/job_want_icon3"
-            android:text="已查看的公司"
+            android:text="已查看的简历"
             android:textColor="@color/black" />
     </RelativeLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="0dp"
+        android:alpha="10"
+        android:background="@color/line_bg"
+        android:orientation="vertical" />
+
+
+
+    <RelativeLayout
+        android:id="@+id/job_want_bg4"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:id="@+id/job_want_icon4"
+            android:layout_width="26dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/job_want_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/job_want_icon4"
+            android:text="已收藏的简历"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="0dp"
+        android:alpha="10"
+        android:background="@color/line_bg"
+        android:orientation="vertical" />
+
+
+
+    <RelativeLayout
+        android:id="@+id/job_want_bg5"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:id="@+id/job_want_icon5"
+            android:layout_width="26dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/job_want_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/job_want_icon5"
+            android:text="加入名企"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -116,6 +186,4 @@
         android:padding="10dp"
         android:src="@drawable/tab_ft2_selector"
         android:textColor="@color/black" />
-
-
 </LinearLayout>

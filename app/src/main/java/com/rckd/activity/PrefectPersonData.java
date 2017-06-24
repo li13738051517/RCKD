@@ -59,7 +59,7 @@ public class PrefectPersonData extends BaseActivity implements View.OnClickListe
     //---------------
    @BindView(R.id.lin5) LinearLayout lin5;
    @BindView(R.id.text_tie5) TextView text_tie5;
-   @BindView(R.id.text_ad5) EditText text_ad5;
+   @BindView(R.id.text_ad5)TextView text_ad5;
     //---------------
     @BindView(R.id.textView) EditText textView;
     @BindView(R.id.tv) TextView tv;

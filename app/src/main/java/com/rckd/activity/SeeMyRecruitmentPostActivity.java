@@ -3,7 +3,6 @@ package com.rckd.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -26,13 +25,13 @@ import butterknife.ButterKnife;
 /**
  * Created by LiZheng on 2017/6/19 0019.
  */
-//谁看过我的企业(对我感兴趣)
-public class LookMeCompanyActivity extends BaseActivity  implements View.OnClickListener{
+//查看我的招聘贴(全职)
+public class SeeMyRecruitmentPostActivity extends BaseActivity  implements View.OnClickListener{
      MVCHelper<List<Book>> mvcHelper;
-    @BindView(R.id.left_btn) Button left;
-    @BindView(R.id.title_text) TextView title;
-    @BindView(R.id.right_btn) Button right;
-    @BindView(R.id.pullToRefreshListView) PullToRefreshListView pullToRefreshListView;//下拉刷新和加载更多
+    @Nullable@BindView(R.id.left_btn) Button left;
+    @Nullable@BindView(R.id.title_text) TextView title;
+    @Nullable@BindView(R.id.right_btn) Button right;
+    @Nullable@BindView(R.id.pullToRefreshListView) PullToRefreshListView pullToRefreshListView;//下拉刷新和加载更多
     @Override
     protected int fragmentLayoutId() {
         return 0;
@@ -41,12 +40,12 @@ public class LookMeCompanyActivity extends BaseActivity  implements View.OnClick
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.look_me_activity);
+        setContentView(R.layout.see_my_recruitment_post);
         ButterKnife.bind(this);
         left.setVisibility(View.VISIBLE);
         left.setOnClickListener(this);
         title.setVisibility(View.VISIBLE);
-        title.setText("谁看过我");
+        title.setText("查看我的求职贴(全职)");
         right.setVisibility(View.GONE);
 
         //-----------------mvchelper的形式
@@ -58,15 +57,6 @@ public class LookMeCompanyActivity extends BaseActivity  implements View.OnClick
         mvcHelper.setAdapter(new BooksAdapter(this));
         // 加载数据
         mvcHelper.refresh();
-
-        //具体的item需要单独开启新界面???
-
-//        pullToRefreshListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//            }
-//        });
     }
 
     @Override

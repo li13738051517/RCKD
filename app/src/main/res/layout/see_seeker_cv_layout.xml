@@ -4,30 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    tools:context=".activity.SeeMyPositionFullTimeActivity"
+    tools:context=".activity.SeeSeekerCVActivity"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
         <include layout="@layout/base_title" />
         <include layout="@layout/pull_to_frefresh_listview" />
 
     </LinearLayout>
-
-
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_alignParentBottom="true"
-
-        android:layout_alignParentRight="true"
-        android:layout_margin="24dp"
-        android:src="@drawable/add_btn"
-        android:background="@color/white"
-        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

@@ -30,8 +30,8 @@
 
             <Button
                 android:id="@+id/imageView3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
                 android:layout_below="@+id/in"
                 android:layout_gravity="top|center"
                 android:layout_margin="25dp"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="拍张照片"
-                android:textSize="14sp"
+                android:textSize="24sp"
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp" />
         </LinearLayout>

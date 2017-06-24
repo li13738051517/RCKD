@@ -1,6 +1,5 @@
 package com.rckd.fragment.fourth.child;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,26 +11,26 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.rckd.R;
+import com.rckd.activity.ImproveHrDataActivity;
+import com.rckd.activity.JoinInMQActivity;
 import com.rckd.activity.PrefectPersonData;
+import com.rckd.activity.SeeCollectedCVActivity;
+import com.rckd.activity.SeeMeCompanyActivity;
 import com.rckd.activity.SeeMyPositionFullTimeActivity;
 import com.rckd.activity.SeeMyPositionPartTimeActivity;
+import com.rckd.activity.SeeMyRecruitmentPostActivity;
+import com.rckd.activity.SeeMyRecruitmentPostPartActivity;
+import com.rckd.activity.SeeSeekerCVActivity;
 import com.rckd.view.SlideAppPostPopup;
 
-import org.bouncycastle.jce.provider.BrokenJCEBlockCipher;
 import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 import timber.log.Timber;
-
-import static com.baidu.location.h.j.p;
-import static com.baidu.location.h.j.t;
-import static com.rckd.R.id.textView;
 
 /**
  * Created by LiZheng on 16/6/6.
@@ -65,6 +64,15 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
 
     SlideAppPostPopup appPostPopup;
 
+    //-----------------------------------
+    Button button_left;
+    TextView title;
+    RelativeLayout job_want_bg1;
+    RelativeLayout job_want_bg2;
+    RelativeLayout job_want_bg3;
+    RelativeLayout job_want_bg4;
+    RelativeLayout job_want_bg5;
+    ImageView button2;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -104,12 +112,12 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
             case R.id.job_want_bg:
                 //--------------
                 Timber.e(tag+"我的求职!!!",tag);
-                view=LayoutInflater.from(baseActivity).inflate(R.layout.user_job_in,null);
+                view=LayoutInflater.from(baseActivity).inflate(R.layout.user_job_apply_in_jobwanted,null);
                 dialog = new  MaterialDialog.Builder(baseActivity).build();
                 dialog.show();
                 dialog.getWindow().setContentView(view);
-                Button button_left= ButterKnife.findById(view, R.id.left_btn);
-                TextView title=ButterKnife.findById(view ,R.id.title_text);
+                button_left= ButterKnife.findById(view, R.id.left_btn);
+                title=ButterKnife.findById(view ,R.id.title_text);
                 title.setVisibility(View.VISIBLE);
                 title.setText("我的求职");
                 button_left.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +127,7 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
                     }
                 });
                 //完善个人简历
-                RelativeLayout job_want_bg1=ButterKnife.findById(view ,R.id.job_want_bg1);
+                job_want_bg1=ButterKnife.findById(view ,R.id.job_want_bg1);
                 job_want_bg1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -130,7 +138,7 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
                 });
 
                 //求职贴管理
-                RelativeLayout job_want_bg2=ButterKnife.findById(view,R.id.job_want_bg2);
+                job_want_bg2=ButterKnife.findById(view,R.id.job_want_bg2);
                 job_want_bg2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -138,7 +146,9 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
                         dialog.dismiss();
                         appPostPopup=new SlideAppPostPopup(baseActivity);
 
+                        //全职
                         TextView tvFullJob=(TextView)appPostPopup.getView().findViewById(R.id.tx_1);
+                        tvFullJob.setText("我的求职贴(全职)");
                         tvFullJob.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -146,7 +156,9 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
                                 appPostPopup.dismiss();
                             }
                         });
+                        //兼职
                         TextView tvPartJob=(TextView)appPostPopup.getView().findViewById(R.id.tx_2) ;
+                        tvFullJob.setText("我的求职贴(兼职)");
                         tvPartJob.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -154,7 +166,7 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
                                 appPostPopup.dismiss();
                             }
                         });
-//点击取消按钮时候的,优先级高
+                        //点击取消按钮时候的,优先级高
                         TextView textView =(TextView) appPostPopup.getView().findViewById(R.id.dissmiss);
                         textView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -170,15 +182,16 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
                     }
                 });
                 //已查看的公司
-                RelativeLayout job_want_bg3=ButterKnife.findById(view ,R.id.job_want_bg3);
+                job_want_bg3=ButterKnife.findById(view ,R.id.job_want_bg3);
                 job_want_bg3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
+                        startActivity(SeeMeCompanyActivity.class);
                     }
                 });
 
-                ImageView button2=ButterKnife.findById(view,R.id.button2);
+                button2=ButterKnife.findById(view,R.id.button2);
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -190,6 +203,122 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
                 break;
             //我的招聘
             case R.id.my_recruit_bg:
+                view=LayoutInflater.from(baseActivity).inflate(R.layout.user_job_recruit_in_my_recruit,null);
+
+                dialog = new  MaterialDialog.Builder(baseActivity).build();
+                dialog.show();
+                dialog.getWindow().setContentView(view);
+                button_left= ButterKnife.findById(view, R.id.left_btn);
+                title=ButterKnife.findById(view ,R.id.title_text);
+                title.setVisibility(View.VISIBLE);
+                title.setText("我的招聘");
+                button_left.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                //完善招聘方资料
+                job_want_bg1=ButterKnife.findById(view ,R.id.job_want_bg1);
+                job_want_bg1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //开启新的界面 完善招聘方资料
+                        dialog.dismiss();
+                        startActivity(ImproveHrDataActivity.class);
+                    }
+                });
+
+                //招聘贴管理
+                job_want_bg2=ButterKnife.findById(view,R.id.job_want_bg2);
+                job_want_bg2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //
+                        dialog.dismiss();
+                        appPostPopup=new SlideAppPostPopup(baseActivity);
+
+                        //全职
+                        TextView tvFullJob=(TextView)appPostPopup.getView().findViewById(R.id.tx_1);
+                        tvFullJob.setText("我的招聘贴(全职)");
+                        tvFullJob.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //查看我的招聘贴(全职)
+                                startActivity(SeeMyRecruitmentPostActivity.class);
+                                appPostPopup.dismiss();
+                            }
+                        });
+                        //兼职
+                        TextView tvPartJob=(TextView)appPostPopup.getView().findViewById(R.id.tx_2) ;
+                        tvPartJob.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //查看我的招聘贴(兼职)
+                                startActivity(SeeMyRecruitmentPostPartActivity.class);
+                                appPostPopup.dismiss();
+                            }
+                        });
+                        //点击取消按钮时候的,优先级高
+                        TextView textView =(TextView) appPostPopup.getView().findViewById(R.id.dissmiss);
+                        textView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                appPostPopup.dismiss();
+                            }
+                        });
+                        appPostPopup.showPopupWindow();
+
+                        //---------------------求职贴管理
+
+                        //此处弹出底部选择框
+                    }
+                });
+                //已查看的简历
+                job_want_bg3=ButterKnife.findById(view ,R.id.job_want_bg3);
+                job_want_bg3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        //已查看的简历,是当我为招聘方时,查看求职者的简历
+                        startActivity(SeeSeekerCVActivity.class);
+                    }
+                });
+
+                //已收藏的简历
+                job_want_bg4=ButterKnife.findById(view,R.id.job_want_bg4);
+                job_want_bg4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //已收藏的简历
+                        dialog.dismiss();
+                        startActivity(SeeCollectedCVActivity.class);
+                    }
+                });
+                //加入名企
+                job_want_bg5=ButterKnife.findById(view ,R.id.job_want_bg5);
+                job_want_bg5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //加入名企
+                        dialog.dismiss();
+                        startActivity(JoinInMQActivity.class);
+                        finish();
+
+                    }
+                });
+
+
+
+                button2=ButterKnife.findById(view,R.id.button2);
+                button2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+
                 break;
             //账号管理
             case R.id.person_bg:
