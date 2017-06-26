@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/gray_bg"
-    tools:context=".activity.ForgetPsdActivity"
+    tools:context=".activity.ChangePhoneActivity"
     android:orientation="vertical">
 
     <include
@@ -74,6 +74,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/passwordbg"
         android:layout_width="fill_parent"
         android:layout_height="44dp"
@@ -98,6 +99,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/cpasswordbg"
         android:layout_width="fill_parent"
         android:layout_height="44dp"
@@ -123,6 +125,7 @@
 
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/passwordbg3"
         android:layout_width="match_parent"
         android:layout_height="20dp"
@@ -155,16 +158,16 @@
         android:id="@+id/subbtn"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_alignEnd="@+id/passwordbg3"
-        android:layout_alignLeft="@+id/passwordbg3"
-        android:layout_alignRight="@+id/passwordbg3"
-        android:layout_alignStart="@+id/passwordbg3"
         android:layout_below="@+id/passwordbg3"
         android:layout_marginTop="19dp"
         android:background="@drawable/btnbg"
         android:text="提交"
         android:textColor="@color/white"
-        android:textSize="16dp" />
+        android:textSize="16dp"
+        android:layout_alignRight="@+id/psdbg"
+        android:layout_alignEnd="@+id/psdbg"
+        android:layout_alignLeft="@+id/psdbg"
+        android:layout_alignStart="@+id/psdbg" />
 
 
 </RelativeLayout>

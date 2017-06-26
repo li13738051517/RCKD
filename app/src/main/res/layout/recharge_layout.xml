@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include layout="@layout/base_title"/>
+
+        <LinearLayout
+            android:gravity="center|left"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="账户名称:"/>
+            <TextView
+                android:text="13738051517"
+                android:layout_marginLeft="20dp"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center|left"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:padding="8dp"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="剩余积分:"/>
+            <TextView
+                android:text="2分"
+                android:textSize="14sp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <TextView
+            android:textSize="14sp"
+            android:text="购买套餐(以下单选)"
+            android:textColor="@color/red"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:gravity="center|left"
+            android:paddingBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:paddingLeft="8dp"
+            android:layout_margin="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:textSize="14sp"
+                android:id="@+id/rb10"
+                android:text="10元(10积分)"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <RadioButton
+                android:layout_marginTop="3dp"
+                android:textSize="14sp"
+                android:id="@+id/rb30"
+                android:text="30元(40积分)"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <RadioButton
+                android:layout_marginTop="3dp"
+
+                android:textSize="14sp"
+                android:id="@+id/rb50"
+                android:text="50元(80积分)"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <RadioButton
+                android:layout_marginTop="3dp"
+                android:textSize="14sp"
+                android:id="@+id/rb100"
+                android:text="100元(180积分)"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <RadioButton
+
+                android:layout_marginTop="3dp"
+                android:textSize="14sp"
+                android:id="@+id/rb200"
+                android:text="200元(400积分)"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <RadioButton
+                android:layout_marginTop="3dp"
+                android:textSize="14sp"
+                android:id="@+id/rb300"
+                android:text="300元(650积分)"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RadioGroup>
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="所属地区:"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:id="@+id/textView8"
+                android:layout_marginLeft="8dp"
+
+                android:layout_marginStart="8dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+            <EditText
+                android:hint="001000000"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:inputType="numberPassword"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:maxLength="10"
+                android:textSize="14sp"
+                android:id="@+id/textView3" />
+
+            <TextView
+                android:text="广德县"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/textView8"
+                android:layout_toEndOf="@+id/textView8"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp" />
+
+            <TextView
+                android:text="客服工号"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/textView3"
+                android:layout_toStartOf="@+id/textView3"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp" />
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_weight="1"
+                android:text="微信支付"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:layout_weight="1"
+                android:text="支付宝支付"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_weight="1"
+                android:text="银联"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

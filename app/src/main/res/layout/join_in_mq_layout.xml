@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    tools:context=".activity.BarJobWantActivity"
+    tools:context=".activity.JoinInMQActivity"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -226,11 +226,6 @@
 
 
 
-        <View
-            android:layout_width="match_parent"
-            android:background="@color/black"
-            android:layout_height="1dp"/>
-
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/textView"
             android:layout_width="match_parent"
@@ -251,10 +246,7 @@
             android:layout_alignParentEnd="true" />
 
 
-        <View
-            android:layout_width="match_parent"
-            android:background="@color/black"
-            android:layout_height="1dp"/>
+
 
         <View
             android:id="@+id/view"
@@ -263,9 +255,7 @@
             android:background="@color/black" />
 
 
-
         <LinearLayout
-
             android:id="@+id/lin4"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottombar_height"
@@ -377,8 +367,9 @@
                 android:textColor="@color/changbtn_text_color"
                 android:layout_gravity="center|right"
                 android:layout_height="wrap_content" />
-
         </LinearLayout>
+
+        <include layout="@layout/taocan_layout" />
 
         <View
             android:layout_width="match_parent"
@@ -386,7 +377,10 @@
             android:layout_height="1dp"/>
 
 
-
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/black"
+            android:layout_height="1dp"/>
         <Button
             android:id="@+id/bt"
             android:layout_marginTop="18dp"

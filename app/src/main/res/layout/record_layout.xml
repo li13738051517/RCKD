@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    tools:context=".activity.RecordActivity"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include  layout="@layout/base_title"/>
+        <Button
+            android:id="@+id/bt"
+            android:layout_marginTop="18dp"
+            android:layout_width="match_parent"
+            android:text="成为名企"
+            android:textColor="@color/white"
+            android:background="@color/bottom_bg"
+            android:layout_height="48dp" />
+    </LinearLayout>
+
+</ScrollView>

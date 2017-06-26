@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/gray_bg"
-    tools:context=".activity.ForgetPsdActivity"
+    tools:context=".activity.ChangePhonePasswordActivity"
     android:orientation="vertical">
 
     <include
@@ -25,7 +25,7 @@
         android:layout_alignStart="@+id/psdbg">
 
         <EditText
-            android:id="@+id/usertext"
+            android:id="@+id/user_phone"
             android:layout_width="fill_parent"
             android:layout_height="44dp"
             android:layout_marginLeft="10dp"
@@ -49,28 +49,17 @@
         android:background="@drawable/textbg">
 
         <EditText
-            android:id="@+id/yanzhengtext"
+            android:id="@+id/user__orpwd"
             android:layout_width="fill_parent"
             android:layout_height="44dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="120dp"
             android:background="#00000000"
-            android:hint="请输入验证码"
-            android:inputType="numberPassword"
+            android:hint="请输入原始密码"
+            android:inputType="textPassword"
             android:paddingLeft="3dp"
             android:textColorHint="@color/hint_color"
             android:textSize="14dp" />
 
-        <Button
-            android:id="@+id/codebtn"
-            android:layout_width="100dp"
-            android:layout_height="33dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/codebtn"
-            android:text="获取验证码"
-            android:textColor="@color/white" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -88,13 +77,14 @@
             android:id="@+id/setpsdtext"
             android:layout_width="fill_parent"
             android:layout_height="44dp"
-            android:layout_marginLeft="10dp"
             android:background="#00000000"
-            android:hint="在此输入您的新密码"
+            android:hint="请输入新密码"
             android:inputType="textPassword"
             android:paddingLeft="3dp"
             android:textColorHint="@color/hint_color"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -114,7 +104,7 @@
             android:layout_height="44dp"
             android:layout_marginLeft="10dp"
             android:background="#00000000"
-            android:hint="再次输入您的密码"
+            android:hint="再次输入新密码"
             android:inputType="textPassword"
             android:paddingLeft="3dp"
             android:textColorHint="@color/hint_color"
@@ -126,6 +116,7 @@
         android:id="@+id/passwordbg3"
         android:layout_width="match_parent"
         android:layout_height="20dp"
+        android:visibility="gone"
         android:layout_alignEnd="@+id/cpasswordbg"
         android:layout_alignLeft="@+id/cpasswordbg"
         android:layout_alignRight="@+id/cpasswordbg"

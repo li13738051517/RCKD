@@ -14,9 +14,14 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.rckd.R;
+import com.rckd.activity.ChangePhoneActivity;
+import com.rckd.activity.ChangePhonePasswordActivity;
 import com.rckd.activity.ImproveHrDataActivity;
 import com.rckd.activity.JoinInMQActivity;
 import com.rckd.activity.PrefectPersonData;
+import com.rckd.activity.ReChargeActivity;
+import com.rckd.activity.RecordActivity;
+import com.rckd.activity.SeeBarBMActivity;
 import com.rckd.activity.SeeCollectedCVActivity;
 import com.rckd.activity.SeeMeCompanyActivity;
 import com.rckd.activity.SeeMyPositionFullTimeActivity;
@@ -58,6 +63,7 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
     @BindView(R.id.company_bg) RelativeLayout  company_bg;
     @BindView(R.id.pay_bg) RelativeLayout pay_bg;
     @BindView(R.id.logout_bg) RelativeLayout  logout_bg;
+    @BindView(R.id.company_new) RelativeLayout company_new;//商企动态
     //-------------------------------------
     View view;//对话框布局仕途
     Dialog dialog; //对话框
@@ -91,6 +97,7 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
         company_bg.setOnClickListener(this);
         pay_bg.setOnClickListener(this);
         logout_bg.setOnClickListener(this);
+        company_new.setOnClickListener(this);
     }
 
 
@@ -204,7 +211,6 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
             //我的招聘
             case R.id.my_recruit_bg:
                 view=LayoutInflater.from(baseActivity).inflate(R.layout.user_job_recruit_in_my_recruit,null);
-
                 dialog = new  MaterialDialog.Builder(baseActivity).build();
                 dialog.show();
                 dialog.getWindow().setContentView(view);
@@ -308,8 +314,6 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
                     }
                 });
 
-
-
                 button2=ButterKnife.findById(view,R.id.button2);
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -322,13 +326,79 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
                 break;
             //账号管理
             case R.id.person_bg:
+
+                //--------------
+                Timber.e(tag+" 账号管理!!!",tag);
+                view=LayoutInflater.from(baseActivity).inflate(R.layout.user_container_in_person_bg,null);
+                dialog = new  MaterialDialog.Builder(baseActivity).build();
+                dialog.show();
+                dialog.getWindow().setContentView(view);
+                button_left= ButterKnife.findById(view, R.id.left_btn);
+                title=ButterKnife.findById(view ,R.id.title_text);
+                title.setVisibility(View.VISIBLE);
+                title.setText("账号管理");
+                button_left.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                //修改密码
+                job_want_bg1=ButterKnife.findById(view ,R.id.job_want_bg1);
+                job_want_bg1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //开启新的界面
+                        dialog.dismiss();
+                        startActivity(ChangePhonePasswordActivity.class);
+                    }
+                });
+
+                //消费记录
+                job_want_bg2=ButterKnife.findById(view,R.id.job_want_bg2);
+                job_want_bg2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //
+                        dialog.dismiss();
+                        startActivity(RecordActivity.class);
+                    }
+                });
+                //更换手机号码
+                job_want_bg3=ButterKnife.findById(view ,R.id.job_want_bg3);
+                job_want_bg3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        startActivity(ChangePhoneActivity.class);
+                    }
+                });
+
+                button2=ButterKnife.findById(view,R.id.button2);
+                button2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+
                 break;
             //便名帖管理
             case R.id.company_bg:
+                //-------------------------
+                startActivity(SeeBarBMActivity.class);
                 break;
+
+            //动态新闻
+            case R.id.company_new:
+                break;
+
             //充值
             case R.id.pay_bg:
                 //跳转到充值界面
+
+                startActivity(ReChargeActivity.class);
                 break;
 
             //注销账号
