@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    tools:context=".activity.ReChargeActivity"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
@@ -128,7 +130,6 @@
                 android:gravity="center"
                 android:id="@+id/textView8"
                 android:layout_marginLeft="8dp"
-
                 android:layout_marginStart="8dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
@@ -138,15 +139,31 @@
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginRight="16dp"
-                android:layout_marginEnd="16dp"
                 android:inputType="numberPassword"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
                 android:maxLength="10"
                 android:textSize="14sp"
-                android:id="@+id/textView3" />
+                android:id="@+id/textView3"
+                android:layout_alignBaseline="@+id/textView6"
+                android:layout_alignBottom="@+id/textView6"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="14dp"
+                android:layout_marginEnd="14dp" />
+
+
+            <TextView
+                android:text="客服工号"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/textView3"
+                android:layout_toStartOf="@+id/textView3"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
+                android:id="@+id/textView6" />
+
 
             <TextView
                 android:text="广德县"
@@ -159,18 +176,6 @@
                 android:layout_toEndOf="@+id/textView8"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp" />
-
-            <TextView
-                android:text="客服工号"
-                android:gravity="center"
-                android:textSize="14sp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/textView3"
-                android:layout_toStartOf="@+id/textView3"
-                android:layout_marginRight="8dp"
-                android:layout_marginEnd="8dp" />
         </RelativeLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -179,22 +184,14 @@
             android:layout_marginRight="8dp"
             android:layout_height="wrap_content">
             <Button
-                android:layout_weight="1"
-                android:text="微信支付"
-                android:layout_width="wrap_content"
+                android:text="立即充值"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <Button
-                android:layout_weight="1"
-                android:text="支付宝支付"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:layout_weight="1"
-                android:text="银联"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
         </LinearLayout>
+
+
+        <include layout="@layout/recharge_vip"/>
+
+
     </LinearLayout>
 </ScrollView>

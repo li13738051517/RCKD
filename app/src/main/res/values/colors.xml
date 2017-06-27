@@ -15,6 +15,7 @@
     <color name="line_bg">#d6d6d9</color>
     <color name="gray_bg">#f5f5f9</color>
     <color name="green">#25c90f</color>
+    <color name="c_green">#1b9908</color>
     <color name="gray_hight_line">#eaeaea</color>
     <color name="city_gray">#494a49</color>
     <color name="orange">#fe8925</color>

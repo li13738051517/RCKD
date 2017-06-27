@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".activity.SeeMQRecruitActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/content_lin"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="48dp"
+        android:layout_height="match_parent">
+        <include layout="@layout/base_title" />
+        <include layout="@layout/pull_to_frefresh_listview" />
+
+    </LinearLayout>
+    <Button
+        android:layout_marginTop="3dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bt"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="我也要在此展示"
+        android:background="@color/message_blue"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+</RelativeLayout>

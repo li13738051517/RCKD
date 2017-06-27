@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
 /**
  * Created by LiZheng on 2017/6/23 0023.
  */
-//加入名企
+//加入名企 ----------名企信息
 public class JoinInMQActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected int fragmentLayoutId() {
@@ -35,7 +35,7 @@ public class JoinInMQActivity extends BaseActivity implements View.OnClickListen
         leftBtn.setVisibility(View.VISIBLE);
         leftBtn.setOnClickListener(this);
         title.setVisibility(View.VISIBLE);
-        title.setText("加入名企");
+        title.setText("名企信息");
         right.setVisibility(View.GONE);
         bt.setOnClickListener(this);
     }
@@ -50,6 +50,7 @@ public class JoinInMQActivity extends BaseActivity implements View.OnClickListen
                 case R.id.bt:
                     //----------------------
                     //---------------------跳转到充值界面
+
                     finish();
                     break;
 
