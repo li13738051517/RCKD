@@ -199,6 +199,7 @@ dependencies {
     compile 'com.zhy:base-adapter:3.0.3'
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     compile project(':SlideExpandableListView')
+    compile "org.projectlombok:lombok:1.16.16"
 
 
 }

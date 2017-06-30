@@ -1,5 +1,6 @@
 package com.rckd.fragment.first.child;
 
+import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,6 +24,8 @@ import android.widget.TextView;
 import com.flyco.tablayout.SegmentTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.rckd.R;
+import com.rckd.activity.ChoosePositionActivity;
+import com.rckd.activity.ChoosePositionPartActivity;
 import com.rckd.activity.MainActivity;
 import com.rckd.activity.NewJobActivity;
 import com.rckd.activity.SeeAdActivity;
@@ -31,8 +34,6 @@ import com.rckd.activity.SeeCarAdActivity;
 import com.rckd.activity.SeeHelpAdActivity;
 import com.rckd.activity.SeeMQRecruitActivity;
 import com.rckd.activity.SeeMakeFriendsAdActivity;
-import com.rckd.activity.SeeMyPositionFullTimeActivity;
-import com.rckd.activity.SeeMyPositionPartTimeActivity;
 import com.rckd.activity.SeeOldHomeAdActivity;
 import com.rckd.activity.SeeSeleHouseAdActivity;
 import com.rckd.activity.SeeTempWorkAdActivity;
@@ -44,6 +45,7 @@ import com.rckd.event.TabSelectedEvent;
 import com.rckd.helper.DetailTransition;
 import com.rckd.inter.OnItemClickListener;
 import com.rckd.loader.GlidImageLoader;
+import com.rckd.view.FindJobPopup;
 import com.rckd.view.MyScrollView;
 import com.rckd.view.SlideAppPostPopup;
 import com.youth.banner.Banner;
@@ -56,11 +58,14 @@ import java.util.List;
 
 import timber.log.Timber;
 
+import static com.rckd.R.id.tv;
+
 /**
  * Created by LiZheng on 16/6/5.
  */
 public class FirstHomeFragment extends com.rckd.base.BaseFragment implements SwipeRefreshLayout.OnRefreshListener  /* , com.yanzhenjie.permission.PermissionListener  */{
 
+    FindJobPopup findJobPopup;//底部弹窗找工作
     SlideAppPostPopup appPostPopup;//
     String[] titles = {"名企招聘", "便民动态", "新闻动态"};
     MyScrollView myScrollView;
@@ -122,6 +127,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
 
     TextView tvFullJob;
     TextView tvPartJob;
+    TextView tvHire;
     TextView textView;
     private void initView(View view) {
         viewPager= (ViewPager) view.findViewById(R.id.viewPager);
@@ -184,6 +190,43 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
                     case 3:
                         break;
                     case 4:
+                        //找工作
+                        findJobPopup=new FindJobPopup(baseActivity);
+
+                        tvFullJob=(TextView)findJobPopup.getView().findViewById(R.id.tx_1);
+                        tvFullJob.setText("全职工作");
+                        tvFullJob.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //----------------全职工作
+                                startActivity(ChoosePositionActivity.class);
+                                findJobPopup.dismiss();
+                            }
+                        });
+                        tvPartJob=(TextView)findJobPopup.getView().findViewById(R.id.tx_2) ;
+                        tvPartJob.setText("兼职工作");
+                        tvPartJob.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(ChoosePositionPartActivity.class);
+                                findJobPopup.dismiss();
+                            }
+                        });
+                        tvHire=(TextView) findJobPopup.getView().findViewById(R.id.tx_3);
+                        tvHire.setText("让人聘我");
+                        tvHire.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+
+                                findJobPopup.dismiss();
+
+                            }
+                        });
+
+
+
+
                         break;
                     case 5:
                         //找人才-------匹配搜索条件后跳转到最新求职
@@ -198,6 +241,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
 
                                 //----------------全职人才出和兼职人才获取数据不同
 //
+                                startActivity(ChoosePositionActivity.class);
                                 appPostPopup.dismiss();
                             }
                         });
@@ -207,7 +251,7 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
                         tvPartJob.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-
+                                startActivity(ChoosePositionPartActivity.class);
                                 appPostPopup.dismiss();
                             }
                         });
@@ -224,9 +268,8 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
                         break;
 
                     case 6:
-                        //名气招聘
-                        startActivityFinish(SeeMQRecruitActivity.class);
-
+                        //名企招聘
+                        startActivity(SeeMQRecruitActivity.class);
                         break;
                     case 7:
                         //置顶帖子

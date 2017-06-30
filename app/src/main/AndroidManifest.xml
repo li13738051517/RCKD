@@ -330,6 +330,18 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity android:name=".activity.ChoosePositionActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity android:name=".activity.ChoosePositionPartActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity android:name=".activity.TalentPersonActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

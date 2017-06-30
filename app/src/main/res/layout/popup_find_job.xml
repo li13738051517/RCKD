@@ -22,7 +22,7 @@
                 android:layout_height="@dimen/bottombar_height"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:text="我的求职贴(全职)"
+                android:text="全职工作"
                 android:textSize="@dimen/sp_16" />
 
             <View
@@ -36,7 +36,19 @@
                 android:gravity="center"
                 android:textSize="@dimen/sp_16"
                 android:textColor="@color/black"
-                android:text="我的求职贴(兼职)" />
+                android:text="兼职工作" />
+            <View
+                android:background="@color/black"
+                style="@style/line_style"/>
+
+            <TextView
+                android:id="@+id/tx_3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bottombar_height"
+                android:gravity="center"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+                android:text="让人聘我" />
 
             <View
                 android:background="@color/black"

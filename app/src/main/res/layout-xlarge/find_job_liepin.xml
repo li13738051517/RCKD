@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.TalentPersonActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/re_base"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <include
+            android:id="@+id/in"
+            layout="@layout/base_title"/>
+
+        <LinearLayout
+            android:id="@+id/ll_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/in"
+            android:background="@color/city_gray"
+
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/imageView3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@+id/in"
+                android:layout_gravity="top|center"
+                android:layout_margin="20dp"
+                android:background="@drawable/photo"
+                android:src="@drawable/photo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="点我上传图片,让简历更有特点!!!"
+                android:maxLines="2"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:layout_below="@+id/ll_item"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:textSize="14sp"
+                android:drawableLeft="@drawable/tv_ch"
+
+                android:text="期望职位" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+
+            <EditText
+                android:id="@+id/ed1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/text_tie"
+                android:layout_alignBottom="@+id/text_tie"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginStart="15dp"
+                android:hint="请输入您的期望职位"
+                android:textSize="14sp"
+                android:layout_toEndOf="@+id/text_tie"
+                android:layout_toRightOf="@+id/text_tie"
+               />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin6"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:layout_below="@+id/lin5"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+
+                android:textSize="14sp"
+                android:id="@+id/text6"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:drawableLeft="@drawable/tv_ch"
+                android:text="职位类别" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/ed6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/text_tie"
+                android:layout_alignBottom="@+id/text_tie"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/text_tie"
+                android:layout_toRightOf="@+id/text_tie"
+                android:hint="电子商务"
+                android:text="电子商务"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin7"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:layout_below="@+id/lin6"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:textSize="14sp"
+                android:id="@+id/text7"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:drawableLeft="@drawable/tv_ch"
+                android:text="期望薪资" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/ed7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/text_tie"
+                android:layout_alignBottom="@+id/text_tie"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/text_tie"
+                android:layout_toRightOf="@+id/text_tie"
+                android:text="面议"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin9"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:layout_below="@+id/lin8"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:textSize="14sp"
+                android:id="@+id/text9"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:drawableLeft="@drawable/tv_ch"
+                android:text="求职区域" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/ed9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/text_tie"
+                android:layout_alignBottom="@+id/text_tie"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/text_tie"
+                android:layout_toRightOf="@+id/text_tie"
+                android:hint="安徽省宣城市广德县"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/lin5"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:background="@drawable/textbg"
+            android:orientation="horizontal"
+            android:layout_below="@+id/lin8"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:textSize="14sp"
+                android:id="@+id/text5"
+                android:layout_width="@dimen/wd"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginRight="@dimen/bot_jp"
+                android:drawableLeft="@drawable/tv_ch"
+                android:text="就职状态" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/fab_margin"
+                android:layout_gravity="center_vertical"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/ed5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/text_tie"
+                android:layout_alignBottom="@+id/text_tie"
+                android:layout_gravity="center|right"
+                android:layout_marginLeft="@dimen/bot_jp"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/text_tie"
+                android:layout_toRightOf="@+id/text_tie"
+                android:hint="已有工作 让人猎聘"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:gravity="start"
+            android:background="@drawable/textbg"
+            android:hint="自我评价一下吧"
+            android:lines="5"
+            android:paddingTop="@dimen/bot_jp"
+            android:textColorHint="@color/hint_color"
+            android:textSize="14sp" />
+
+
+        <com.rckd.view.GridViewNoScroll
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:gravity="center"
+            android:numColumns="3"
+            android:padding="1dp"
+            android:horizontalSpacing="3dp"
+            android:listSelector="#00000000"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="3dp"
+            />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottombar_height"
+            android:layout_marginTop="1dp"
+            android:background="@color/green"
+            android:textColor="@color/black"
+            android:text="下一步"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</ScrollView>

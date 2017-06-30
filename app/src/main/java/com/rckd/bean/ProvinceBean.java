@@ -2,11 +2,14 @@ package com.rckd.bean;
 
 import com.bigkoo.pickerview.model.IPickerViewData;
 
+import lombok.Data;
+
 /**
  * Created by LiZheng  on 17/05/24
  * 此类主要是为了将解析的数据的对象.
  */
-public class ProvinceBean implements IPickerViewData {
+
+public class  ProvinceBean implements IPickerViewData {
     private long id;  //id   每一个省市县/区对应一个 id
     private String name;
     private String description;

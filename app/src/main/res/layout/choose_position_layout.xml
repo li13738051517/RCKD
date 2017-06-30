@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/base_title"/>
+    <RelativeLayout
+        android:id="@+id/psdbg"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="3dp"
+        android:layout_below="@id/userbg"
+        android:layout_centerHorizontal="true"
+      >
+
+        <EditText
+            android:id="@+id/sh"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_toLeftOf="@+id/codebtn"
+            android:background="@drawable/cityhot_edittext_bg"
+            android:drawableLeft="@drawable/wb_search_icon"
+            android:drawablePadding="5dp"
+            android:hint="输入职位名称搜索"
+            android:inputType="text"
+            android:padding="5dip"
+            android:paddingLeft="3dp"
+            android:textColor="#515151"
+            android:textColorHint="@color/hint_color"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/codebtn"
+            android:layout_width="80dp"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/codebtn"
+            android:text="搜索"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+         <include layout="@layout/choine_job_in"/>
+    </ScrollView>
+</LinearLayout>
