@@ -88,7 +88,6 @@ public class SlideAppPostPopup extends BasePopupWindow implements View.OnClickLi
             case R.id.dissmiss:
 //                activity.finish();
                 dismiss();
-
                 break;
             default:
                 break;

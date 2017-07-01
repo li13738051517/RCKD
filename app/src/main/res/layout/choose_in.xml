@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/black"
+            android:layout_height="1dp"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="职位"
+                android:back="@drawable/tx_bg_icon"
+                android:drawableRight="@drawable/up_down_selector2"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:gravity="center"
+                android:layout_height="match_parent" />
+            <View
+                android:layout_width="1dp"
+                android:background="@color/black"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="薪资范围"
+                android:drawableRight="@drawable/up_down_selector2"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:gravity="center"
+                android:layout_height="match_parent" />
+            <View
+                android:layout_width="1dp"
+                android:background="@color/black"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:id="@+id/tv3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="工作经验"
+                android:drawableRight="@drawable/up_down_selector2"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:gravity="center"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/black"
+            android:layout_height="1dp"/>
+    </LinearLayout>
+</LinearLayout>

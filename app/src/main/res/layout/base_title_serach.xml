@@ -3,14 +3,14 @@
     android:id="@+id/titleView"
     android:layout_width="fill_parent"
     android:orientation="horizontal"
-    android:layout_height="55dp"
+    android:layout_height="48dp"
     android:background="@color/green"
     android:weightSum="1">
 
     <Button
         android:id="@+id/left_btn"
         android:layout_width="58dp"
-        android:layout_height="48dp"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_margin="3dp"
         android:layout_marginLeft="0dp"

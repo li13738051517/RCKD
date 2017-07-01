@@ -29,7 +29,7 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" /> <!--照相机权限 -->
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- 设置屏幕适配 ,还需要结合xxml文件  ,以及 style -->
     <supports-screens
         android:smallScreens="true"
@@ -339,6 +339,14 @@
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name=".activity.TalentPersonActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity android:name=".activity.WantedJobActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity android:name=".activity.WantedPersonActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize|keyboardHidden" />

@@ -53,6 +53,9 @@ public class ChoosePositionPartActivity extends BaseActivity implements View.OnC
         right.setVisibility(View.GONE);
         //---------------------
 
+
+
+
     }
 
 

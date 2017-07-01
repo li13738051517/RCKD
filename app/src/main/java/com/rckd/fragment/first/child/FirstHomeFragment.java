@@ -1,6 +1,8 @@
 package com.rckd.fragment.first.child;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -37,6 +39,8 @@ import com.rckd.activity.SeeMakeFriendsAdActivity;
 import com.rckd.activity.SeeOldHomeAdActivity;
 import com.rckd.activity.SeeSeleHouseAdActivity;
 import com.rckd.activity.SeeTempWorkAdActivity;
+import com.rckd.activity.WantedJobActivity;
+import com.rckd.activity.WantedPersonActivity;
 import com.rckd.adpter.BaseAdapterQd;
 import com.rckd.adpter.FirstHomeAdapter;
 import com.rckd.bean.Article;
@@ -58,6 +62,8 @@ import java.util.List;
 
 import timber.log.Timber;
 
+import static com.rckd.R.id.decor_content_parent;
+import static com.rckd.R.id.default_activity_button;
 import static com.rckd.R.id.tv;
 
 /**
@@ -177,18 +183,87 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
+
                     //最新招聘
                     case 0:
                         startActivity(NewJobActivity.class);
                         break;
-
-
                     case 1:
+                        //最新求职
+
+                        //--------------------------
                         break;
                     case 2:
+                        //-------------------------------
+                        appPostPopup=new  SlideAppPostPopup(baseActivity);
+                        //全职
+                        tvFullJob=(TextView)appPostPopup.getView().findViewById(R.id.tx_1);
+                        tvFullJob.setText("我要找的工作");
+                        tvFullJob.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+//我要找的工作
+                                startActivity(WantedJobActivity.class);
+                                appPostPopup.dismiss();
+                            }
+                        });
+
+                        tvPartJob=(TextView)appPostPopup.getView().findViewById(R.id.tx_2) ;
+                        tvPartJob.setText("我要找的人才");
+                        tvPartJob.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //---------------------我要找的人才
+                                startActivity(WantedPersonActivity.class);
+                                appPostPopup.dismiss();
+                            }
+                        });
+                        //点击取消按钮时候的,优先级高
+                        textView =(TextView) appPostPopup.getView().findViewById(R.id.dissmiss);
+                        textView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                appPostPopup.dismiss();
+                            }
+                        });
+                        appPostPopup.showPopupWindow();
+
                         break;
+
                     case 3:
+                        //本地客服
+                        appPostPopup=new  SlideAppPostPopup(baseActivity);
+                        //全职
+                        tvFullJob=(TextView)appPostPopup.getView().findViewById(R.id.tx_1);
+                        tvFullJob.setText("电话:0563-6626168");
+                        tvFullJob.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //----------------全职人才出和兼职人才获取数据不同
+                                Intent intent=new Intent(Intent.ACTION_DIAL);
+                                Uri data=Uri.parse("tel:" + "05636626168");
+                                intent.setData(data);
+                                startActivity(intent);
+                                appPostPopup.dismiss();
+                            }
+                        });
+
+                        tvPartJob=(TextView)appPostPopup.getView().findViewById(R.id.tx_2) ;
+                        tvPartJob.setVisibility(View.GONE);
+                        View view1=(View) appPostPopup.getView().findViewById(R.id.v2);
+                        view1.setVisibility(View.GONE);
+                        //点击取消按钮时候的,优先级高
+                        textView =(TextView) appPostPopup.getView().findViewById(R.id.dissmiss);
+                        textView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                appPostPopup.dismiss();
+                            }
+                        });
+                        appPostPopup.showPopupWindow();
+
                         break;
+
                     case 4:
                         //找工作
                         findJobPopup=new FindJobPopup(baseActivity);
@@ -218,14 +293,10 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
                             @Override
                             public void onClick(View v) {
 
-
                                 findJobPopup.dismiss();
 
                             }
                         });
-
-
-
 
                         break;
                     case 5:
@@ -307,6 +378,10 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
                         appPostPopup.showPopupWindow();
 
                         break;
+
+                    default:
+                        break;
+
                 }
 
             }
@@ -368,6 +443,8 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
                     case 7:
                         //查看广而告之中的内容
                         startActivity(SeeAdActivity.class);
+                        break;
+                    default:
                         break;
                 }
 
@@ -572,11 +649,6 @@ public class FirstHomeFragment extends com.rckd.base.BaseFragment implements Swi
         EventBus.getDefault().unregister(this);
 
     }
-
-
-
-
-
 
 
 
