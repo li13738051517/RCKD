@@ -234,96 +234,13 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                     case 9:
                         makeText("你点击了 pos = 9  ");
 //                        if (AppConfig.isLogin){
-                        startActivity(BarAdActivity.class  );
+                        startActivity(BarAdActivity.class);
                         popup.dismiss();
-//                        }
-//                        else{
-//                            startActivityForResult(LoginActivity.class,null,REQUEST_CODE_BAR_AD);
-//                        }
 
-
-//                        LayoutInflater inflater = getLayoutInflater();
-                        // 通过inflate方法将layout转化为view
-//                        v = inflater.inflate(R.layout.activity_bar_ad, null);
-//                        mViewParent.addView(v, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
-//                        mViewParent.setVisibility(View.VISIBLE);
-                        //利用反射机制
-//                        ProxyActivity.startActivity(this, TestCaseFragment.class, "测试用例");
                         break;
                 }
             }
         });
-
-//        button2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                popup.dismiss();
-//                mViewParent.removeView(v);
-//            }
-//        });
-
-//        popup.getView().findViewById(R.id.text1).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(BarAdActivity.class);
-//            }
-//        });
-//        popup.getView().findViewById(R.id.text2).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(BarHelpActivity.class);
-//            }
-//        });
-//        popup.getView().findViewById(R.id.text3).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(BarArtCratfsActivity.class);
-//            }
-//        });
-//        popup.getView().findViewById(R.id.text4).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(BarTempJobActivity.class);
-//            }
-//        });
-//        popup.getView().findViewById(R.id.text5).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(BarFriendActivity.class);
-//            }
-//        });
-//        popup.getView().findViewById(R.id.text6).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(BarCarActivity.class);
-//            }
-//        });
-//        popup.getView().findViewById(R.id.text7).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(BarOldHomeActivity.class);
-//            }
-//        });
-//        popup.getView().findViewById(R.id.text8).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(BarHouseSaleActivity.class);
-//            }
-//        });
-//        popup.getView().findViewById(R.id.text9).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(BarPasteJobActivity.class);
-//            }
-//        });
-//        popup.getView().findViewById(R.id.text10).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(BarJobWantActivity.class);
-//            }
-//        });
-
-
     }
 
     @Override

@@ -1,34 +1,19 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent">
 
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/card_title_tv"
+
+    <com.rckd.view.ListViewNoScroll
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:background="@drawable/background_card"
-        android:gravity="center"
-        android:textSize="18sp"/>
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <com.rckd.view.ListViewNoScroll
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:choiceMode="singleChoice"
-            android:divider="@null"
-            android:fadingEdge="none"
-            android:listSelector="@android:color/transparent"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:scrollbarStyle="outsideOverlay" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+        android:choiceMode="singleChoice"
+        android:fadingEdge="none"
+        android:listSelector="@android:color/transparent"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:scrollbarStyle="outsideOverlay" />
 
 
-</RelativeLayout>
+</LinearLayout>

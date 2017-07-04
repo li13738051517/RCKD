@@ -202,4 +202,6 @@ dependencies {
     compile "org.projectlombok:lombok:1.16.16"
 
 
+    compile('com.github.hotchemi:permissionsdispatcher:2.4.0') { exclude module: 'support-v13' }
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.4.0'
 }

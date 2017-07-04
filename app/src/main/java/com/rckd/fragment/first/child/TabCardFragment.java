@@ -47,25 +47,25 @@ public class TabCardFragment  extends BaseFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View   v = inflater.inflate(R.layout.fr_simple_card, null);
-        TextView card_title_tv = (TextView) v.findViewById(R.id.card_title_tv);
-        card_title_tv.setText(mTitle);
+//        TextView card_title_tv = (TextView) v.findViewById(R.id.card_title_tv);
+//        card_title_tv.setText(mTitle);
 
         //-------------------
         ListViewNoScroll listView = (ListViewNoScroll) v.findViewById(R.id.listView);
-        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefreshLayout);
-        mvcHelper = new MVCSwipeRefreshHelper<>(swipeRefreshLayout);
+//        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefreshLayout);
+//        mvcHelper = new MVCSwipeRefreshHelper<>(swipeRefreshLayout);
         // 设置数据源
         mvcHelper.setDataSource(booksDataSource);
         // 设置适配器
         mvcHelper.setAdapter(new BooksAdapter(baseActivity));
         // 加载数据
-        mvcHelper.refresh();
+//        mvcHelper.refresh();
         listView.setOnItemClickListener(onItemClickListener);
 //        setListViewHeightBasedOnChildren1(listView);
         int listViewHeight = ViewUtil.setListViewHeightBasedOnChildren1(listView);
-        ViewGroup.LayoutParams params = FirstHomeFragment.viewPager.getLayoutParams(); //viewpager控件的共享
-        params.height = listViewHeight;
-        FirstHomeFragment.viewPager.setLayoutParams(params);
+//        ViewGroup.LayoutParams params = FirstHomeFragment.viewPager.getLayoutParams(); //viewpager控件的共享
+//        params.height = listViewHeight;
+//        FirstHomeFragment.viewPager.setLayoutParams(params);
         return v;
     }
     private AdapterView.OnItemClickListener onItemClickListener  = new AdapterView.OnItemClickListener() {

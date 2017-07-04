@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.rckd.view.MyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/scrollView"
@@ -23,7 +23,7 @@
             app:indicator_drawable_selected="@drawable/selected_radius"/>
 
         <com.rckd.view.GridViewNoScroll
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="3dp"
             android:id="@+id/gv"
             android:layout_below="@+id/banner"
             android:numColumns="4"
@@ -40,6 +40,7 @@
            android:weightSum="3"
            android:layout_height="60dp">
            <LinearLayout
+               android:id="@+id/lin_one"
                android:layout_width="0dp"
                android:layout_weight="1"
                android:gravity="center"
@@ -50,6 +51,7 @@
 
 
            <LinearLayout
+               android:id="@+id/lin_two"
                android:layout_width="0dp"
                android:layout_weight="1"
                android:gravity="center"
@@ -62,6 +64,7 @@
 
 
            <LinearLayout
+               android:id="@+id/lin_three"
                android:gravity="center"
                android:layout_width="0dp"
                android:layout_weight="1"
@@ -99,20 +102,20 @@
                    <include layout="@layout/part_time_in"  />
                </LinearLayout>
            </LinearLayout>
-
         </LinearLayout>
         <TextView
             android:id="@+id/tv_char"
             android:layout_below="@+id/bar_job"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:textColor="@color/copper"
             android:paddingLeft="10dp"
+            android:gravity="center|left"
             android:text="便民服务"
             android:background="@color/bg_app"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_toRightOf="@+id/refresh_layout"
             android:layout_toEndOf="@+id/refresh_layout" />
 
@@ -124,61 +127,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-
-        <FrameLayout
+        <include layout="@layout/choose_in3" />
+        
+        <com.rckd.view.ListViewNoScroll
+            android:id="@+id/lv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/tv_show"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp" />
+        <com.flyco.tablayout.SegmentTabLayout
+            android:visibility="gone"
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/gv2"
+            android:background="@color/bg_app"
+            tl:tl_bar_color="#ffffff"
+            tl:tl_indicator_anim_enable="true"
+            tl:tl_indicator_color="#F6CE59"
+            tl:tl_indicator_margin_bottom="1dp"
+            tl:tl_indicator_margin_left="1dp"
+            tl:tl_indicator_margin_right="1dp"
+            tl:tl_indicator_margin_top="1dp"
+            tl:tl_indicator_corner_radius="8dp"
+            tl:tl_textBold="SELECT" />
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewPager"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_below="@+id/tab_layout"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <com.flyco.tablayout.SegmentTabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/gv2"
-                android:background="@color/bg_app"
-                tl:tl_bar_color="#ffffff"
-                tl:tl_indicator_anim_enable="true"
-                tl:tl_indicator_color="#F6CE59"
-                tl:tl_indicator_margin_bottom="1dp"
-                tl:tl_indicator_margin_left="1dp"
-                tl:tl_indicator_margin_right="1dp"
-                tl:tl_indicator_margin_top="1dp"
-                tl:tl_indicator_corner_radius="8dp"
-                tl:tl_textBold="SELECT" />
-        </FrameLayout>
+        <android.support.v4.view.ViewPager
+            android:visibility="gone"
+            android:id="@+id/viewPager"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/tab_layout"
+            android:layout_height="wrap_content" />
 
 
         <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recy"
+            android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipChildren="false"
-            android:paddingLeft="-12dp"
-            android:paddingRight="-12dp" />
+            android:visibility="gone">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:paddingLeft="-12dp"
+                android:paddingRight="-12dp" />
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <android.support.design.widget.FloatingActionButton
@@ -191,4 +186,4 @@
             android:layout_marginRight="24dp"
             android:src="@drawable/ic_home_white_24dp" />
     </LinearLayout>
-</com.rckd.view.MyScrollView>
+</ScrollView>

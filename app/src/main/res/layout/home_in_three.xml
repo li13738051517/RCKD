@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:background="@color/gray_home"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
         <ImageView
@@ -20,6 +21,7 @@
             android:layout_width="30dp"
             android:src="@mipmap/home3"
             android:layout_height="30dp"
+            android:background="@color/gray_home"
             android:layout_margin="3dp" />
         <TextView
             android:id="@+id/tv_num"
@@ -27,6 +29,7 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:textSize="8sp"
+            android:background="@color/gray_home"
             android:text="是你就来吧"
             android:layout_alignBottom="@+id/image_icon"
             android:layout_toRightOf="@+id/image_icon"
@@ -37,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
+            android:background="@color/gray_home"
             android:text="高级人才"
             android:textSize="12sp"
             android:layout_alignTop="@+id/image_icon"

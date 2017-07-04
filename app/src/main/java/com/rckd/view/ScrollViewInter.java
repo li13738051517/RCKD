@@ -7,11 +7,12 @@ import android.widget.ScrollView;
 /**
  * Created by LiZheng on 17/6/16.
  */
-public class MyScrollView extends ScrollView {
+//自定义接口解决某些问题
+public class ScrollViewInter extends ScrollView {
 
     public OnScrollListener onScrollListener;
 
-    public MyScrollView(Context context, AttributeSet attrs) {
+    public ScrollViewInter(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -39,8 +40,5 @@ public class MyScrollView extends ScrollView {
         public void onTouchUp();
         public void onTouchDown();
     }
-
-
-
 
 }
