@@ -92,10 +92,10 @@ public class AppConfig {
     public static final String DEBUG_TAG = "RCKD";// LogCat的标记
     public static final boolean DEBUG_ENABLE = false;// 是否调试模式 ,正式版本这样使用
 
-
     //---------------------app账户信息模块
-    public static  boolean isLogin=false;//是否曾经已登录过, 利用cookies 存储
+    public static  boolean isLogin=false;//判断是否已登录
+    public static  boolean isRegister=false;//判断是否已经注册
     public static String phone = "13738051517";
-    public static String password="";
+    public static String password="li1234567890";
 
 }

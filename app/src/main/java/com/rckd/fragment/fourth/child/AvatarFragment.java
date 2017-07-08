@@ -1,8 +1,10 @@
 package com.rckd.fragment.fourth.child;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +14,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.rckd.R;
 import com.rckd.activity.ChangePhoneActivity;
 import com.rckd.activity.ChangePhonePasswordActivity;
 import com.rckd.activity.ImproveHrDataActivity;
 import com.rckd.activity.JoinInMQActivity;
+import com.rckd.activity.LoginActivity;
+import com.rckd.activity.MainActivity;
 import com.rckd.activity.PrefectPersonData;
 import com.rckd.activity.ReChargeActivity;
 import com.rckd.activity.RecordActivity;
@@ -29,6 +34,9 @@ import com.rckd.activity.SeeMyPositionPartTimeActivity;
 import com.rckd.activity.SeeMyRecruitmentPostActivity;
 import com.rckd.activity.SeeMyRecruitmentPostPartActivity;
 import com.rckd.activity.SeeSeekerCVActivity;
+import com.rckd.application.AppConfig;
+import com.rckd.fragment.first.HomeFragment;
+import com.rckd.fragment.first.child.FirstHomeFragment;
 import com.rckd.view.SlideAppPostPopup;
 
 import org.greenrobot.eventbus.EventBus;
@@ -37,9 +45,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
+import static com.blankj.utilcode.util.ClipboardUtils.getIntent;
+import static com.rckd.base.BaseActivity.RESULT_CODE_BAR_AD;
+import static com.tencent.mm.opensdk.diffdev.a.g.av;
+
 /**
  * Created by LiZheng on 16/6/6.
  */
+//子界面的额实际界面
 public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.OnClickListener {
     private  static  final String tag=AvatarFragment.class.getName();
 
@@ -53,17 +66,17 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
 
 
     //-------------------top
-    @BindView(R.id.image_icon) de.hdodenhof.circleimageview.CircleImageView image_icon;
-    @BindView(R.id.tv_phne) TextView tv_phne;
-    @BindView(R.id.tv_num) TextView tv_num;
+    @Nullable@BindView(R.id.image_icon) de.hdodenhof.circleimageview.CircleImageView image_icon;
+    @Nullable@BindView(R.id.tv_phne) TextView tv_phne;
+    @Nullable@BindView(R.id.tv_num) TextView tv_num;
     //---------------
-    @BindView(R.id.job_want_bg) RelativeLayout job_want_bg;
-    @BindView(R.id.my_recruit_bg) RelativeLayout my_recruit_bg;
-    @BindView(R.id.person_bg) RelativeLayout  person_bg;
-    @BindView(R.id.company_bg) RelativeLayout  company_bg;
-    @BindView(R.id.pay_bg) RelativeLayout pay_bg;
-    @BindView(R.id.logout_bg) RelativeLayout  logout_bg;
-    @BindView(R.id.company_new) RelativeLayout company_new;//商企动态
+    @Nullable@BindView(R.id.job_want_bg) RelativeLayout job_want_bg;
+    @Nullable@BindView(R.id.my_recruit_bg) RelativeLayout my_recruit_bg;
+    @Nullable@BindView(R.id.person_bg) RelativeLayout  person_bg;
+    @Nullable@BindView(R.id.company_bg) RelativeLayout  company_bg;
+    @Nullable@BindView(R.id.pay_bg) RelativeLayout pay_bg;
+    @Nullable@BindView(R.id.logout_bg) RelativeLayout  logout_bg;
+    @Nullable@BindView(R.id.company_new) RelativeLayout company_new;//商企动态
     //-------------------------------------
     View view;//对话框布局仕途
     Dialog dialog; //对话框
@@ -82,12 +95,63 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.zhihu_fragment_fourth_avatar, container, false);
-//        EventBus.getDefault().register(this);
+        //-----------------先判断登陆相关----------------------------
+        View view=null;
+
+        view= inflater.inflate(R.layout.zhihu_fragment_fourth_avatar, container, false);
+        //        EventBus.getDefault().register(this);
         ButterKnife.bind(this,view);
         // TODO Use fields...
         initView(view);
         return view;
+    }
+
+    //
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //----------------在前台时 ,通过判断是否已经登陆去
+        //
+        if (!AppConfig.isLogin) {
+            //请求------------------的
+//            startActivityForResult(LoginActivity.class,300);
+//            finish();
+            showDialog();
+        }
+        //-----------------前台需要被操作的资源包括更新UI均在此处理
+    }
+    public void showDialog() {
+        new MaterialDialog.Builder(baseActivity)
+                .content(R.string.shareLocationPrompt)
+                .cancelable(false)
+                .positiveText(R.string.agree)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivityForResult(LoginActivity.class,300);
+                    }
+                })
+                .negativeText(R.string.disagree)
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        reStartActivity();
+                    }
+                })
+                .show();
+    }
+
+
+    //----------------------------
+    private void reStartActivity() {
+        Intent intent = new Intent(baseActivity, MainActivity.class);
+        finish();
+        startActivity(intent);
+//        baseActivity.onBackPressed();
+//        startFragment(AvatarFragment.class);
     }
 
     private void initView(View view){
@@ -100,6 +164,43 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
         company_new.setOnClickListener(this);
     }
 
+//    protected OnBackToFirstListener _mBackToFirstListener;
+//
+//    public interface OnBackToFirstListener {
+//        void onBackToFirstFragment();
+//    }
+//    @Override
+//    public boolean onBackPressedSupport() {
+//        if (getChildFragmentManager().getBackStackEntryCount() > 1) {
+//            popChild();
+//        } else {
+////            if (this instanceof HomeFragment) {   // 如果是 第一个Fragment 则退出app
+////                baseActivity.finish();
+////            } else {                                    // 如果不是,则回到第一个Fragment
+//                _mBackToFirstListener.onBackToFirstFragment();
+////            }
+//        }
+//
+//        return super.onBackPressedSupport();
+//    }
+
+    //处理登陆页面返回数据值
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case RESULT_CODE_BAR_AD:
+                //如果任没有登陆,让页面跳转到第一个Fragment
+                if (!AppConfig.isLogin){
+//                    startFragment(findFragment(FirstHomeFragment.class));
+                    //请求
+                    Timber.e(tag+"  onActivityResult RESULT_CODE_BAR_AD ",tag);
+//                    startActivityForResult(LoginActivity.class,300);
+                    showDialog();
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     @Override
     public void onDestroyView() {
@@ -397,7 +498,6 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
             //充值
             case R.id.pay_bg:
                 //跳转到充值界面
-
                 startActivity(ReChargeActivity.class);
                 break;
 
@@ -405,8 +505,6 @@ public class AvatarFragment extends com.rckd.base.BaseFragment implements  View.
             case R.id.logout_bg:
                 makeText("注销账号成功");
                 break;
-
-
 
         }
     }

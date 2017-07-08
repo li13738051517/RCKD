@@ -120,6 +120,7 @@
             android:layout_toEndOf="@+id/refresh_layout" />
 
         <com.rckd.view.GridViewNoScroll
+            android:layout_marginBottom="16dp"
             android:layout_marginTop="3dp"
             android:layout_below="@+id/tv_char"
             android:id="@+id/gv2"
@@ -131,6 +132,7 @@
         
         <com.rckd.view.ListViewNoScroll
             android:id="@+id/lv"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

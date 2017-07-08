@@ -466,6 +466,23 @@ public abstract class BaseActivity extends AppCompatActivity implements com.rckd
         Timber.e(tag + " startActivityForResult  Class<?> cls, Bundle bundle, int requestCode over", tag);
     }
 
+
+    public void startActivityForResult(Class<?> cls, int requestCode) {
+        Timber.e(tag + " startActivityForResult  Class<?> cls, Bundle bundle, int requestCode start", tag);
+        Intent intent = new Intent();
+        intent.setClass(this, cls);
+//        if (bundle != null) {
+//            Timber.e(tag + " startActivityForResult  Class<?> cls, Bundle bundle, int requestCode bundle != null ", tag);
+//            intent.putExtras(bundle);
+//        }
+        startActivityForResult(intent, requestCode);
+//        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+        Timber.e(tag + " startActivityForResult  Class<?> cls, Bundle bundle, int requestCode over", tag);
+    }
+
+
+
     /**
      * 带有右进右出动画的退出
      */

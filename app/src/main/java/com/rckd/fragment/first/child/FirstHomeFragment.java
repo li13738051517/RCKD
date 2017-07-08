@@ -40,6 +40,7 @@ import com.rckd.activity.SeeMakeFriendsAdActivity;
 import com.rckd.activity.SeeOldHomeAdActivity;
 import com.rckd.activity.SeeSeleHouseAdActivity;
 import com.rckd.activity.SeeTempWorkAdActivity;
+import com.rckd.activity.TalentPersonActivity;
 import com.rckd.activity.TalentsActivity;
 import com.rckd.activity.WantedJobActivity;
 import com.rckd.activity.WantedPersonActivity;
@@ -339,12 +340,11 @@ public class FirstHomeFragment extends BaseFragment implements SwipeRefreshLayou
                         tvHire.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-
+                                startActivity(TalentPersonActivity.class);
                                 findJobPopup.dismiss();
-
                             }
                         });
-
+                        findJobPopup.showPopupWindow();
                         break;
                     case 5:
                         //找人才-------匹配搜索条件后跳转到最新求职
@@ -473,7 +473,6 @@ public class FirstHomeFragment extends BaseFragment implements SwipeRefreshLayou
                     case 3:
                         //查看交友征婚便民贴
                         startActivity(SeeMakeFriendsAdActivity.class);
-
                         break;
                     case 4:
                         //查看打听求助中的内容

@@ -8,6 +8,7 @@ import com.yanzhenjie.nohttp.Logger;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +25,9 @@ import static com.rckd.application.AppConfig.phone;
 /**
  * Created by LiZheng on 2017/6/14 0014.
  */
+//账号已注册情况下
 public class LoginAccountActivity extends BaseActivity implements View.OnClickListener {
+    Bundle bundle;
     static String tag=LoginAccountActivity.class.getName();
     //当布局中对应Fragment是,可让其绑定相应的fragent ,通过此方法
     @Override
@@ -53,8 +56,14 @@ public class LoginAccountActivity extends BaseActivity implements View.OnClickLi
         if (intent!=null){
              Bundle bundle= intent.getExtras();
               if (bundle !=null){
-                  AppConfig.phone= bundle.getString("phone" , "13738051517");
+                  AppConfig.phone= bundle.getString("phone").toString().trim();
                   usertext.setText(AppConfig.phone);
+                  //----------------注册之后去登陆时
+                  String pwd= bundle.get("pwd").toString().trim();
+                  if (TextUtils.isEmpty(pwd)){
+                      return;
+                  }
+                  psdbg.setText(pwd);
             }
         }
 
@@ -83,14 +92,16 @@ public class LoginAccountActivity extends BaseActivity implements View.OnClickLi
                     return;
                 }
                 AppConfig.phone=phoneNum;
-                Bundle bundle =new Bundle();
+                bundle =new Bundle();
                 bundle.putString("phone",AppConfig.phone);
                 startActivity(ForgetPsdActivity.class ,bundle);
+                //----------------忘记密码
+                finish();
                 break;
             case  R.id.left_btn:
                  intent=new Intent();
 //                intent.putExtra("city",city); //"city" key ,vaue 后填写实际数据
-                setResult(RESULT_CODE_LOGIN ,intent);
+                setResult(900 ,intent);
                 finish();
                 break;
             case R.id.logeinbtn:
@@ -109,9 +120,14 @@ public class LoginAccountActivity extends BaseActivity implements View.OnClickLi
                 }
                 AppConfig.password= pwd;
                 intent=new Intent();
-                setResult(RESULT_CODE_LOGIN ,intent);
+                bundle=new Bundle();
+                bundle.putString("phone",phoneNum);
+                bundle.putString("pwd",pwd);
+                intent.putExtras(bundle);
+                AppConfig.isLogin=true;
+                setResult(900,intent);
                 finish();
-
+                //-----------------------------监听者模式 ,通知相关界面刷新
                 break;
         }
     }

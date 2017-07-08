@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rckd.R;
+import com.rckd.activity.LoginActivity;
+import com.rckd.application.AppConfig;
 import com.rckd.base.BaseMainFragment;
 import com.rckd.fragment.fourth.child.AvatarFragment;
 import com.rckd.fragment.fourth.child.MeFragment;
@@ -20,9 +22,7 @@ public class UserCenterFragment extends BaseMainFragment {
     private View mView;
 
     public static UserCenterFragment newInstance() {
-
         Bundle args = new Bundle();
-
         UserCenterFragment fragment = new UserCenterFragment();
         fragment.setArguments(args);
         return fragment;
@@ -52,8 +52,13 @@ public class UserCenterFragment extends BaseMainFragment {
     }
 
     private void loadFragment() {
-        loadRootFragment(R.id.fl_fourth_container_upper, AvatarFragment.newInstance());
+        //-------------------判断是否已经登陆 ,若没有登陆则到登陆界面
+//        if (!AppConfig.isLogin){
+//            startActivity(LoginActivity.class);
+//        }else {
+            loadRootFragment(R.id.fl_fourth_container_upper, AvatarFragment.newInstance());
 //        loadRootFragment(R.id.fl_fourth_container_lower, MeFragment.newInstance());
+//        }
     }
 
     public void onBackToFirstFragment() {

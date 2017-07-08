@@ -42,18 +42,19 @@ public class NewFindJobActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_find_job_layout);
+        View view=View.inflate(this,R.layout.new_find_job_layout,null);
+        setContentView(view);
         ButterKnife.bind(this);
         leftBtn.setVisibility(View.VISIBLE);
-        leftBtn.setOnClickListener(this);
+//        leftBtn.setOnClickListener(this);
         rightBtn.setVisibility(View.VISIBLE);
         rightBtn.setText("搜索");
-        rightBtn.setOnClickListener(this);
+//        rightBtn.setOnClickListener(this);
         tv1.setText("全职");
         tv2.setText("广德县");//获得当前位置
         tv3.setText("职位");
         tv4.setText("更多");
-
+        onViewClicked(view);
     }
 
     @Override
@@ -70,8 +71,10 @@ public class NewFindJobActivity extends BaseActivity implements View.OnClickList
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.left_btn:
+                finish();
                 break;
             case R.id.right_btn:
+                makeText("正在搜索!!!");
                 break;
             case R.id.tv1:
                 break;

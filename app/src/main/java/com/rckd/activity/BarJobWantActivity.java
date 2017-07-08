@@ -117,7 +117,7 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
             case R.id.left_btn:
                 finish();
                 break;
-//全职招聘
+            //全职招聘
             case R.id.text1:
                 Timber.e(tag+" 全职招聘 ",tag);
                 inflater = LayoutInflater.from(this);
@@ -402,7 +402,8 @@ public class BarJobWantActivity extends BaseActivity implements View.OnClickList
                     }
                     makeText("恭喜你,发帖成功!!!");
                     //----------------post请求注意编码放肆
-                    //---------------------全职招聘,完善招聘方资料
+                    //---------------------全职招聘,完善招聘方资料 ,没有登陆的情况下填写的手机号码作为登陆账户,若已经登陆则不需要填写手机号码着一栏(直接移仓消失)
+                    //判断是否登陆,没有登陆 ,则去登陆(有用户名和密码的那个界面,) 若已经登陆,则跳转到完善招聘方资料界面
                     startActivity(ImproveHrDataActivity.class);
                     finish();
 

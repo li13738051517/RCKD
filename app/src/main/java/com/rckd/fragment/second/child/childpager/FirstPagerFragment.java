@@ -1,6 +1,8 @@
 package com.rckd.fragment.second.child.childpager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,10 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.rckd.R;
+import com.rckd.activity.LoginActivity;
 import com.rckd.activity.LookMeCompanyActivity;
 import com.rckd.activity.MainActivity;
 import com.rckd.adpter.HomeAdapter;
+import com.rckd.application.AppConfig;
 import com.rckd.base.BaseFragment;
 import com.rckd.bean.Article;
 import com.rckd.event.TabSelectedEvent;
@@ -26,10 +32,15 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
+import timber.log.Timber;
+
+import static com.rckd.base.BaseActivity.RESULT_CODE_BAR_AD;
+
 /**
  * Created by LiZheng on 16/6/3.
  */
 public class FirstPagerFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+    private String tag=FirstPagerFragment.class.getName();
     private RecyclerView mRecy;
     private SwipeRefreshLayout mRefreshLayout;
 
@@ -159,4 +170,61 @@ public class FirstPagerFragment extends BaseFragment implements SwipeRefreshLayo
         EventBus.getDefault().unregister(this);
     }
 
+
+
+    //--------------------------------------------------
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //----------------在前台时 ,通过判断是否已经登陆去
+        //
+        if (!AppConfig.isLogin) {
+            showDialog();
+        }
+    }
+
+    public void showDialog() {
+        new MaterialDialog.Builder(baseActivity)
+                .content(R.string.shareLocationPrompt)
+                .cancelable(false)
+                .positiveText(R.string.agree)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivityForResult(LoginActivity.class,300);
+                    }
+                })
+                .negativeText(R.string.disagree)
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        reStartActivity();
+                    }
+                })
+                .show();
+    }
+    private void reStartActivity() {
+        Intent intent = new Intent(baseActivity, MainActivity.class);
+        finish();
+        startActivity(intent);
+    }
+
+    // 处理登陆页面返回数据值
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case RESULT_CODE_BAR_AD:
+                //如果任没有登陆,让页面跳转到第一个Fragment
+                if (!AppConfig.isLogin){
+//                    startFragment(findFragment(FirstHomeFragment.class));
+                    //请求
+                    Timber.e(tag+"  onActivityResult RESULT_CODE_BAR_AD ",tag);
+//                    startActivityForResult(LoginActivity.class,300);
+                    showDialog();
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

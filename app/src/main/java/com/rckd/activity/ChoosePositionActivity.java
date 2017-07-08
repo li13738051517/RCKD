@@ -75,7 +75,6 @@ public class ChoosePositionActivity extends BaseActivity implements View.OnClick
         title.setText("全职职位");
         right.setVisibility(View.GONE);
         initList();//初始化数据
-
         gv1.setAdapter(new MyAdapter(this,list));
         gv2.setAdapter(new MyAdapter(this,list));
         gv3.setAdapter(new MyAdapter(this,list));
@@ -91,8 +90,6 @@ public class ChoosePositionActivity extends BaseActivity implements View.OnClick
             case  R.id.left_btn:
                 finish();
                 break;
-
-
         }
     }
 

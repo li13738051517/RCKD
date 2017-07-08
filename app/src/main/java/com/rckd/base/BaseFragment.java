@@ -157,6 +157,23 @@ public class BaseFragment extends Fragment implements  com.rckd.inter.ISupportFr
         startActivity(new Intent(baseActivity,tClass),bundle);
     }
 
+
+    /**
+     *
+     * @param tClass
+     * @param requestCode
+     * @param <T>
+     */
+    protected  final <T extends  Activity> void  startActivityForResult(Class<T> tClass ,int requestCode ){
+        startActivityForResult(new Intent(baseActivity ,tClass), requestCode);
+    }
+
+
+
+    protected final <T extends  Activity> void  startActivityForResult(Class<T> tClass ,int requestCode ,Bundle bundle ){
+        startActivityForResult(new Intent(baseActivity ,tClass), requestCode,bundle);
+    }
+
     /**
      * Start activity and finish my parent.
      *
@@ -167,6 +184,8 @@ public class BaseFragment extends Fragment implements  com.rckd.inter.ISupportFr
         startActivity(new Intent(baseActivity, clazz));
         baseActivity.finish();
     }
+
+
 
     //优先获取一个实例化
     @Override

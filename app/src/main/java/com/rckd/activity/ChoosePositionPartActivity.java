@@ -28,14 +28,8 @@ public class ChoosePositionPartActivity extends BaseActivity implements View.OnC
     @BindView(R.id.psdbg) RelativeLayout psdbg;
     @BindView(R.id.tv1) TextView tv1;
 
-    @Override
-    protected int fragmentLayoutId() {
-        return 0;
-    }
-
     @BindView(R.id.left_btn) Button left;
     @BindView(R.id.title_text) TextView title;
-
     @BindView(R.id.right_btn) Button right;
     @BindView(R.id.gv1) GridViewNoScroll gv;
 
@@ -44,7 +38,6 @@ public class ChoosePositionPartActivity extends BaseActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_position_part_layout);
         ButterKnife.bind(this);
-
         //-------------------
         left.setVisibility(View.VISIBLE);
         left.setOnClickListener(this);
@@ -52,9 +45,7 @@ public class ChoosePositionPartActivity extends BaseActivity implements View.OnC
         title.setText("兼职职位");
         right.setVisibility(View.GONE);
         //---------------------
-
-
-
+        //------------------------兼职职位列表
 
     }
 
@@ -64,8 +55,13 @@ public class ChoosePositionPartActivity extends BaseActivity implements View.OnC
         super.onClick(v);
         switch (v.getId()) {
             case R.id.left_btn:
+                finish();
                 break;
-
         }
+    }
+
+    @Override
+    protected int fragmentLayoutId() {
+        return 0;
     }
 }

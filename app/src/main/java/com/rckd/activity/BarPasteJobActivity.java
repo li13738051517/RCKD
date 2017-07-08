@@ -23,6 +23,7 @@ import com.jph.takephoto.model.TResult;
 import com.litesuits.common.io.StringCodingUtils;
 import com.rckd.R;
 import com.rckd.adpter.ImageAdapterTImage;
+import com.rckd.application.AppConfig;
 import com.rckd.base.BaseActivity;
 import com.rckd.pickers.AddressPickTask;
 import com.rckd.utils.CallServer;
@@ -59,6 +60,7 @@ import static com.rckd.R.id.text_ad;
 import static com.rckd.R.id.text_ad4;
 import static com.rckd.R.id.title_text;
 import static com.rckd.R.id.tv1;
+import static com.rckd.application.AppConfig.phone;
 
 /**
  * Created by LiZheng on 2017/5/8 0008.
@@ -124,11 +126,6 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-
-
-
-
-
     //----------------
     @Nullable@BindView(R.id.left_btn) Button left_btn;
     @Nullable@BindView(R.id.title_text) TextView title_text;
@@ -167,6 +164,12 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
     @Nullable@BindView(R.id.ed9) TextView ed9;
     @Nullable@BindView(R.id.text9) TextView text9;
     @Nullable@BindView(R.id.lin9) LinearLayout lin9;
+    //------------------------------------------------(没有登陆情况下手机账号这一栏显示)
+    @Nullable@BindView(R.id.text10) TextView text10;
+    @Nullable@BindView(R.id.ed10) EditText ed10;
+    @Nullable@BindView(R.id.lin10) LinearLayout lin10;
+    //-----------------------(特别注意:)
+
 
 
     @Nullable@BindView(R.id.textView) AppCompatEditText textView;
@@ -220,6 +223,17 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                 ed9.setOnClickListener(this);
                 text9.setOnClickListener(this);
                 lin9.setOnClickListener(this);
+                //---------------------------------
+                if (!AppConfig.isLogin){
+                    lin10.setVisibility(View.VISIBLE);
+                    text10.setVisibility(View.VISIBLE);
+                    ed10.setVisibility(View.VISIBLE);
+                }else{
+                    //
+                    lin10.setVisibility(View.GONE);
+                    text10.setVisibility(View.GONE);
+                    ed10.setVisibility(View.GONE);
+                }
 //                group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 //                    @Override
 //                    public void onCheckedChanged(RadioGroup arg0, int arg1) {
@@ -236,6 +250,7 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                 break;
             //兼职求职贴
             case R.id.text2:
+                //---------------------------------没有手机号码的情况
                 view=  LayoutInflater.from(this).inflate(R.layout.lookpartjob,null);
                 setContentView(view);
                 //------------------------
@@ -345,8 +360,6 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                 onConstellationPicker(R.id.lin7,strOpt);
                 break;
 
-
-
             case R.id.left_btn:
                 finish();
                 break;
@@ -411,6 +424,19 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                     makeText("工作地点不能没有哦");
                     return;
                 }
+                if (!AppConfig.isLogin){
+                   String pbone= ed10.getText().toString().trim();
+                    //此处需要对手机号码进行判断 -----------------没有注册去注册 ---------------
+                    // 实际上通过接口去判断,利用Json串返回数据值需注意两点,明确给出该手机号码,明确给出返回值(是否已注册)
+                    Bundle bundle=null;
+                    bundle.putString("phone" ,phone);
+                    if (!AppConfig.isRegister){
+                        startActivity(RegisterActivity.class ,bundle);
+                        return;
+                    }
+                    //----------------------如果已经注册,则去登陆
+                    startActivity(LoginAccountActivity.class ,bundle);
+                }
                 //请求
                 //----------------------------------------------
                 //-------------------------------------信息保存起来跳转到到下一个界面 ???
@@ -421,6 +447,10 @@ public class BarPasteJobActivity extends BaseActivity implements View.OnClickLis
                 bundle.putString("workType",worktype);
                 bundle.putString("salary",salary);
                 bundle.putString("area",area);
+                //--------------------------------------
+                //--------------------------------------根据此处的手机账号,如果此账号存在,没有登陆(手机账号显示),则去登陆;
+                // 如果此账号不存在,先去注册 ,注册成功后,登陆.,登陆之后再讲此帖子的内容发布
+
                 startActivity(PrefectPersonData.class,bundle);
                 finish();
                 break;

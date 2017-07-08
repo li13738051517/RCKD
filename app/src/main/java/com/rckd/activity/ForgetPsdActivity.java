@@ -62,7 +62,6 @@ public class ForgetPsdActivity extends BaseActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forgetpsd);
         ButterKnife.bind(this);
-
         Intent intent =getIntent();
         if (intent!=null){
             Bundle bundle= intent.getExtras();
@@ -71,8 +70,6 @@ public class ForgetPsdActivity extends BaseActivity implements View.OnClickListe
                 usertext.setText(AppConfig.phone);
             }
         }
-
-
 
         left.setOnClickListener(this);
         title.setVisibility(View.VISIBLE);

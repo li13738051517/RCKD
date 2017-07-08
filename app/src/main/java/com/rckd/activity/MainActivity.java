@@ -2,6 +2,7 @@ package com.rckd.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.util.Log;
@@ -15,6 +16,8 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.baidu.location.BDLocation;
 import com.rckd.R;
 import com.rckd.adpter.BaseAdapterQd;
@@ -180,68 +183,112 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
 //发招聘贴
                     case 0:
                         makeText("你点击了 pos = 0 ");
-                        startActivity(BarJobWantActivity.class);
+                        popup.dismiss();
+//                        if (!AppConfig.isLogin){
+//                            showDialog();
+//                        }else{
+                            startActivity(BarJobWantActivity.class);
+//                        }
                         break;
                     //发求职贴
                     case 1:
                         makeText("你点击了 pos = 1  ");
+                        popup.dismiss();
                         startActivity(BarPasteJobActivity.class);
+
                         break;
                     //房屋出售
                     case 2:
                         makeText("你点击了 pos = 2  ");
+                        popup.dismiss();
+                        if (!AppConfig.isLogin){
+                            showDialog();
+                            return;
+                        }
                         startActivity(BarHouseSaleActivity.class);
                         break;
                     //二手之家
                     case 3:
                         makeText("你点击了 pos = 3  ");
-                        startActivity(BarOldHomeActivity.class);
                         popup.dismiss();
+                        if (!AppConfig.isLogin){
+                            showDialog();
+                            return;
+                        }
+                        startActivity(BarOldHomeActivity.class);
+
                         break;
 //顺风拼车
                     case 4:
                         makeText("你点击了 pos = 4  ");
-                        startActivity(BarCarActivity.class);
                         popup.dismiss();
+                        if (!AppConfig.isLogin){
+                            showDialog();
+                            return;
+                        }
+                        startActivity(BarCarActivity.class);
+
                         break;
                     //交友征婚
                     case 5:
                         makeText("你点击了 pos = 5  ");
-                        startActivity(BarFriendActivity.class);
                         popup.dismiss();
-
+                        if (!AppConfig.isLogin){
+                            showDialog();
+                            return;
+                        }
+                        startActivity(BarFriendActivity.class);
                         break;
 //临时短工
                     case 6:
                         makeText("你点击了 pos = 6  ");
-                        startActivity(BarTempJobActivity.class);
                         popup.dismiss();
+                        if (!AppConfig.isLogin){
+                            showDialog();
+                            return;
+                        }
+                        startActivity(BarTempJobActivity.class);
                         break;
                     //匠工约定
                     case 7:
                         makeText("你点击了 pos = 7  ");
-                        startActivity(BarArtCratfsActivity.class);
                         popup.dismiss();
+                        if (!AppConfig.isLogin){
+                            showDialog();
+                            return;
+                        }
+                        startActivity(BarArtCratfsActivity.class);
+
                         break;
 //打听求助
 
                     case 8:
                         makeText("你点击了 pos = 8  ");
-                        startActivity(BarHelpActivity.class);
                         popup.dismiss();
+                        if (!AppConfig.isLogin){
+                            showDialog();
+                        }else {
+                            startActivity(BarHelpActivity.class);
+                        }
                         break;
 //广而告之
                     case 9:
                         makeText("你点击了 pos = 9  ");
 //                        if (AppConfig.isLogin){
-                        startActivity(BarAdActivity.class);
                         popup.dismiss();
-
+                        if (!AppConfig.isLogin){
+                            showDialog();
+                        }else {
+                            startActivity(BarAdActivity.class);
+                        }
+                        break;
+                    default:
                         break;
                 }
             }
         });
     }
+
 
     @Override
     protected FragmentAnimator onCreateFragmentAnimator() {
@@ -476,9 +523,7 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
         }
         //根据结果吗判断事务
         switch (resultCode) {
-            case RESULT_CODE_BAR_AD:
-                makeText("即将跳转界面!!!");
-                break;
+
             case RESULT_CODE_CITY:
                 //定义规范
                 String city= data.getStringExtra("city").toString().trim();
@@ -489,6 +534,18 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
                 cityBtn.setText(city);
                 mLocationClient.stop();
                 break;
+            case RESULT_CODE_BAR_AD:
+                //如果任没有登陆,让页面跳转到第一个Fragment
+                if (!AppConfig.isLogin){
+                    Timber.e(tag+"  onActivityResult RESULT_CODE_BAR_AD ",tag);
+                    showDialog();
+                }
+                break;
+
+
+
+
+
             default:
                 Timber.e(tag + "   resultCode   = ????" , tag);
                 break;
@@ -731,4 +788,61 @@ public class MainActivity extends BaseActivity implements BaseMainFragment.OnBac
         super.onStop();
         mLocationClient.stop();
     }
+
+
+
+
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        //----------------在前台时 ,通过判断是否已经登陆去
+//        //
+//        if (!AppConfig.isLogin) {
+//            showDialog();
+//        }
+//    }
+
+    public void showDialog() {
+        new MaterialDialog.Builder(MainActivity.this)
+                .content(R.string.shareLocationPrompt)
+                .cancelable(false)
+                .positiveText(R.string.agree)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivityForResult(LoginActivity.class,300);
+                    }
+                })
+                .negativeText(R.string.disagree)
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+//                        reStartActivity();
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
+
+//    // 处理登陆页面返回数据值
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        switch (requestCode){
+//            case RESULT_CODE_BAR_AD:
+//                //如果任没有登陆,让页面跳转到第一个Fragment
+//                if (!AppConfig.isLogin){
+////                    startFragment(findFragment(FirstHomeFragment.class));
+//                    //请求
+//                    Timber.e(tag+"  onActivityResult RESULT_CODE_BAR_AD ",tag);
+////                    startActivityForResult(LoginActivity.class,300);
+//                    showDialog();
+//                }
+//                break;
+//        }
+//        super.onActivityResult(requestCode, resultCode, data);
+//    }
+
+
 }
